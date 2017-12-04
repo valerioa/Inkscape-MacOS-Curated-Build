@@ -80,6 +80,10 @@ struct SPDesktopWidget {
 
     GtkWidget *menubar, *statusbar;
 
+#ifdef WITH_CARBON_INTEGRATION
+    GtkWidget *about_item, *prefs_item;
+#endif
+
     Inkscape::UI::Dialogs::SwatchesPanel *panels;
 
     GtkWidget *hscrollbar, *vscrollbar, *vscrollbar_box;

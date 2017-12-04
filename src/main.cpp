@@ -107,6 +107,10 @@
 #include "registrytool.h"
 #endif // WIN32
 
+#ifdef WITH_CARBON_INTEGRATION
+#include "osx_carbon_integration/osx-integration.h"
+#endif /* WITH_CARBON_INTEGRATION */
+
 #include "extension/init.h"
 // Not ideal, but there doesn't appear to be a nicer system in place for
 // passing command-line parameters to extensions before initialization...
@@ -1043,6 +1047,10 @@ sp_main_gui(int argc, char const **argv)
 {
     Gtk::Main main_instance (&argc, const_cast<char ***>(&argv));
 
+#ifdef WITH_CARBON_INTEGRATION
+	init_Mac_OSX_Integration();
+#endif /* WITH_CARBON_INTEGRATION */
+
     GSList *fl = NULL;
     int retVal = sp_common_main( argc, argv, &fl );
     g_return_val_if_fail(retVal == 0, 1);
@@ -1153,6 +1161,10 @@ sp_main_gui(int argc, char const **argv)
     if (create_new) {
         sp_file_new_default();
     }
+
+#ifdef WITH_CARBON_INTEGRATION
+	init_Mac_OSX_Integration_complete();
+#endif /* WITH_CARBON_INTEGRATION */
 
     Glib::signal_idle().connect(sigc::ptr_fun(&Inkscape::CmdLineAction::idle));
     main_instance.run();

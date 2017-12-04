@@ -83,6 +83,10 @@
 using Inkscape::round;
 #endif
 
+#ifdef WITH_CARBON_INTEGRATION
+#include <osx_carbon_integration/osx-integration.h>
+#endif
+
 using Inkscape::UI::Widget::UnitTracker;
 using Inkscape::UI::UXManager;
 using Inkscape::UI::ToolboxFactory;
@@ -1575,7 +1579,13 @@ void SPDesktopWidget::layoutWidgets()
     if (!prefs->getBool(pref_root + "menu/state", true)) {
         gtk_widget_hide (dtw->menubar);
     } else {
+#ifdef  WITH_CARBON_INTEGRATION
         gtk_widget_show_all (dtw->menubar);
+        OSX_set_menubar(dtw);
+        gtk_widget_hide (dtw->menubar);
+#else
+        gtk_widget_show_all (dtw->menubar);
+#endif  /* WITH_CARBON_INTEGRATION */
     }
 
     if (!prefs->getBool(pref_root + "commands/state", true)) {
@@ -1915,6 +1925,14 @@ bool SPDesktopWidget::onFocusInEvent(GdkEventFocus*)
             sp_image_refresh_if_outdated( image );
         }
     }
+
+#ifdef WITH_CARBON_INTEGRATION
+    if (sInkscapeOsxIntegration.dtw_infocus != this) {
+        OSX_set_menubar(this);
+        sInkscapeOsxIntegration.dtw_infocus = this;
+    }
+    gtk_widget_hide (menubar);
+#endif /* WITH_CARBON_INTEGRATION */
 
     INKSCAPE.activate_desktop (desktop);
 

@@ -36,8 +36,11 @@ AC_ARG_ENABLE([lsb], AS_HELP_STRING([--enable-lsb], [LSB-compatible build config
 
 AC_LANG(C++)
 AC_PROG_CXX
+AC_PROG_OBJCXX
+AC_PROG_OBJC
 AC_PROG_CC
 AM_PROG_AS
+
 # Initialize libtool
 LT_PREREQ([2.2])
 LT_INIT
@@ -538,6 +541,31 @@ AM_CONDITIONAL(WITH_LIBVISIO00, test "x$with_libvisio00" = "xyes")
 AM_CONDITIONAL(WITH_LIBVISIO, test "x$with_libvisio" = "xyes")
 
 dnl ********************************
+dnl Carbon Integration
+dnl ********************************
+
+AC_ARG_ENABLE(carbon,
+       AS_HELP_STRING([--enable-osx-carbon], [enable Carbon Integration]),
+       enable_carbon=$enableval,enable_carbon=no)
+
+with_carbon=no
+if test "x$enable_carbon" = "xyes"; then
+	PKG_CHECK_MODULES(GTKMACINTEGRATION, gtk-mac-integration-gtk2, gtk_mac_integration_gtk2_ok=yes, gtk_mac_integration_gtk2_ok=no)
+	if test "x$gtk_mac_integration_gtk2_ok" = "xyes"; then
+		AC_DEFINE(HAVE_GTKMACINTEGRATION, 1, [Use gtk-mac-integration])
+		AC_SUBST(GTKMACINTEGRATION_LIBS)
+		AC_SUBST(GTKMACINTEGRATION_CFLAGS)
+        	with_carbon=yes
+        	AC_DEFINE(WITH_CARBON_INTEGRATION,1,[Build with OSX Carbon Integration])
+		AM_CONDITIONAL(WITH_CARBON_INTEGRATION, test "$with_carbon" = "yes")
+		LIBS="$LIBS $GTKMACINTEGRATION_LIBS"
+		CPPFLAGS="$CPPFLAGS $GTKMACINTEGRATION_CFLAGS"
+	fi
+fi
+
+
+
+dnl ********************************
 dnl Check for libcdr for extension
 dnl ********************************
 
@@ -860,6 +888,8 @@ INKSCAPE_CFLAGS="$GTK_CFLAGS $INKSCAPE_CFLAGS"
 INKSCAPE_CXX_DEPS_CFLAGS="$GTKMM_CFLAGS $INKSCAPE_CXX_DEPS_CFLAGS"
 INKSCAPE_LIBS="$GTK_LIBS $INKSCAPE_LIBS"
 INKSCAPE_CXX_DEPS_LIBS="$GTKMM_LIBS $INKSCAPE_CXX_DEPS_LIBS"
+
+CPPFLAGS="$CPPFLAGS $GTKMM_CFLAGS"
 
 dnl Configure x11 library if Gtk+ uses it as a backend.
 dnl Note that this is only here because we directly use X11 functionality.  We
