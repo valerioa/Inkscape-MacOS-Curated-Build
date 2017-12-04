@@ -1,0 +1,30 @@
+APPLICATION_ICON    ICON        "${CMAKE_SOURCE_DIR}/share/branding/inkscape.ico"
+1000                BITMAP      "${CMAKE_SOURCE_DIR}/src/show-preview.bmp"
+1                   24          "${CMAKE_BINARY_DIR}/src/${FILE_NAME}-manifest.xml"
+
+1 VERSIONINFO
+    FILEVERSION     ${INKSCAPE_VERSION_MAJOR},${INKSCAPE_VERSION_MINOR},${INKSCAPE_VERSION_PATCH},0
+    PRODUCTVERSION  ${INKSCAPE_VERSION_MAJOR},${INKSCAPE_VERSION_MINOR},${INKSCAPE_VERSION_PATCH},0
+    FILEOS          0x40004
+    FILETYPE        1
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "Comments",         "Published under the GNU GPL"
+            VALUE "CompanyName",      "Inkscape project"
+            VALUE "FileDescription",  "${PROGRAM_DESCRIPTION}"
+            VALUE "FileVersion",      "${INKSCAPE_VERSION}"
+            VALUE "InternalName",     "${PROGRAM_NAME}"
+            VALUE "LegalCopyright",   "© ${COPYRIGHT_YEAR} Inkscape project"
+            VALUE "OriginalFilename", "${FILE_NAME}.exe"
+            VALUE "ProductName",      "${PROGRAM_NAME}"
+            VALUE "ProductVersion",   "${INKSCAPE_VERSION}"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0409, 1252
+    END
+END

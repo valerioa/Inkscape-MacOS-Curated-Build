@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: $
+
+PortSystem                  1.0
+
+name                        help2man
+version                     1.0
+revision                    1
+ 
+categories                  textproc
+platforms                   darwin
+license                     GPL-2
+supported_archs             noarch
+ 
+maintainers                 nomaintainer
+
+description                 Satisfy help2man dependency
+long_description            ${description}
+ 
+homepage                    http://inkscape.org
+
+# this is a metaport - no fetch, configure and build phases
+master_sites
+distfiles
+use_configure no
+build {}
+destroot {
+    # Create a dummy file so the port can be successfully activated
+    xinstall -d ${destroot}${prefix}/share/doc/${name}
+    set docfile [open ${destroot}${prefix}/share/doc/${name}/README.txt "w"]
+    puts $docfile "Dummy help2man package installation.\n"
+    close $docfile
+}
+
+# variants
+universal_variant           no
+
+# livecheck
+livecheck.type              none

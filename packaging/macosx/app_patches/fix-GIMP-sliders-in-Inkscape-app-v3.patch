@@ -1,0 +1,31 @@
+--- Contents/Resources/etc/gtk-2.0/gtkrc-orig	2017-02-08 07:33:39.000000000 +0100
++++ Contents/Resources/etc/gtk-2.0/gtkrc	2017-02-08 21:44:57.000000000 +0100
+@@ -16,8 +16,4 @@
+ # use OS X default PDF viewer for print preview
+ gtk-print-preview-command="open -a /Applications/Preview.app %f"
+ 
+-# fix Adwaita theme for Inkscape's GimpSpinScale widgets
+-style "spinbutton" {}
+-widget_class "*GimpSpinScale*" style "spinbutton"
+-
+ # eof
+--- Contents/Resources/share/themes/Adwaita/gtk-2.0/apps-orig.rc	2017-02-07 13:40:44.000000000 +0100
++++ Contents/Resources/share/themes/Adwaita/gtk-2.0/apps.rc	2017-02-08 21:45:08.000000000 +0100
+@@ -5,6 +5,7 @@
+ # the theme or stuff that is supposed to look different, like panels.
+ 
+ # TODO: This could really look nicer
++# TODO: fix for Inkscape
+ style "gimp_spin_scale" {
+ 
+   # Spin background
+@@ -93,7 +94,8 @@
+ }
+ 
+ # Disable spin button assets for GimpSpinScale
+-class "GimpSpinScale" style "gimp_spin_scale"
++# TODO: fix for Inkscape
++#class "GimpSpinScale" style "gimp_spin_scale"
+ 
+ # Chromium lets us define some colours and settings for better integration
+ class "ChromeGtkFrame" style "chrome_gtk_frame"

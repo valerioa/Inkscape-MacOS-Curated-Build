@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="793.70081"
+   height="1122.5197"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.92.0 r15304"
+   sodipodi:docname="live-path-effects-curvestitch.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.1">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="curvestitching"
+       id="path-effect3456"
+       count="5"
+       endpoint_variation="0;0"
+       scale_stroke_y="true"
+       startpoint_variation="0;0"
+       is_visible="true"
+       startpoint_edge_variation="0;1"
+       startpoint_spacing_variation="0;1"
+       endpoint_edge_variation="0;1"
+       endpoint_spacing_variation="0;1"
+       strokepath="M 0,0 H 1"
+       prop_scale="1"
+       scale_y_rel="false" />
+    <inkscape:path-effect
+       effect="curvestitching"
+       id="path-effect3449"
+       count="5"
+       endpoint_variation="0;1"
+       startpoint_variation="0;1"
+       strokepath="m -232.30746,542.9951 c 70.2332,-20.95956 119.76582,-16.7297 162.634561,1.01015"
+       scale_stroke_y="true"
+       is_visible="true"
+       startpoint_edge_variation="0;1"
+       startpoint_spacing_variation="0;1"
+       endpoint_edge_variation="0;1"
+       endpoint_spacing_variation="0;1"
+       prop_scale="1"
+       scale_y_rel="false" />
+    <inkscape:path-effect
+       effect="curvestitching"
+       id="path-effect2955"
+       count="49"
+       endpoint_variation="0;0"
+       startpoint_variation="0;0"
+       is_visible="true"
+       startpoint_edge_variation="0;1"
+       startpoint_spacing_variation="0;1"
+       endpoint_edge_variation="0;1"
+       endpoint_spacing_variation="0;1"
+       strokepath="M 0,0 H 1"
+       prop_scale="1"
+       scale_y_rel="false" />
+    <inkscape:path-effect
+       effect="curvestitching"
+       id="path-effect2936"
+       count="20"
+       is_visible="true"
+       startpoint_edge_variation="0;1"
+       startpoint_spacing_variation="0;1"
+       endpoint_edge_variation="0;1"
+       endpoint_spacing_variation="0;1"
+       strokepath="M 0,0 H 1"
+       prop_scale="1"
+       scale_y_rel="false" />
+    <inkscape:path-effect
+       effect="curvestitching"
+       id="path-effect2332"
+       count="25"
+       is_visible="true"
+       startpoint_edge_variation="0;1"
+       startpoint_spacing_variation="0;1"
+       endpoint_edge_variation="0;1"
+       endpoint_spacing_variation="0;1"
+       strokepath="M 0,0 H 1"
+       prop_scale="1"
+       scale_y_rel="false" />
+    <inkscape:path-effect
+       effect="curvestitching"
+       id="path-effect2300"
+       count="40"
+       endpoint_variation="0;1"
+       scale_stroke_y="true"
+       startpoint_variation="0;1"
+       strokepath="m 22.223356,138.17413 c 70.233208,-20.95956 119.765824,-16.7297 162.634564,1.01015"
+       is_visible="true"
+       startpoint_edge_variation="0;1"
+       startpoint_spacing_variation="0;1"
+       endpoint_edge_variation="0;1"
+       endpoint_spacing_variation="0;1"
+       prop_scale="1"
+       scale_y_rel="false" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.52471242"
+     inkscape:cx="396.8504"
+     inkscape:cy="561.25983"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1152"
+     inkscape:window-height="808"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path2293"
+       style="fill:#ffaaaa;fill-rule:evenodd;stroke:#000000;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 120.95298,630.29736 C 112.85316,835.5376 88.319358,977.60086 53.148201,1098.5638 M 118.40809,641.38632 C 116.27026,840.19038 95.879343,978.19133 64.247889,1095.9916 M 115.86626,652.48774 c 3.82923,192.38744 -12.40631,326.37612 -40.480629,441.08386 M 113.32845,663.60237 c 9.79765,185.9901 -2.26987,316.01855 -26.767477,427.70733 M 110.79574,674.7309 c 15.76326,179.61197 7.87665,305.73423 -13.022087,414.4808 M 108.26942,685.87395 c 21.72128,173.25326 18.02881,295.52528 0.75419,401.40925 M 105.75096,697.03196 C 133.41729,863.94668 133.9327,982.42621 120.311,1085.5299 M 103.242,708.20514 c 33.59249,160.59782 38.33009,275.34428 28.39418,375.75186 M 100.74432,719.39343 c 39.49335,154.30492 48.46815,265.37924 42.25536,363.17587 M 98.259855,730.59638 C 143.62193,878.63601 156.84972,986.10032 154.40218,1081.3715 M 95.790558,741.81309 c 51.191722,141.807 68.689082,245.7244 70.053842,338.55431 M 93.338353,753.04213 C 150.31379,888.65593 172.0981,989.09009 177.32704,1079.5605 M 90.904998,764.28147 C 153.61187,893.75025 179.70111,990.76516 188.85042,1078.9536 M 88.491919,775.52847 C 156.8714,898.91195 187.28311,992.57201 200.41168,1078.5507 M 86.100102,786.77996 C 160.08865,904.1472 194.83991,994.51419 212.00835,1078.3463 M 83.72996,798.03241 c 79.53155,111.42956 118.63886,198.56168 139.90816,280.29969 M 81.381224,809.28201 C 166.38939,914.86285 209.86823,998.81452 235.29794,1078.4994 M 79.052882,820.52484 C 169.47333,920.35661 217.33768,1001.1784 246.98388,1078.8393 M 76.743196,831.75715 C 172.51597,925.94973 224.77785,1003.6886 258.69115,1079.3434 M 74.449765,842.97551 C 175.52142,931.64793 232.19047,1006.3471 270.41423,1080.0033 M 72.16967,854.17702 c 106.32527,83.27875 167.40838,154.97848 209.97732,226.63438 M 69.899652,865.35946 C 181.44254,943.37632 246.94364,1012.114 293.88289,1081.761 M 67.636336,876.52134 C 184.37047,949.41006 254.29049,1015.2201 305.61527,1082.8437 M 65.37656,887.66203 c 121.9088,67.88895 196.24633,130.80037 251.9631,196.37987 M 63.117443,898.78156 C 190.19412,961.79141 268.94629,1021.8276 329.05395,1085.3377 M 60.856449,909.88047 C 193.1029,968.12257 276.26559,1025.3021 340.75654,1086.7145 M 58.591453,920.95972 C 196.01696,974.53484 283.58508,1028.8715 352.44629,1088.1557 M 56.320753,932.02053 C 198.94064,981.01794 290.90839,1032.521 364.12253,1089.6453 M 54.043061,943.06431 C 201.87735,987.56123 298.23848,1036.2356 375.7851,1091.1675 M 51.757469,954.09254 C 204.82965,994.15388 305.57775,1040.0001 387.43424,1092.7066 M 49.463395,965.10671 C 207.7994,1000.7851 312.92806,1043.7993 399.07061,1094.2467 M 47.160619,976.10829 C 210.78855,1007.442 320.29227,1047.6147 410.69736,1095.7676 M 44.849132,987.09867 C 213.79874,1014.1124 327.67314,1051.4283 422.3182,1097.2493 M 42.528985,998.07908 C 216.83027,1020.7869 335.0713,1055.227 433.93415,1098.6782 M 40.200364,1009.0506 c 179.682776,18.406 302.286806,49.9472 405.346046,90.9897 M 37.863553,1020.0144 c 185.093607,14.0982 312.057467,42.7137 419.292707,81.3073 M 35.518905,1030.9712 c 190.533045,9.7752 321.854115,35.4342 433.246195,71.5373 M 33.166819,1041.9219 c 196.000241,5.4278 331.676441,28.0952 447.207511,61.6644 m -449.56661,-50.719 c 201.49424,1.0472 341.52407,20.6838 461.17772,51.6735 m -463.543394,-40.733 c 207.014054,-3.3751 351.396584,13.1875 475.157844,41.5499"
+       inkscape:path-effect="#path-effect2300"
+       inkscape:original-d="M 127.41911,631.21956 28.997242,1057.2999 m 31.61712,42.3287 c 196.599438,-50.0694 300.742008,-10.8797 443.626588,-1.7853"
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3401"
+       transform="translate(84.253593,-127.29769)">
+      <g
+         transform="translate(35.708609,36.693085)"
+         id="g3179">
+        <ellipse
+           style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.56666666;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="path3177"
+           cx="13.891851"
+           cy="193.65985"
+           rx="40.412663"
+           ry="37.255424" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="-1.4037727"
+           y="209.44606"
+           id="text3173"><tspan
+             sodipodi:role="line"
+             id="tspan3175"
+             x="-1.4037727"
+             y="209.44606"
+             style="font-weight:bold;font-size:42.66666794px;writing-mode:lr-tb;fill:#0000ff;stroke-width:1.06666672px">1</tspan></text>
+      </g>
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot3311"
+         style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
+           id="flowRegion3313"
+           style="stroke-width:1.06666672px"><rect
+             id="rect3315"
+             width="341.56625"
+             height="74.347237"
+             x="94.819656"
+             y="204.49303"
+             style="stroke-width:1.13777781px" /></flowRegion><flowPara
+           id="flowPara3317"
+           style="stroke-width:1.06666672px">Draw the two paths that will</flowPara><flowPara
+           id="flowPara3319"
+           style="stroke-width:1.06666672px">be connected with curves</flowPara></flowRoot>    </g>
+    <g
+       id="g3412"
+       transform="translate(52.810449,-155.18571)">
+      <flowRoot
+         style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot3321"
+         xml:space="preserve"><flowRegion
+           id="flowRegion3323"
+           style="stroke-width:1.06666672px"><rect
+             y="335.50122"
+             x="145.98486"
+             height="113.13708"
+             width="364.19366"
+             id="rect3325"
+             style="stroke-width:1.13777781px" /></flowRegion><flowPara
+           id="flowPara3329"
+           style="stroke-width:1.06666672px">Combine them into</flowPara><flowPara
+           id="flowPara3333"
+           style="stroke-width:1.06666672px">one path (Ctrl+K)</flowPara></flowRoot>      <g
+         transform="translate(3.2324881,93.742157)"
+         id="g2615">
+        <g
+           transform="translate(84.195931,77.637931)"
+           id="g2619">
+          <ellipse
+             style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.56666666;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             id="path2621"
+             cx="12.814355"
+             cy="191.50485"
+             rx="40.412663"
+             ry="37.255424" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             x="-1.0881814"
+             y="206.21358"
+             id="text2623"><tspan
+               sodipodi:role="line"
+               id="tspan2625"
+               x="-1.0881814"
+               y="206.21358"
+               style="font-weight:bold;font-size:42.66666794px;writing-mode:lr-tb;fill:#0000ff;stroke-width:1.06666672px">2</tspan></text>
+        </g>
+      </g>
+    </g>
+    <ellipse
+       id="path2645"
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.56666666;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       cx="56.379425"
+       cy="567.81488"
+       rx="40.412663"
+       ry="37.255424" />
+    <text
+       id="text2647"
+       y="582.96997"
+       x="40.321896"
+       style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-weight:bold;font-size:42.66666794px;writing-mode:lr-tb;fill:#0000ff;stroke-width:1.06666672px"
+         y="582.96997"
+         x="40.321896"
+         id="tspan2649"
+         sodipodi:role="line">4</tspan></text>
+    <g
+       id="g2618"
+       transform="translate(108.8271,-17.239937)">
+      <g
+         transform="translate(664.96051,77.241696)"
+         id="g2692">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m -247.79462,579.19477 c 74.91541,-22.35686 127.7502,-17.84501 173.476861,1.0775"
+           id="path2325"
+           sodipodi:nodetypes="cc"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text2657"
+           y="547.13678"
+           x="-262.90906"
+           style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#008000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             y="547.13678"
+             x="-262.90906"
+             id="tspan2659"
+             sodipodi:role="line"
+             style="stroke-width:1.06666672px">replacement</tspan></text>
+      </g>
+      <g
+         transform="translate(539.82551,3.2324889)"
+         id="g2697">
+        <path
+           id="path2651"
+           d="M -123.76659,644.85089 H 50.91849"
+           style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           sodipodi:nodetypes="cc"
+           inkscape:connector-curvature="0" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="-48.520641"
+           y="681.66132"
+           id="text2685"><tspan
+             sodipodi:role="line"
+             id="tspan2687"
+             x="-48.520641"
+             y="681.66132"
+             style="stroke-width:1.06666672px">default path</tspan></text>
+      </g>
+    </g>
+    <ellipse
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.56666666;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2708"
+       cx="309.00467"
+       cy="780.78973"
+       rx="40.412663"
+       ry="37.255424" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="295.78787"
+       y="795.49841"
+       id="text2710"><tspan
+         sodipodi:role="line"
+         id="tspan2712"
+         x="295.78787"
+         y="795.49841"
+         style="font-weight:bold;font-size:42.66666794px;writing-mode:lr-tb;fill:#0000ff;stroke-width:1.06666672px">5</tspan></text>
+    <g
+       id="g3424"
+       transform="translate(141.49771,-47.49954)">
+      <g
+         id="g2627"
+         transform="translate(4.7562976,182.12311)">
+        <g
+           id="g2631"
+           transform="translate(84.195931,77.637931)">
+          <ellipse
+             id="path2633"
+             style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.56666666;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             cx="12.814355"
+             cy="191.50485"
+             rx="40.412663"
+             ry="37.255424" />
+          <text
+             id="text2635"
+             y="206.21358"
+             x="-1.0881814"
+             style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-weight:bold;font-size:42.66666794px;writing-mode:lr-tb;fill:#0000ff;stroke-width:1.06666672px"
+               y="206.21358"
+               x="-1.0881814"
+               id="tspan2637"
+               sodipodi:role="line">3</tspan></text>
+        </g>
+      </g>
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot3349"
+         style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
+           id="flowRegion3351"
+           style="stroke-width:1.06666672px"><rect
+             id="rect3353"
+             width="301.69888"
+             height="84.044693"
+             x="147.8784"
+             y="425.64117"
+             style="stroke-width:1.13777781px" /></flowRegion><flowPara
+           id="flowPara3357"
+           style="stroke-width:1.06666672px">Apply &quot;Curve Stitching&quot;</flowPara><flowPara
+           id="flowPara3361"
+           style="stroke-width:1.06666672px">effect (Ctrl+Shift+7)</flowPara></flowRoot>    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3363"
+       style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
+         id="flowRegion3365"
+         style="stroke-width:1.06666672px"><rect
+           id="rect3367"
+           width="466.55579"
+           height="118.52457"
+           x="351.2637"
+           y="731.38861"
+           style="stroke-width:1.13777781px" /></flowRegion><flowPara
+         id="flowPara3371"
+         style="stroke-width:1.06666672px">Copy the replacement (Ctrl+C)</flowPara><flowPara
+         id="flowPara2638"
+         style="stroke-width:1.06666672px">and paste it onto the &quot;Stroke path&quot; </flowPara><flowPara
+         id="flowPara2642"
+         style="stroke-width:1.06666672px">(press F2 to edit the original paths!)</flowPara></flowRoot>    <path
+       id="path3436"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 545.57954,64.935989 543.42455,222.2504 m 21.54992,25.8599 h 144.38447"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 111.45787,319.40993 19.39493,183.17433 m -19.93368,-143.84573 56.0298,143.84573 m -56.56854,-104.51712 92.66465,104.51712 m -93.2034,-65.18852 129.29952,65.18852 m -129.83827,-25.85991 165.93439,25.85991"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path3447"
+       inkscape:path-effect="#path-effect3456"
+       inkscape:original-d="m 111.45787,319.40993 -2.15499,157.31442 m 21.54992,25.85991 h 144.38447"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:original-d="m 538.53913,830.82361 -2.15499,157.31442 m 21.54992,25.85987 h 144.38447"
+       inkscape:path-effect="#path-effect3449"
+       id="path3454"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 532.04388,831.51134 c 29.21868,76.89631 30.91933,133.12996 18.39039,183.28066 M 531.91422,872.52286 c 43.72657,54.51198 56.84981,99.85742 55.08853,144.21234 M 532.57433,913.8139 c 55.70012,31.23066 80.7574,65.86891 91.90881,105.1872 m -90.50068,-64.35942 c 65.2733,9.43592 102.74905,33.06697 128.84477,66.09052 M 535.37838,994.59169 c 74.88568,-9.54208 124.77197,2.51332 165.77884,26.85801"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2591"
+       style="font-style:normal;font-weight:normal;font-size:23.46666718px;font-family:'Bitstream Vera Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
+         id="flowRegion2593"
+         style="stroke-width:1.06666672px"><rect
+           id="rect2595"
+           width="484.8732"
+           height="100.20713"
+           x="102.36214"
+           y="548.21429"
+           style="font-size:23.46666718px;stroke-width:1.13777781px" /></flowRegion><flowPara
+         id="flowPara2597"
+         style="stroke-width:1.06666672px">Draw a path that will replace the default horizontal connecting path</flowPara></flowRoot>  </g>
+</svg>

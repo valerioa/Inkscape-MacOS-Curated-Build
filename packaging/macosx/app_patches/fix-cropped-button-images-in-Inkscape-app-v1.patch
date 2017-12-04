@@ -1,0 +1,36 @@
+--- Contents/Resources/share/themes/Adwaita/gtk-2.0/hacks.rc.orig	2017-02-16 00:04:50.000000000 +0100
++++ Contents/Resources/share/themes/Adwaita/gtk-2.0/hacks.rc	2017-02-16 19:17:47.000000000 +0100
+@@ -20,6 +20,18 @@
+   bg[ACTIVE] = @insensitive_bg_color
+ }
+ 
++style "inkscape_toolbox_button" {
++  xthickness = 3
++  ythickness = 3
++  GtkButton::inner-border = {0, 0, 0, 0}
++}
++
++style "inkscape_canvas_button" {
++  xthickness = 0
++  ythickness = 0
++  GtkButton::inner-border = {0, 0, 0, 0}
++}
++
+ # Vim puts an eventbox between the tab and the label and colours it,
+ # we need to handle that
+ widget "vim-main-window*GtkNotebook.GtkEventBox" style "vim_notebook"
+@@ -34,3 +46,14 @@
+ 
+ # Hack to be able to match widgets in LibreOffice
+ class "GtkWindow" style "toplevel_hack"
++
++# Inkscape toolbox buttons have cropped icons.
++# Use zero inner border and increased padding to avoid cropping
++widget "*.SPDesktopWidget.*.ToolToolbar.Tool*.SPButton" style "inkscape_toolbox_button"
++
++# Inkscape buttons in canvas corners have cropped icons.
++# use zero inner border and zero padding to avoid cropping
++widget "*.SPDesktopWidget.GtkVBox.GtkHBox.GtkTable.gtkmm__GtkHPaned.GtkTable.GtkVBox.StickyZoom" style "inkscape_canvas_button"
++widget "*.SPDesktopWidget.GtkVBox.GtkHBox.GtkTable.gtkmm__GtkHPaned.GtkTable.CMS_Adjust" style "inkscape_canvas_button"
++# Button to lock/unlock guides has no widget name
++widget "*.SPDesktopWidget.GtkVBox.GtkHBox.GtkTable.gtkmm__GtkHPaned.GtkTable.SPButton" style "inkscape_canvas_button"

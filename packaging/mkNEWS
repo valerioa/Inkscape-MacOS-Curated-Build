@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+
+import re
+import os
+import sys
+import subprocess
+
+wiki = "http://wiki.inkscape.org/wiki/index.php"
+
+if len(sys.argv) < 2:
+    print("Usage: mkNEWS <release-version>")
+    sys.exit(1)
+
+release_number = sys.argv[1]
+
+# TODO: Use beautifulsoup
+url = "%s/Release_notes/%s" %(wiki, release_number)
+result = subprocess.run(["w3m", "-dump", url], stdout=subprocess.PIPE)
+
+re_edit = re.compile(r'\[\[\d+\]edit\]', flags=re.IGNORECASE)
+re_overview = re.compile(r'^\s*Inkscape '+release_number)
+re_prev_rels = re.compile(r'^\s*Previous releases')
+
+seen_overview = 0;
+for line in result.stdout.decode('utf-8').split("\n"):
+    line = re_edit.sub("", line)
+
+    # Ignore everything before the overview section
+    if re_overview.match(line):
+        seen_overview = 1
+
+    # Ignore everything from Previous releases onward
+    if re_prev_rels.match(line):
+        break
+
+    # TODO: Implement some additional formatting/cleanup
+
+    if seen_overview:
+        print(line)
+
+print("\nFor information on prior releases, please see:\n")
+print("    %s/Inkscape\n" %(wiki))

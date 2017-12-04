@@ -1,0 +1,56 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           python 1.0
+PortGroup           select 1.0
+
+set realname        scour
+
+name                py-scour
+version             0.35
+revision            100
+categories-append   graphics
+license             Apache-2
+platforms           darwin
+supported_archs     noarch
+
+maintainers         nomaintainer
+
+description         Scour SVG Optimizer
+long_description    Scour is a SVG optimizer/sanitizer that can be used to \
+                    produce SVGs for Web deployment.
+
+homepage            http://pypi.python.org/pypi/${realname}/
+master_sites        pypi:s/${realname}/
+
+distname            scour-${version}
+
+checksums           rmd160  fcb8c54d89cf0b015f7f081e7d4640a85226c85a \
+                    sha256  7b33a0fc7ed578e7d1fcf4f68eb4c38cd080c243ea57537840062d37cd0d3c8e
+
+python.versions     27 34 35
+
+if {${name} ne ${subport}} {
+
+    depends_build-append    port:py${python.version}-setuptools
+
+    depends_lib-append      port:py${python.version}-six
+
+    depends_run-append      port:${realname}_select
+    
+    select.group            ${realname}
+    select.file             ${filespath}/${realname}${python.version}
+    notes "
+To make the Python ${python.branch} version of scour the one that is run\
+when you execute the commands without a version suffix, e.g. 'scour', run:
+
+port select --set ${select.group} [file tail ${select.file}]
+"
+
+    livecheck.type      none
+} else {
+    livecheck.type      regex
+    livecheck.url       https://pypi.python.org/pypi/${realname}/json
+    livecheck.regex     "${realname}-(\\d+(\\.\\d+)+)\\${extract.suffix}"
+}

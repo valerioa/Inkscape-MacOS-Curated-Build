@@ -1,0 +1,22 @@
+version: '{branch}-{build}'
+
+clone_depth: 10
+
+environment:
+  matrix:
+    - MSYSTEM: MINGW64
+    - MSYSTEM: MINGW32
+
+build_script:
+  - C:\msys64\usr\bin\pacman -Syuu --needed --noconfirm --noprogressbar
+  - C:\msys64\usr\bin\bash --login -c "$(cygpath ${APPVEYOR_BUILD_FOLDER})/buildtools/appveyor.sh"
+
+artifacts:
+  - path: build\inkscape*.7z
+  - path: build\inkscape*.exe
+  - path: build\inkscape*.msi
+
+cache:
+  - '%APPVEYOR_BUILD_FOLDER%\build\ccache'
+
+test: off

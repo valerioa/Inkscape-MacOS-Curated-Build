@@ -1,0 +1,35 @@
+--- Contents/Resources/share/themes/Adwaita/gtk-2.0/main.rc.orig	2017-02-07 13:40:44.000000000 +0100
++++ Contents/Resources/share/themes/Adwaita/gtk-2.0/main.rc	2017-02-10 15:50:57.000000000 +0100
+@@ -1533,6 +1533,24 @@
+ 
+ }
+ 
++style "menu_framed_box" {
++
++    bg[NORMAL]      = @base_color
++    bg[INSENSITIVE] = @base_color
++    bg[PRELIGHT]    = @base_color
++
++    engine "pixmap"
++    {
++        image
++        {
++            function    = BOX
++            file        = "assets/menu-border.png"
++            border      = { 1, 1, 1, 1 }
++            stretch     = TRUE
++         }
++    }
++ }
++
+ style "menu_item" {
+ 
+   xthickness = 3
+@@ -2502,6 +2520,7 @@
+ class "GtkTextView"                                                style "textview"
+ 
+ # Menu and menubar items
++widget_class "*<GtkMenu>"                                          style "menu_framed_box"
+ widget_class "*<GtkMenuItem>*"                                     style "menu_item"
+ widget_class "*<GtkMenuBar>.<GtkMenuItem>*"                        style "menubar_item"
+ widget_class "*<GtkSeparatorMenuItem>*"                            style "separator_menu_item"

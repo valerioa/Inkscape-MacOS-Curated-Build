@@ -1,0 +1,183 @@
+                            Inkscape 0.92.2
+
+                     -~=  Released 2017-08-07  =~-
+
+
+Inkscape 0.92.2 is a stability and bugfix release. For a complete list
+of bugs fixed in 0.92.2, see the Launchpad milestone page.
+
++----------------------------------------------------------------------+
+|                             Improvements                             |
++----------------------------------------------------------------------+
+
+  • Add a control point to the centers of rectangles, circles/ellipses
+    and stars to make it easier to move them and to align them in a
+    precise way.
+  • DPI Change: Command line option
+    --dpi-update-method=[none|scale-viewbox|scale-document] to
+    batch-process legacy files
+    (Bug #1659489)
+  • Enable setting of default 'font-style'.
+  • Improve selection chemistry z-stack ordering
+    (Bug #1395452)
+  • Rework the object panel, including making shortcut handling respect
+    user-defined shortcuts.
+  • Add ability to generate one path from multiple paths with LPEs in
+    them
+    (Bug #1664632)
+  • Support <flowDiv/> in sp_file_convert_text_baseline_spacing() for flowed
+    text.
+
++----------------------------------------------------------------------+
+|                           Regression fixes                           |
++----------------------------------------------------------------------+
+
+  • GUI: Fix file preview on Windows when using the native file open dialog
+    (Bug #802904)
+  • Printing: Fix crash when printing on Windows
+    (Bug #1665768)
+  • Text: Fix tiny font size for sub/superscripts
+    (Bug #1658029)
+  • Fix occasional crash closing or saving on Windows 7
+    (Bug #1670688)
+
++----------------------------------------------------------------------+
+|                          Important bugfixes                          |
++----------------------------------------------------------------------+
+
+  • GUI: Window position/size was often wrong on startup and when opening new
+    documents
+    (Bugs #1190828, #1654464, #195683, #568867)
+  • Symbols: Fix loading of Visio Stencils from .vss files with special
+    characters in file name
+    (Bug #1662465)
+  • SVG import/export: Special characters in the document's "title" field could
+    result in invalid SVG output and prevent re-opening the file on Windows
+    (Bugs #576126, #1627551)
+  • EMF/WMF import/export: Fix many issues that occurred when the system's
+    locale was set to a language using comma (,) as decimal separator. Notably
+    text was often positioned wrongly after import (Bugs #1089857, #1335660, #
+    1599763, #1675755) and the export option "Convert gradients to colored
+    polygons series" made Inkscape crash (Bug #1549015)
+  • LaTeX+PDF export: Fix export for text inside a masked or clipped group.
+    (Bug #1417470)
+  • Extensions: The attribute xml:space="preserve" for INX Parameters of type
+    description was ignored but they were untranslatable without it (Bug #
+    1668115). The attribute is now respected and translations work properly in
+    all cases, however please note that this might change formatting in cases
+    that were broken before, i.e. whenever omitting the attribute. To maintain
+    visual appearance please add the attribute.
+  • Import: Fix many issues with importing large files. Many files that could
+    not be opened before (especially those containing large raster graphics)
+    should import fine now.
+    (Bugs #1572280, #1412912, #1373322, #1243011, #1627004, #1687090)
+  • Fonts: Do not load fonts with illegal characters in font family name which
+    caused a crash.
+    (Bugs #1508928, #1495386)
+  • Inkview: Fix loading files with non-ASCII characters in filename
+    (Bug #488997)
+  • Shortcuts
+    - Fix "Shift" modifier being added incorrectly for many user defined
+      shortcuts (making them unusable)
+    - Allow to set shortcuts with characters that need to be escaped (e.g. "&
+      ", "<", ">")
+    - Fix crash when exporting user defined shortcuts on Windows
+      (Bug #1639701)
+    - Improved performance of shortcut list in preferences
+
+  • Fill and Stroke: Fix HSL color selector sometimes showing corrupted colors
+    with a non-functioning 5th slider
+    (Bug #1635982)
+  • Fix occasional crash closing or saving on Windows 7
+    (Bug #1670688)
+  • Fix tearing and glitching while moving objects. Don't stop() the rubberband
+    until it has actually been started.
+    (Bug #1510704)
+  • Fix various memory leaks
+    (Bug #1662686, #1662683)
+  • Fix PNG export on Windows
+    (Bug #1685091)
+  • Fix crash with fonts containing illegal characters in family name.
+  • Fix description parameters for extensions
+  • Fix temporarily disappearing transformation handles
+    (Bug #1663952)
+  • Fix bug on rotate copies with one line vertical input
+  • Fix nodes reverting back during editing
+    (Bug #1270989)
+  • Fix crash when moving objects by null-checking return from
+    sp_svg_transform_write
+  • Don't block data entry into the text-tool font-size entry widget after an
+    empty entry
+  • Reduce overall height of the options dialog
+    (Bug #1666939, #1659446)
+  • Fix import of WMF
+    (Bug #1665421)
+  • Fix extraneous numbers inserted with color rename
+    (Bug #1658320)
+  • Fix --export-latex crash with a svg file
+    (Bug #1464987)
+  • Fix EMF export glitch with GDI clipping, by starting it with a COPY instead
+    of an OR
+    (Bug #1405292)
+  • Fix linking of duplicated text on paths
+    (Bug #312116)
+  • Fix stroke width of edges for extrude extension
+    (Bug #1680833)
+  • Fix incorrect scaling in extensions when document units are not px
+    (Bug #1660474, #1660967)
+  • Fix hang in linked flowed text when setting outer line-height to
+    zero
+    (Bug #1655308)
+  • Fix displacement of text when moving a selection of frame and
+    text-flowed-into-frame
+    (Bug #1426613)
+  • Fix crash when trying to move svg symbol
+    (Bug #1662439)
+  • Fix crash on editing path created by the rotate copies LPE
+    (Bug #1665463)
+  • Fix crash loading files with certain LPEs such as mirror symmetry
+    (Bug #1665595)
+
++----------------------------------------------------------------------+
+|                             Translations                             |
++----------------------------------------------------------------------+
+
+The following UI translations received updates:
+
+  • French
+  • German
+  • Italian
+  • Latvian
+  • Romanian
+  • Ukrainian
+
+Want to help with translations? Learn how to help!
+
++----------------------------------------------------------------------+
+|                            Documentation                             |
++----------------------------------------------------------------------+
+
+  • Fix link for FAQ entry on DPI change
+
++----------------------------------------------------------------------+
+|                             Known issues                             |
++----------------------------------------------------------------------+
+
+  • DPI Change: known issues with 'Scale elements' option
+    (Bugs #1653230, #1653236, #1654342, #1654796, #1654880, #1654903,
+    #1655005, #1655053, #1660228)
+  • DPI Change: Default grids in documents created with Inkscape 0.91 don't
+    scale correctly
+    (Bug #1653893)
+  • Line height: Changing "baseline spacing" stops working
+    (Bug #1707808)
+  • Renderer: Artifacts in Gaussian blur effects with default quality settings
+    (Bug #1656383)
+  • Node editor: Deselecting selected nodes of complex paths takes a long time
+    (Bug #1652100)
+
+
+For information on prior releases, please see:
+
+    http://wiki.inkscape.org/wiki/index.php/Inkscape
+

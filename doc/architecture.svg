@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg1"
+   sodipodi:version="0.32"
+   width="210mm"
+   height="297mm"
+   sodipodi:docname="architecture.svg"
+   inkscape:version="0.92.0 r15304"
+   xlink:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1">
+  <metadata
+     id="metadata35627">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3">
+    <marker
+       id="mArrow"
+       markerWidth="8"
+       markerHeight="10"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         d="M 10.666667,4.2666667 C 10.666667,4.2666667 0,0 0,0 0,0 10.666667,-4.2666667 10.666667,-4.2666667"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="arrowMarkerPath"
+         sodipodi:nodetypes="cs"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     showborder="false"
+     showgrid="true"
+     snaptogrid="true"
+     inkscape:zoom="0.60132576"
+     inkscape:cx="396.85039"
+     inkscape:cy="361.70079"
+     inkscape:window-width="1261"
+     inkscape:window-height="894"
+     inkscape:window-x="15"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1">
+    <inkscape:grid
+       id="GridFromPre046Settings"
+       type="xygrid"
+       originx="0"
+       originy="0"
+       spacingx="10.07874"
+       spacingy="10.07874"
+       color="#3f3fff"
+       empcolor="#3f3fff"
+       opacity="0.15"
+       empopacity="0.38"
+       empspacing="5" />
+  </sodipodi:namedview>
+  <path
+     style="font-size:12px;fill:#ff0000;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.30476589pt"
+     d="m 982.67707,451.65333 v 122.8352 h -28.34666 l 9.4496,18.89707 h -37.79627 l 9.4496,-18.89707 H 614.17361 l 9.44853,18.89707 h -37.7952 l 9.44853,-18.89707 -377.95306,-10e-4 9.44853,18.89813 h -37.7952 l 9.4496,-18.89813 -179.527786,-0.002 1.06e-4,-122.832 z"
+     id="path290"
+     sodipodi:nodetypes="ccccccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <path
+     style="font-size:12px;fill:#a80000;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.29627947pt"
+     d="m 396.85035,574.48779 v 28.34773 l -18.89814,-9.4496 v 37.7952 l 18.89814,-9.44853 v 47.24266 l 198.4256,0.001 -9.4496,18.89813 h 37.7952 l -9.44854,-18.89813 h 179.52747 v -37.7952 l 18.89813,9.44853 v -37.7952 l -18.89813,9.44854 v -37.79414 l -179.52747,-10e-4 9.44854,18.89813 h -37.7952 l 9.4496,-18.89813 z"
+     id="path814"
+     sodipodi:nodetypes="ccccccccccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="406.29922"
+     y="590.91705"
+     id="text230">
+    <tspan
+       x="406.29922"
+       y="590.91705"
+       sodipodi:role="line"
+       id="tspan305"
+       style="stroke-width:1.06666669pt">Module subsystem</tspan>
+    <tspan
+       x="406.29922"
+       y="603.71704"
+       sodipodi:role="line"
+       id="tspan307"
+       style="stroke-width:1.06666669pt">(src/modules/*)</tspan>
+    <tspan
+       x="406.29922"
+       y="616.51703"
+       sodipodi:role="line"
+       id="tspan309"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="415.74805"
+     y="625.47028"
+     id="text566">
+    <tspan
+       x="415.74805"
+       y="625.47028"
+       sodipodi:role="line"
+       id="tspan587"
+       style="stroke-width:1.06666669pt">SPModules (aka plugins) handle filtering, input and export of</tspan>
+    <tspan
+       x="415.74805"
+       y="636.13696"
+       sodipodi:role="line"
+       id="tspan589"
+       style="stroke-width:1.06666669pt">SPModuleDocs (wrapped SPDocuments) and to eventually</tspan>
+    <tspan
+       x="415.74805"
+       y="646.80359"
+       sodipodi:role="line"
+       id="tspan591"
+       style="stroke-width:1.06666669pt">encompass more functionality like e.g. providing tool</tspan>
+    <tspan
+       x="415.74805"
+       y="657.47028"
+       sodipodi:role="line"
+       id="tspan593"
+       style="stroke-width:1.06666669pt">implementations.</tspan>
+  </text>
+  <path
+     style="font-size:12px;fill:#a85500;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.30476589pt"
+     d="m 396.85013,574.48853 v 28.3456 l -18.89706,-9.44853 v 37.7952 l 18.89706,-9.44853 v 103.93706 l 18.89814,-9.44853 v 37.7952 l -18.89814,-9.44853 V 820.1568 H 217.32267 l 9.44853,18.89813 H 188.976 L 198.4256,820.1568 18.897813,820.1548 18.8976,574.48866 h 179.528 l -9.4496,18.89707 h 37.7952 l -9.44853,-18.89707 z"
+     id="path810"
+     sodipodi:nodetypes="ccccccccccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <path
+     style="font-size:12px;fill:#0055a9;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.29627947pt"
+     d="m 396.85013,1009.1339 v 28.3477 l -18.89706,-9.4507 v 37.7963 l 18.89706,-9.4485 v 28.3466 h 396.85014 v -75.5914 H 519.68533 l 9.44854,18.8981 h -37.7952 l 9.44853,-18.8981 z"
+     id="path806"
+     sodipodi:nodetypes="ccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <path
+     style="font-size:12px;fill:#00a7a8;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.30476589pt"
+     d="M 793.70027,895.74827 V 1009.1339 H 519.68533 l 9.44854,18.8981 h -37.7952 l 9.44853,-18.8981 H 217.32267 l 9.44853,18.8981 H 188.976 l 9.4496,-18.8981 H 18.897813 L 18.8976,895.75047 h 179.528 l -9.4496,18.89706 h 37.7952 l -9.44853,-18.89706 h 387.4016 l -9.44854,18.89706 h 37.7952 l -9.44853,-18.89706 z"
+     id="path804"
+     sodipodi:nodetypes="ccccccccccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <path
+     style="font-size:12px;fill:#5400a8;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.29627947pt"
+     d="m 396.85013,1084.7253 v -28.3477 l -18.89706,9.4496 v -37.7952 l 18.89706,9.4485 v -28.3466 H 217.32267 l 9.44853,18.8981 H 188.976 l 9.4496,-18.8981 H 18.897813 l -2.13e-4,75.5914 z"
+     id="path802"
+     sodipodi:nodetypes="ccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="32.301373"
+     y="1026.1064"
+     id="text15">
+    <tspan
+       x="32.301373"
+       y="1026.1064"
+       sodipodi:role="line"
+       id="tspan835"
+       style="stroke-width:1.06666669pt">New Renderer</tspan>
+    <tspan
+       x="32.301373"
+       y="1038.9065"
+       sodipodi:role="line"
+       id="tspan837"
+       style="stroke-width:1.06666669pt">(src/libnr/*)</tspan>
+    <tspan
+       x="32.301373"
+       y="1051.7064"
+       sodipodi:role="line"
+       id="tspan839"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="406.4422"
+     y="1044.6467"
+     id="text25">
+    <tspan
+       x="406.4422"
+       y="1044.6467"
+       sodipodi:role="line"
+       id="tspan797"
+       style="stroke-width:1.06666669pt">New Renderer Typesetting (src/libnr/libnrtype/*)</tspan>
+    <tspan
+       x="406.4422"
+       y="1057.4468"
+       sodipodi:role="line"
+       id="tspan799"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="27.821459"
+     y="918.27454"
+     id="text28">
+    <tspan
+       x="27.821459"
+       y="918.27454"
+       sodipodi:role="line"
+       id="tspan821"
+       style="stroke-width:1.06666669pt">Display Glue</tspan>
+    <tspan
+       x="27.821459"
+       y="931.07452"
+       sodipodi:role="line"
+       id="tspan823"
+       style="stroke-width:1.06666669pt">(src/display/*)</tspan>
+    <tspan
+       x="27.821459"
+       y="943.87451"
+       sodipodi:role="line"
+       id="tspan825"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="29.362036"
+     y="593.8811"
+     id="text189">
+    <tspan
+       x="29.362036"
+       y="593.8811"
+       sodipodi:role="line"
+       id="tspan815"
+       style="stroke-width:1.06666669pt">View subsystem</tspan>
+    <tspan
+       x="29.362036"
+       y="606.68109"
+       sodipodi:role="line"
+       id="tspan817"
+       style="stroke-width:1.06666669pt">(src/view.*, src/desktop*.*, src/svg-view.* and others)</tspan>
+    <tspan
+       x="29.362036"
+       y="619.48108"
+       sodipodi:role="line"
+       id="tspan819"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="37.347359"
+     y="652.9516"
+     id="text685">
+    <tspan
+       x="37.347359"
+       y="652.9516"
+       sodipodi:role="line"
+       id="tspan642"
+       style="stroke-width:1.06666669pt">SPView is an abstract class representing a &quot;view&quot; of an SPDocument. It</tspan>
+    <tspan
+       x="37.347359"
+       y="663.61829"
+       sodipodi:role="line"
+       id="tspan644"
+       style="stroke-width:1.06666669pt">has a companion SPViewWidget class for the associated display widget.</tspan>
+    <tspan
+       x="37.347359"
+       y="674.28491"
+       sodipodi:role="line"
+       id="tspan646"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="37.347359"
+       y="684.9516"
+       sodipodi:role="line"
+       id="tspan648"
+       style="stroke-width:1.06666669pt">SPDesktop is an editable SPView, and SPSVGView is a display-only view</tspan>
+    <tspan
+       x="37.347359"
+       y="695.61829"
+       sodipodi:role="line"
+       id="tspan650"
+       style="stroke-width:1.06666669pt">(e.g. the about box). Both maintain an SPCanvas and provide an</tspan>
+    <tspan
+       x="37.347359"
+       y="706.28491"
+       sodipodi:role="line"
+       id="tspan652"
+       style="stroke-width:1.06666669pt">SPCanvasArena for SPObjects to display on. They have associated</tspan>
+    <tspan
+       x="37.347359"
+       y="716.9516"
+       sodipodi:role="line"
+       id="tspan654"
+       style="stroke-width:1.06666669pt">SPViewWidget subclasses: SPDesktopWidget and SPSVGViewWidget.</tspan>
+    <tspan
+       x="37.347359"
+       y="727.61829"
+       sodipodi:role="line"
+       id="tspan656"
+       style="stroke-width:1.06666669pt">SPDesktop is also responsible for maintaining the current selection in</tspan>
+    <tspan
+       x="37.347359"
+       y="738.28491"
+       sodipodi:role="line"
+       id="tspan658"
+       style="stroke-width:1.06666669pt">an SPSelection.</tspan>
+    <tspan
+       x="37.347359"
+       y="748.9516"
+       sodipodi:role="line"
+       id="tspan660"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="37.347359"
+       y="759.61829"
+       sodipodi:role="line"
+       id="tspan662"
+       style="stroke-width:1.06666669pt">SPDesktopWidget isn't just a bare canvas; it includes the scrollbars and</tspan>
+    <tspan
+       x="37.347359"
+       y="770.28491"
+       sodipodi:role="line"
+       id="tspan664"
+       style="stroke-width:1.06666669pt">other decorations.</tspan>
+    <tspan
+       x="37.347359"
+       y="780.9516"
+       sodipodi:role="line"
+       id="tspan666"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="37.347359"
+       y="791.61829"
+       sodipodi:role="line"
+       id="tspan668"
+       style="stroke-width:1.06666669pt">SPEventContexts handle tool state and interaction.</tspan>
+    <tspan
+       x="37.347359"
+       y="802.28491"
+       sodipodi:role="line"
+       id="tspan670"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="37.836384"
+     y="948.54315"
+     id="text730">
+    <tspan
+       x="37.836384"
+       y="948.54315"
+       sodipodi:role="line"
+       id="tspan737"
+       style="stroke-width:1.06666669pt">This subsystem provides a lightweight arena abstraction.</tspan>
+    <tspan
+       x="37.836384"
+       y="959.20984"
+       sodipodi:role="line"
+       id="tspan739"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="37.836384"
+       y="969.87646"
+       sodipodi:role="line"
+       id="tspan741"
+       style="stroke-width:1.06666669pt">NRArena - a collection of lightweight renderable NRArenaItems.</tspan>
+    <tspan
+       x="37.836384"
+       y="980.54315"
+       sodipodi:role="line"
+       id="tspan743"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="37.836384"
+       y="991.20984"
+       sodipodi:role="line"
+       id="tspan745"
+       style="stroke-width:1.06666669pt">SPCanvasArena - an SPCanvasItem that renders the contents of an</tspan>
+    <tspan
+       x="37.836384"
+       y="1001.8765"
+       sodipodi:role="line"
+       id="tspan747"
+       style="stroke-width:1.06666669pt">NRArena.</tspan>
+    <tspan
+       x="37.836384"
+       y="1012.5432"
+       sodipodi:role="line"
+       id="tspan749"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="37.691109"
+     y="1055.1531"
+     id="text755">
+    <tspan
+       x="37.691109"
+       y="1055.1531"
+       sodipodi:role="line"
+       id="tspan768"
+       style="stroke-width:1.06666669pt">The new rendering subsystem mostly replaces libart. It renders</tspan>
+    <tspan
+       x="37.691109"
+       y="1065.8197"
+       sodipodi:role="line"
+       id="tspan770"
+       style="stroke-width:1.06666669pt">filled/stroked bezier curves and polygons into NRPixBlocks (image</tspan>
+    <tspan
+       x="37.691109"
+       y="1076.4865"
+       sodipodi:role="line"
+       id="tspan772"
+       style="stroke-width:1.06666669pt">buffers)</tspan>
+    <tspan
+       x="37.691109"
+       y="1087.1531"
+       sodipodi:role="line"
+       id="tspan774"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666669pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="419.53137"
+     y="1064.4839"
+     id="text780">
+    <tspan
+       x="419.53137"
+       y="1064.4839"
+       sodipodi:role="line"
+       id="tspan791"
+       style="stroke-width:1.06666669pt">Adaptor routines for using Xft, Win32, Gnome, and Freetype 2 to manage</tspan>
+    <tspan
+       x="419.53137"
+       y="1075.1505"
+       sodipodi:role="line"
+       id="tspan793"
+       style="stroke-width:1.06666669pt">font metrics and outlines.</tspan>
+    <tspan
+       x="419.53137"
+       y="1085.8173"
+       sodipodi:role="line"
+       id="tspan795"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <path
+     style="font-size:12px;fill:#00a800;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.30476589pt"
+     d="m 396.85038,820.1568 v 75.5904 H 217.32292 l 9.44853,18.89813 h -37.7952 l 9.4496,-18.89813 -179.52736,-0.002 -8.53e-4,-75.58827 H 198.42585 l -9.4496,18.89707 h 37.7952 l -9.44853,-18.89707 z"
+     id="path809"
+     sodipodi:nodetypes="ccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="37.170525"
+     y="873.45007"
+     id="text22">
+    <tspan
+       x="37.170525"
+       y="873.45007"
+       sodipodi:role="line"
+       id="tspan456"
+       style="stroke-width:1.06666669pt">SPCanvas - handles input events</tspan>
+    <tspan
+       x="37.170525"
+       y="884.11676"
+       sodipodi:role="line"
+       id="tspan458"
+       style="stroke-width:1.06666669pt">SPCanvasItem - objects that can be displayed on SPCanvas</tspan>
+    <tspan
+       x="37.170525"
+       y="894.78339"
+       sodipodi:role="line"
+       id="tspan460"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="29.741482"
+     y="842.68378"
+     id="text439">
+    <tspan
+       x="29.741482"
+       y="842.68378"
+       sodipodi:role="line"
+       id="tspan827"
+       style="stroke-width:1.06666669pt">SVG Canvas</tspan>
+    <tspan
+       x="29.741482"
+       y="855.48376"
+       sodipodi:role="line"
+       id="tspan829"
+       style="stroke-width:1.06666669pt">(src/helper/sp-canvas*)</tspan>
+    <tspan
+       x="29.741482"
+       y="868.28375"
+       sodipodi:role="line"
+       id="tspan831"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="29.741482"
+       y="881.0838"
+       sodipodi:role="line"
+       id="tspan833"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <path
+     style="font-size:12px;fill:#a85555;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.30476589pt"
+     d="m 793.70027,668.97635 v 56.69227 l 18.89813,-9.44853 v 37.7952 l -18.89813,-9.44854 10e-4,151.1808 H 623.6224 l 9.44853,18.89814 h -37.7952 l 9.44854,-18.89814 H 396.85038 l -5.3e-4,-151.17866 18.89767,9.4496 v -37.7952 l -18.89767,9.44853 v -56.69333 l 198.42588,-0.002 -9.4496,18.89707 h 37.7952 l -9.44853,-18.89707 z"
+     id="path808"
+     sodipodi:nodetypes="ccccccccccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="412.71274"
+     y="691.50287"
+     id="text156">
+    <tspan
+       x="412.71274"
+       y="691.50287"
+       sodipodi:role="line"
+       id="tspan841"
+       style="stroke-width:1.06666669pt">SVG document model</tspan>
+    <tspan
+       x="412.71274"
+       y="704.30286"
+       sodipodi:role="line"
+       id="tspan843"
+       style="stroke-width:1.06666669pt">(src/sp-*.h and others)</tspan>
+    <tspan
+       x="412.71274"
+       y="717.10284"
+       sodipodi:role="line"
+       id="tspan845"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="425.19684"
+     y="723.18781"
+     id="text468">
+    <tspan
+       x="425.19684"
+       y="723.18781"
+       sodipodi:role="line"
+       id="tspan521"
+       style="stroke-width:1.06666669pt">Enforces validity constraints on the SPRepr document.</tspan>
+    <tspan
+       x="425.19684"
+       y="733.85449"
+       sodipodi:role="line"
+       id="tspan523"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="425.19684"
+       y="744.52112"
+       sodipodi:role="line"
+       id="tspan525"
+       style="stroke-width:1.06666669pt">SPDocument - an SVG document containing SPObjects.</tspan>
+    <tspan
+       x="425.19684"
+       y="755.18781"
+       sodipodi:role="line"
+       id="tspan527"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="425.19684"
+       y="765.85449"
+       sodipodi:role="line"
+       id="tspan529"
+       style="stroke-width:1.06666669pt">SPObjects - handles short term changes &amp; propagates</tspan>
+    <tspan
+       x="425.19684"
+       y="776.52112"
+       sodipodi:role="line"
+       id="tspan531"
+       style="stroke-width:1.06666669pt">longer term ones to the SPRepr</tspan>
+    <tspan
+       x="425.19684"
+       y="787.18781"
+       sodipodi:role="line"
+       id="tspan533"
+       style="stroke-width:1.06666669pt" />
+    <tspan
+       x="425.19684"
+       y="797.85449"
+       sodipodi:role="line"
+       id="tspan535"
+       style="stroke-width:1.06666669pt">SPItems - SPObjects that can be rendered. They have hide() and show()</tspan>
+    <tspan
+       x="425.19684"
+       y="808.52112"
+       sodipodi:role="line"
+       id="tspan537"
+       style="stroke-width:1.06666669pt">methods for creating an associated NRArenaItem in a given NRArena.</tspan>
+    <tspan
+       x="425.19684"
+       y="819.18781"
+       sodipodi:role="line"
+       id="tspan539"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <path
+     style="font-size:12px;fill:#a80055;fill-opacity:0.655629;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.29627947pt"
+     d="m 793.70027,574.48853 v 37.79734 l 18.89706,-9.4496 v 37.7952 l -18.89706,-9.4496 v 94.48853 l 18.89813,-9.4496 v 37.7952 l -18.89813,-9.44853 V 895.7472 H 982.67733 V 574.48853 h -28.34666 l 9.44853,18.89707 H 925.984 l 9.4496,-18.89707 z"
+     id="path813"
+     sodipodi:nodetypes="ccccccccccccccccc"
+     inkscape:connector-curvature="0" />
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="821.74103"
+     y="597.55847"
+     id="text163">
+    <tspan
+       x="821.74103"
+       y="597.55847"
+       sodipodi:role="line"
+       id="tspan341"
+       style="stroke-width:1.06666669pt">XML doc model</tspan>
+    <tspan
+       x="821.74103"
+       y="610.35846"
+       sodipodi:role="line"
+       id="tspan343"
+       style="stroke-width:1.06666669pt">(src/xml/*)</tspan>
+    <tspan
+       x="821.74103"
+       y="623.15845"
+       sodipodi:role="line"
+       id="tspan345"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="834.27472"
+     y="636.00671"
+     id="text541">
+    <tspan
+       x="834.27472"
+       y="636.00671"
+       sodipodi:role="line"
+       id="tspan362"
+       style="stroke-width:1.06666669pt">SPRepr - node in an XML</tspan>
+    <tspan
+       x="834.27472"
+       y="646.6734"
+       sodipodi:role="line"
+       id="tspan364"
+       style="stroke-width:1.06666669pt">document (elements,</tspan>
+    <tspan
+       x="834.27472"
+       y="657.34003"
+       sodipodi:role="line"
+       id="tspan366"
+       style="stroke-width:1.06666669pt">attributes, and text nodes).</tspan>
+    <tspan
+       x="834.27472"
+       y="668.00671"
+       sodipodi:role="line"
+       id="tspan368"
+       style="stroke-width:1.06666669pt">Transactions are logged</tspan>
+    <tspan
+       x="834.27472"
+       y="678.6734"
+       sodipodi:role="line"
+       id="tspan370"
+       style="stroke-width:1.06666669pt">for replaying/undoing</tspan>
+    <tspan
+       x="834.27472"
+       y="689.34003"
+       sodipodi:role="line"
+       id="tspan372"
+       style="stroke-width:1.06666669pt">changes.</tspan>
+  </text>
+  <text
+     style="font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="802.54327"
+     y="923.96442"
+     id="text270">
+    <tspan
+       x="802.54327"
+       y="923.96442"
+       sodipodi:role="line"
+       id="tspan714"
+       style="stroke-width:1.06666669pt">Cruft subsystem - (src/svg/*)</tspan>
+    <tspan
+       x="802.54327"
+       y="936.7644"
+       sodipodi:role="line"
+       id="tspan716"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';stroke-width:1.06666669pt"
+     x="828.10785"
+     y="948.66235"
+     id="text723">
+    <tspan
+       x="828.10785"
+       y="948.66235"
+       sodipodi:role="line"
+       id="tspan708"
+       style="stroke-width:1.06666669pt">Assorted stuff left over from</tspan>
+    <tspan
+       sodipodi:role="line"
+       id="tspan794"
+       x="828.10785"
+       y="959.32904"
+       style="stroke-width:1.06666669pt">when Sodipodi forked from</tspan>
+    <tspan
+       sodipodi:role="line"
+       id="tspan796"
+       x="828.10785"
+       y="969.99567"
+       style="stroke-width:1.06666669pt">Gill which doesn't have a better</tspan>
+    <tspan
+       sodipodi:role="line"
+       id="tspan800"
+       x="828.10785"
+       y="980.66235"
+       style="stroke-width:1.06666669pt">home.</tspan>
+  </text>
+  <text
+     style="font-style:normal;font-weight:bold;font-size:12.80000019px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="27.533974"
+     y="477.37494"
+     id="text257">
+    <tspan
+       x="27.533974"
+       y="477.37494"
+       sodipodi:role="line"
+       id="tspan358"
+       style="stroke-width:1.06666669pt">Inkscape Graphical User Interface (src/widgets, src/dialogs)</tspan>
+    <tspan
+       x="27.533974"
+       y="490.17493"
+       sodipodi:role="line"
+       id="tspan360"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="37.795277"
+     y="532.19989"
+     id="text676">
+    <tspan
+       x="37.795277"
+       y="532.19989"
+       sodipodi:role="line"
+       id="tspan318"
+       style="stroke-width:1.06666669pt">widgets/* - Utilities and custom widgets to assist in implementing</tspan>
+    <tspan
+       x="37.795277"
+       y="542.86658"
+       sodipodi:role="line"
+       id="tspan320"
+       style="stroke-width:1.06666669pt">the Inkscape GUI and to enforce a common look and feel style</tspan>
+    <tspan
+       x="37.795277"
+       y="553.5332"
+       sodipodi:role="line"
+       id="tspan322"
+       style="stroke-width:1.06666669pt">across the application.</tspan>
+    <tspan
+       x="37.795277"
+       y="564.19989"
+       sodipodi:role="line"
+       id="tspan324"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="37.795277"
+     y="494.40463"
+     id="text326">
+    <tspan
+       x="37.795277"
+       y="494.40463"
+       sodipodi:role="line"
+       id="tspan335"
+       style="stroke-width:1.06666669pt">dialogs/* - Code for creating the various UI dialogs in the</tspan>
+    <tspan
+       x="37.795277"
+       y="505.07129"
+       sodipodi:role="line"
+       id="tspan337"
+       style="stroke-width:1.06666669pt">application.</tspan>
+    <tspan
+       x="37.795277"
+       y="515.73798"
+       sodipodi:role="line"
+       id="tspan339"
+       style="stroke-width:1.06666669pt" />
+  </text>
+  <text
+     style="font-style:normal;font-weight:normal;font-size:10.66666698px;line-height:100%;font-family:'Luxi Sans';writing-mode:lr-tb;text-anchor:start;stroke-width:1.06666669pt"
+     x="811.09766"
+     y="514.38989"
+     id="text347">
+    <tspan
+       x="811.09766"
+       y="514.38989"
+       sodipodi:role="line"
+       id="tspan374"
+       style="stroke-width:1.06666669pt">dialogs/xml-tree.* - Code for</tspan>
+    <tspan
+       x="811.09766"
+       y="525.05658"
+       sodipodi:role="line"
+       id="tspan376"
+       style="stroke-width:1.06666669pt">creating and maintaining an</tspan>
+    <tspan
+       x="811.09766"
+       y="535.72321"
+       sodipodi:role="line"
+       id="tspan378"
+       style="stroke-width:1.06666669pt">interface for editing XML trees.</tspan>
+  </text>
+</svg>
