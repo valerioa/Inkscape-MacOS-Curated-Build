@@ -1,0 +1,78 @@
+diff -Naur a/gdk/quartz/gdkselection-quartz.c b/gdk/quartz/gdkselection-quartz.c
+--- a/gdk/quartz/gdkselection-quartz.c	2015-12-28 08:42:28.000000000 -0700
++++ b/gdk/quartz/gdkselection-quartz.c	2017-12-04 15:11:10.000000000 -0700
+@@ -235,31 +235,33 @@
+ GdkAtom
+ gdk_quartz_pasteboard_type_to_atom_libgtk_only (NSString *type)
+ {
++  NSString *str;
++
+   if ([type isEqualToString:NSStringPboardType])
+     return gdk_atom_intern_static_string ("UTF8_STRING");
+-  else if ([type isEqualToString:NSTIFFPboardType])
+-    return gdk_atom_intern_static_string ("image/tiff");
+-  else if ([type isEqualToString:NSColorPboardType])
+-    return gdk_atom_intern_static_string ("application/x-color");
+-  else if ([type isEqualToString:NSURLPboardType])
+-    return gdk_atom_intern_static_string ("text/uri-list");
+-  else
+-    return gdk_atom_intern ([type UTF8String], FALSE);
++  else {
++    str = (NSString *)UTTypeCopyPreferredTagWithClass((CFStringRef)type, kUTTagClassMIMEType);
++    if ( [str isEqualToString:@""] )
++      return NULL;
++    else
++      return gdk_atom_intern([str UTF8String], FALSE);
++  }
+ }
+ 
+ NSString *
+ gdk_quartz_target_to_pasteboard_type_libgtk_only (const char *target)
+ {
+-  if (strcmp (target, "UTF8_STRING") == 0)
+-    return NSStringPboardType;
+-  else if (strcmp (target, "image/tiff") == 0)
+-    return NSTIFFPboardType;
+-  else if (strcmp (target, "application/x-color") == 0)
+-    return NSColorPboardType;
+-  else if (strcmp (target, "text/uri-list") == 0)
+-    return NSURLPboardType;
+-  else
+-    return [NSString stringWithUTF8String:target];
++   NSString *str;
++   CFStringRef uti;
++
++   if (strcmp (target, "UTF8_STRING") == 0)
++      return NSStringPboardType;
++   else {
++      str = [[NSString alloc] initWithUTF8String:target];
++      uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (CFStringRef)str, NULL);
++      [str release];
++      return (NSString *) uti;
++   }
+ }
+ 
+ NSString *
+diff -Naur a/gtk/gtkquartz.c b/gtk/gtkquartz.c
+--- a/gtk/gtkquartz.c	2015-12-28 08:42:28.000000000 -0700
++++ b/gtk/gtkquartz.c	2017-12-04 15:11:21.000000000 -0700
+@@ -208,14 +208,16 @@
+     {
+       NSData *data;
+       gchar *name;
++      NSString *tstr;
+ 
+       name = gdk_atom_name (target);
+ 
+       if (strcmp (name, "image/tiff") == 0)
+ 	data = [pasteboard dataForType:NSTIFFPboardType];
+-      else
+-	data = [pasteboard dataForType:[NSString stringWithUTF8String:name]];
+-
++      else {
++        tstr = gdk_quartz_target_to_pasteboard_type_libgtk_only(name);
++	data = [pasteboard dataForType:NSPasteboardTypePDF];
++      }  
+       g_free (name);
+ 
+       if (data)

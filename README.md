@@ -50,6 +50,31 @@ This buils contains a python installation and all python packages
 necessary to run all python extensions (including
 Uniconvertor). Hopefully, I did not forget any.
 
+I will publsih here the full Inkscape source that builds with
+Macports, has full gtk2/quartz,DnD,shortcuts/pasteboard integration.
+
+Build is configured with
+
+<pre>
+./autogen.sh ;
+CFLAGS="-O3 -march=native" CXXFLAGS="-O3 -march=native" \
+./configure \
+--prefix=/Applications/Inkscape.app/Contents/Resources \
+--without-gnome-vfs \
+--enable-lcms \
+--enable-poppler-cairo \
+--disable-silent-rules \
+--disable-strict-build \
+--enable-carbon \
+--disable-dbusapi
+</pre>
+
+This build dmg installer package is larger than the mainstream
+one. Build contains python, all python packages, and tcl+tk (a
+dependency of python-pil, which is a dependency of Uniconvertor).
+The dmg file in the Releases tab should be about 1.5 times the
+original Inkscape dmg.
+
 ### Gtk2 patching
 
 The Gtk2/3 quartz engine is designed mostly around the GIMP build.
@@ -67,6 +92,21 @@ These buils and releases are linked with a patched Gtk2, thus they can
 full use the MacOS clipboard
 
 Patches are in the valerio-patches directory.
+
+Gtk2 is built (after patching) with:
+
+<pre>
+CUPS_CONFIG=/usr/bin/cups-config \
+LDFLAGS="-framework Cocoa -framework Carbon" \
+CFLAGS="-O3 -march=native" \
+CXXFLAGS="-O3 -march=native" \
+./configure
+--enable-static \
+--disable-glibtest \
+--enable-introspection \
+--with-gdktarget=quartz \
+gio_can_sniff=yes
+</pre>
 
 
 
