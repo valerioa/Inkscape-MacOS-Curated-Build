@@ -1,0 +1,1 @@
+# Inkscape-MacOS-Curated-Build
