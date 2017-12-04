@@ -66,7 +66,7 @@ the MacOS clipboard.
 These buils and releases are linked with a patched Gtk2, thus they can
 full use the MacOS clipboard
 
-Patches are invthe valerio-patches directory.
+Patches are in the valerio-patches directory.
 
 
 
@@ -89,7 +89,9 @@ DnD on a window does not work yet.
 
 ## Bugs & Other Critters
 
-Report to me bugs that pertain to gtl/quartz/MacOS integration of
+Report to me bugs that pertain to gtk/quartz/MacOS integration of
 these buils. Inkscape bugs need to be reported to the Inkscape
-authors.
+authors: https://inkscape.org/en/contribute/report-bugs/
+
+
 
