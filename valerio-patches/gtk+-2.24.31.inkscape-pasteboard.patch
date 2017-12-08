@@ -71,7 +71,7 @@ diff -Naur a/gtk/gtkquartz.c b/gtk/gtkquartz.c
 -
 +      else {
 +        tstr = gdk_quartz_target_to_pasteboard_type_libgtk_only(name);
-+	data = [pasteboard dataForType:NSPasteboardTypePDF];
++	data = [pasteboard dataForType:tstr];
 +      }  
        g_free (name);
  

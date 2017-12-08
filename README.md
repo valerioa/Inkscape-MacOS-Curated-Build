@@ -56,8 +56,7 @@ Macports, has full gtk2/quartz,DnD,shortcuts/pasteboard integration.
 Build is configured with
 
 <pre>
-./autogen.sh ;
-CFLAGS="-O3 -march=native" CXXFLAGS="-O3 -march=native" \
+./autogen.sh
 ./configure \
 --prefix=/Applications/Inkscape.app/Contents/Resources \
 --without-gnome-vfs \
@@ -75,6 +74,24 @@ dependency of python-pil, which is a dependency of Uniconvertor).
 The dmg file in the Releases tab should be about 1.5 times the
 original Inkscape dmg.
 
+### Build Details
+
+1. Install MacPorts with
+<pre>
+./configure --prefix=/Applications/Inkscape.app/Contents/Resources/
+</pre>
+
+2. Install MacPorts packages
+3. Build and install Gtk2
+4. Build and install Inkscape
+5. cd to the valerio-packaging directory
+<pre>
+bash gen_keepers ; say Done! # this takes a bit of time
+mv /Applications/Inkscape.app /Applications/Inkscape_Backup.app
+mkdir /Applications/Inkscape.app
+rsync -Sav --files-from=./keepers /Applications/Inkscape_Backup.app/ /Applications/Inkscape.app/ ; say Done!
+
+</pre>
 ### Gtk2 patching
 
 The Gtk2/3 quartz engine is designed mostly around the GIMP build.
@@ -98,9 +115,8 @@ Gtk2 is built (after patching) with:
 <pre>
 CUPS_CONFIG=/usr/bin/cups-config \
 LDFLAGS="-framework Cocoa -framework Carbon" \
-CFLAGS="-O3 -march=native" \
-CXXFLAGS="-O3 -march=native" \
-./configure
+./configure \
+--prefix=/Applications/Inkscape.app/Contents/Resources \
 --enable-static \
 --disable-glibtest \
 --enable-introspection \
