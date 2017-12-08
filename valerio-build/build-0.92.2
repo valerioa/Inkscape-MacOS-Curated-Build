@@ -1,0 +1,82 @@
+
+# Cleanup
+mkdir /Applications/Inkscape.app
+
+#Install Macports
+wget -O- https://distfiles.macports.org/MacPorts/MacPorts-2.4.2.tar.bz2 | tar -xvzf -
+cd MacPorts-2.4.2
+./configure --prefix=/Applications/Inkscape.app/Contents/Resources
+make
+sudo make install
+cd ../
+export PATH=/Applications/Inkscape.app/Contents/Resources/bin:$PATH
+
+# update port
+sudo port selfupdate
+sudo port upgrade outdated
+
+# install ports
+sudo port -N install cairo +quartz -x11
+sudo port -N install pango +quartz -x11
+sudo port -N install gtk2 +quartz -x11
+sudo port -N install gtkmm +quartz -x11
+sudo port -N install cairomm +quartz -x11
+sudo port -N install opengl  +quartz -x11
+sudo port -N install freeglut +quartz -x11
+sudo port -N install jasper
+sudo port -N install aspell-dict-en
+sudo port -N install py-pygtk +quartz -x11
+sudo port -N install py-scipy py-numpy
+sudo port -N install py-pil
+sudo port -N install py-reportlab
+
+# Install patched gtk2
+wget -O- https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.31.tar.xz | tar -xvzf -
+cd gtk+-2.24.31.tar.xz
+patch -p1 < ../valerio-patches/gtk+-2.24.31.inkscape-pasteboard.patch
+CUPS_CONFIG=/usr/bin/cups-config \
+LDFLAGS="-framework Cocoa -framework Carbon" \
+./configure
+--enable-static \
+--disable-glibtest \
+--enable-introspection \
+--with-gdktarget=quartz \
+gio_can_sniff=yes
+
+make
+sudo make install
+cd ../
+
+# Build Inkscape
+mkdir inkscape-build
+cd inkscape-build
+./autogen.sh ;
+
+../../configure \
+--prefix=/Applications/Inkscape.app/Contents/Resources \
+--without-gnome-vfs \
+--enable-lcms \
+--enable-poppler-cairo \
+--disable-silent-rules \
+--disable-strict-build \
+--enable-carbon \
+--disable-dbusapi
+
+make
+sudo make install
+cp Info.plist /Applications/Inkscape.app/Contents
+cp 
+cd ../
+
+# Packaging
+./gen_keepers ; say Done! # this takes a bit of time
+mv /Applications/Inkscape.app /Applications/Inkscape_Backup.app
+mkdir /Applications/Inkscape.app
+rsync -Sav --files-from=./keepers /Applications/Inkscape_Backup.app/ /Applications/Inkscape.app/ ; say Done!
+mkdir -p /Applications/Inkscape.app/var/cache/fontconfig
+
+# optional: remove backup
+# rm -fR /Applications/Inkscape_Backup.app
+
+
+
