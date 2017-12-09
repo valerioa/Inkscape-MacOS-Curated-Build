@@ -89,6 +89,7 @@ cp Inkscape /Applications/Inkscape.app/Contents/MacOS
 rsync -Sav icons/Tango /Applications/Inkscape.app/Contents/Resources/share/icons/
 cp etc/gtk-2.0/gtkrc /Applications/Inkscape.app/Contents/Resources/etc/gtk-2.0/
 rsync -Sav themes/Mac /Applications/Inkscape.app/Contents/Resources/share/themes/
+cp icons/Inkscape*icns /Applications/Inkscape.app/Contents/Resources/
 
 
 # Packaging
@@ -96,7 +97,7 @@ rsync -Sav themes/Mac /Applications/Inkscape.app/Contents/Resources/share/themes
 mv /Applications/Inkscape.app /Applications/Inkscape_Backup.app
 mkdir /Applications/Inkscape.app
 rsync -Sav --files-from=./keepers /Applications/Inkscape_Backup.app/ /Applications/Inkscape.app/ ; say Done!
-mkdir -p /Applications/Inkscape.app/var/cache/fontconfig
+mkdir -p /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig
 
 # optional: remove backup
 # rm -fR /Applications/Inkscape_Backup.app
