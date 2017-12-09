@@ -83,8 +83,13 @@ cd ../
 make
 make install
 cp Info.plist /Applications/Inkscape.app/Contents
-cp 
-cd ../
+cd valerio-build
+mkdir -p /Applications/Inkscape.app/Contents/MacOS
+cp Inkscape /Applications/Inkscape.app/Contents/MacOS
+rsync -Sav icons/Tango /Applications/Inkscape.app/Contents/Resources/share/icons/
+cp etc/gtk-2.0/gtkrc /Applications/Inkscape.app/Contents/Resources/etc/gtk-2.0/
+rsync -Sav themes/Mac /Applications/Inkscape.app/Contents/Resources/share/themes/
+
 
 # Packaging
 ./gen_keepers ; say Done! # this takes a bit of time

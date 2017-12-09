@@ -1,0 +1,107 @@
+#!/bin/bash
+
+do_extract()
+{
+        if test -L $1; then
+                echo `dirname $1`/`readlink $1`
+                do_extract `dirname $1`/`readlink $1`
+        fi
+        for line in `otool -L $1 | tail -n +3 | cut -d '(' -f1 | grep '/Applications/Inkscape.app' | sed -e 's/\t*//' -e 's/ *$//'`; do
+                echo $line
+                do_extract $line
+        done
+}
+
+do_extract /Applications/Inkscape.app/Contents/Resources/bin/inkscape | sort -u >dylibs
+do_extract /Applications/Inkscape.app/Contents/Resources/bin/python2.7 | sort -u >> dylibs
+
+(
+for file in `find /Applications/Inkscape.app/Contents/Resources/Library/Frameworks/Python.framework/ -iname \*.so`; do
+	do_extract ${file} 
+done
+) | sort -u >> dylibs
+
+(
+for file in `find /Applications/Inkscape.app/Contents/Resources/Library/Frameworks/Python.framework/ -iname \*.so`; do
+        do_extract ${file}
+done
+) | sort -u >> dylibs
+
+SHAREDIRS="X11 appdata applications  curl fontconfig fonts gc gettext 
+gettext-0.19.8 gir-1.0 glib-2.0 glibmm-2.4 gobject-introspection-1.0  
+graphite2 graphviz gtk-2.0  gtk-engines icons icu inkscape intltool 
+locale libatomic_ops locale mime poppler psutils pygtk2.7 readline sgml strings 
+themes util-macros"
+
+cat << EOF > temp_keepers
+/Applications/Inkscape.app/Contents/Info.plist
+/Applications/Inkscape.app/Contents/MacOS/Inkscape
+/Applications/Inkscape.app/Contents/Resources/Inkscape-Generic.icns
+/Applications/Inkscape.app/Contents/Resources/Inkscape.icns
+/Applications/Inkscape.app/Contents/Resources/bin/inkscape
+/Applications/Inkscape.app/Contents/Resources/bin/inkview
+/Applications/Inkscape.app/Contents/Resources/bin/python
+/Applications/Inkscape.app/Contents/Resources/bin/python-config
+/Applications/Inkscape.app/Contents/Resources/bin/python2
+/Applications/Inkscape.app/Contents/Resources/bin/python2-config
+/Applications/Inkscape.app/Contents/Resources/bin/python2.7
+/Applications/Inkscape.app/Contents/Resources/bin/python2.7-config
+/Applications/Inkscape.app/Contents/Resources/bin/tclsh
+/Applications/Inkscape.app/Contents/Resources/bin/tclsh8.6
+/Applications/Inkscape.app/Contents/Resources/bin/wish
+/Applications/Inkscape.app/Contents/Resources/bin/wish8.6
+EOF
+
+for D in `echo ${SHAREDIRS}`; do
+	find /Applications/Inkscape.app/Contents/Resources/share/${D} -type f >> temp_keepers
+done
+
+find /Applications/Inkscape_Backup.app/Contents/Resources/bin -iname fc-\* -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources//lib/gtk-2.0 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gdk-pixbuf-2.0 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/giomm-2.4 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig -type d >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gdk-pixbuf-2.0 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gdkmm-2.4 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gettext -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/giomm-2.4 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/girepository-1.0 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/glib-2.0 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/glibmm-2.4 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gobject-introspection -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/graphviz -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gtk-2.0 -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/lib/gtkmm-2.4 -type f >> temp_keepers
+
+
+find /Applications/Inkscape.app -iname \*inkscape\* -type f >> temp_keepers
+find /Applications/Inkscape.app -iname \*murrine\*  -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/Library/Frameworks/Python.framework  -type f >> temp_keepers
+find /Applications/Inkscape.app -iname \*tcl\* -type f >> temp_keepers
+find /Applications/Inkscape.app -iname \*tk\*  -type f >> temp_keepers
+find /Applications/Inkscape.app/ -iname \*ttf  -type f >> temp_keepers
+find /Applications/Inkscape.app/ -iname \*pfb  -type f >> temp_keepers
+find /Applications/Inkscape.app/ -iname \*otf  -type f >> temp_keepers
+find /Applications/Inkscape.app/ -iname \*font\*  -type f >> temp_keepers
+
+for D in `echo ${SHAREDIR}`; do
+	find /Applications/Inkscape.app/Contents/Resources/share/${D} -type f >> temp_keepers
+done
+
+cat dylibs >> temp_keepers
+
+sort -u < temp_keepers | \
+sed -s 's/\/Applications\/Inkscape.app//g' | \
+sed -s 's/^\/*//g' | \
+grep -v 'Contents/Resources/var/macports' | \
+grep -v 'Contents/Resources/include' | \
+grep -v 'Contents/Resources/share/man' | \
+grep -v 'Contents/Resources/share/doc' | \
+grep -v 'Contents/Resources/share/gtk-doc' | \
+grep -v 'Contents/Resources/share/java' |\
+egrep -v 'pyo$' |\
+egrep -v 'pyc$' |\
+egrep -v 'html$'> keepers
+
+
+
