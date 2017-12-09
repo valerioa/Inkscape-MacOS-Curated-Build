@@ -35,6 +35,7 @@ port -N install py-reportlab
 port select --set pip pip27
 port -N install cairomm +quartz -x11
 port -N install glibmm +quartz -x11
+port install -N poppler psutils
 port install -N p5-xml-parser
 port install -N gtk2-murrine
 
@@ -68,8 +69,7 @@ cd ..
 # Build Inkscape
 mkdir inkscape-build
 cd ../
-./autogen.sh ;
-
+./autogen.sh
 ./configure \
 --prefix=/Applications/Inkscape.app/Contents/Resources \
 --without-gnome-vfs \
@@ -100,6 +100,19 @@ mkdir -p /Applications/Inkscape.app/var/cache/fontconfig
 
 # optional: remove backup
 # rm -fR /Applications/Inkscape_Backup.app
+VERSION="0.92.2 v3"
+mkdir "Inkscape ${VERSION}"
+rsync -Sav /Applications/Inkscape.app "Inkscape ${VERSION}"/
+test -f "Inkscape ${VERSION}.dmg" && rm "Inkscape ${VERSION}.dmg"
+./create-dmg \
+--window-size 600 400 \
+--background backgrounds/inkscape-background.png \
+--icon-size 96 \
+--volname "Inkscape ${VERSION}" \
+--app-drop-link 140 225 \
+--icon "Inkscape" 465 225 \
+"Inkscape ${VERSION}.dmg" \
+"Inkscape ${VERSION}"
 
 
 
