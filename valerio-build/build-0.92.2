@@ -33,6 +33,10 @@ port -N install py-scipy py-numpy
 port -N install py-pil
 port -N install py-reportlab
 port select --set pip pip27
+port -N install cairomm +quartz -x11
+port -N install glibmm +quartz -x11
+port install -N p5-xml-parser
+port install -N gtk2-murrine
 
 # Install patched gtk2
 wget -O- https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.31.tar.xz | tar -xvzf -
@@ -45,17 +49,28 @@ LDFLAGS="-framework Cocoa -framework Carbon" \
 --disable-glibtest \
 --enable-introspection \
 --with-gdktarget=quartz \
+--prefix=/Applications/Inkscape.app/Contents/Resources \
 gio_can_sniff=yes
 make
 make install
 cd ../
 
+# gtk-mac-integration
+git clone https://github.com/jralls/gtk-mac-integration.git
+cd gtk-mac-integration
+./autogen.sh
+./configure \
+--prefix=/Applications/Inkscape.app/Contents/Resources/ --with-gtk2 --without-gtk3
+make
+make install
+cd ..
+
 # Build Inkscape
 mkdir inkscape-build
-cd inkscape-build
+cd ../
 ./autogen.sh ;
 
-../../configure \
+./configure \
 --prefix=/Applications/Inkscape.app/Contents/Resources \
 --without-gnome-vfs \
 --enable-lcms \
