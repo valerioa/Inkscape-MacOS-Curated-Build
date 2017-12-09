@@ -1,0 +1,9 @@
+# Makefile.am fragment sourced by src/Makefile.am.
+
+if WITH_CARBON_INTEGRATION
+
+ink_common_sources +=               \
+        osx_carbon_integration/osx-integration.cpp \
+	osx_carbon_integration/osx-glue.m
+endif
+

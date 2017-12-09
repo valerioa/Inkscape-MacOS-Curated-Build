@@ -7,44 +7,47 @@ wget -O- https://distfiles.macports.org/MacPorts/MacPorts-2.4.2.tar.bz2 | tar -x
 cd MacPorts-2.4.2
 ./configure --prefix=/Applications/Inkscape.app/Contents/Resources
 make
-sudo make install
+make install
 cd ../
 export PATH=/Applications/Inkscape.app/Contents/Resources/bin:$PATH
 
 # update port
-sudo port selfupdate
-sudo port upgrade outdated
+port selfupdate
+port upgrade outdated
 
 # install ports
-sudo port -N install cairo +quartz -x11
-sudo port -N install pango +quartz -x11
-sudo port -N install gtk2 +quartz -x11
-sudo port -N install gtkmm +quartz -x11
-sudo port -N install cairomm +quartz -x11
-sudo port -N install opengl  +quartz -x11
-sudo port -N install freeglut +quartz -x11
-sudo port -N install jasper
-sudo port -N install aspell-dict-en
-sudo port -N install py-pygtk +quartz -x11
-sudo port -N install py-scipy py-numpy
-sudo port -N install py-pil
-sudo port -N install py-reportlab
+port -N install cairo +quartz -x11
+port -N install pango +quartz -x11
+port -N install gtk2 +quartz -x11
+port -N install gtkmm +quartz -x11
+port -N install cairomm +quartz -x11
+port -f activate python27
+port select --set python python27
+port -N install freeglut +quartz -x11
+port -N install jasper
+port -N install aspell-dict-en
+port -N install glib2 glibmm +quartz -x11
+port -N install py-pygtk +quartz -x11
+port select --set cython cython27
+port -N install py-scipy py-numpy
+port -N install py-pil
+port -N install py-reportlab
+port select --set pip pip27
 
 # Install patched gtk2
 wget -O- https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.31.tar.xz | tar -xvzf -
-cd gtk+-2.24.31.tar.xz
-patch -p1 < ../valerio-patches/gtk+-2.24.31.inkscape-pasteboard.patch
+cd gtk+-2.24.31
+patch -p1 < ../../valerio-patches/gtk+-2.24.31.inkscape-pasteboard.patch
 CUPS_CONFIG=/usr/bin/cups-config \
 LDFLAGS="-framework Cocoa -framework Carbon" \
-./configure
+./configure \
 --enable-static \
 --disable-glibtest \
 --enable-introspection \
 --with-gdktarget=quartz \
 gio_can_sniff=yes
-
 make
-sudo make install
+make install
 cd ../
 
 # Build Inkscape
@@ -63,7 +66,7 @@ cd inkscape-build
 --disable-dbusapi
 
 make
-sudo make install
+make install
 cp Info.plist /Applications/Inkscape.app/Contents
 cp 
 cd ../
