@@ -101,6 +101,8 @@ mkdir -p /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig
 
 # optional: remove backup
 # rm -fR /Applications/Inkscape_Backup.app
+
+# 
 VERSION="0.92.2 v3"
 mkdir "Inkscape ${VERSION}"
 rsync -Sav /Applications/Inkscape.app "Inkscape ${VERSION}"/
@@ -114,6 +116,8 @@ test -f "Inkscape ${VERSION}.dmg" && rm "Inkscape ${VERSION}.dmg"
 --icon "Inkscape" 465 225 \
 "Inkscape ${VERSION}.dmg" \
 "Inkscape ${VERSION}"
+rm -fR "Inkscape ${VERSION}"
+
 
 
 
