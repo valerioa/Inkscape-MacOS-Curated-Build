@@ -378,11 +378,11 @@ override) the bindings in the main default.xml.
 
   <!-- Objects/selection -->
 
-  <bind key="h" action="ObjectFlipHorizontally" display="true" />
-  <bind key="H" action="ObjectFlipHorizontally" />
+  <bind key="h" modifiers="Cmd" action="ObjectFlipHorizontally" display="true" />
+  <bind key="H" modifiers="Cmd" action="ObjectFlipHorizontally" />
 
-  <bind key="v" action="ObjectFlipVertically" display="true" />
-  <bind key="V" action="ObjectFlipVertically" />
+  <bind key="v" modifiers="Cmd" action="ObjectFlipVertically" display="true" />
+  <bind key="V" modifiers="Cmd" action="ObjectFlipVertically" />
 
   <bind key="Home" action="SelectionToFront" display="true" />
   <bind key="KP_Home" action="SelectionToFront" />

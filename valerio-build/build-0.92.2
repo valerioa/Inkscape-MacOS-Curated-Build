@@ -102,7 +102,7 @@ mkdir -p /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig
 # optional: remove backup
 # rm -fR /Applications/Inkscape_Backup.app
 
-# 
+# the following commands must be run as user who owns a windowing session.
 VERSION="0.92.2 v3"
 mkdir "Inkscape ${VERSION}"
 rsync -Sav /Applications/Inkscape.app "Inkscape ${VERSION}"/
