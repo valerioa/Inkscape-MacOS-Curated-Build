@@ -56,7 +56,7 @@ for D in `echo ${SHAREDIRS}`; do
 	find /Applications/Inkscape.app/Contents/Resources/share/${D} -type f >> temp_keepers
 done
 
-find /Applications/Inkscape_Backup.app/Contents/Resources/bin -iname fc-\* -type f >> temp_keepers
+find /Applications/Inkscape.app/Contents/Resources/bin -iname fc-\* -type f >> temp_keepers
 find /Applications/Inkscape.app/Contents/Resources//lib/gtk-2.0 -type f >> temp_keepers
 find /Applications/Inkscape.app/Contents/Resources/lib/gdk-pixbuf-2.0 -type f >> temp_keepers
 find /Applications/Inkscape.app/Contents/Resources/lib/giomm-2.4 -type f >> temp_keepers
