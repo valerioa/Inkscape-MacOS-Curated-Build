@@ -79,6 +79,9 @@ void FilterComposite::render_cairo(FilterSlot &slot)
     cairo_surface_t *out = ink_cairo_surface_create_output(input1, input2);
     set_cairo_surface_ci(out, ci_fp );
 
+    Geom::Rect vp = filter_primitive_area( slot.get_units() );
+    slot.set_primitive_area(_output, vp); // Needed for tiling
+
     if (op == COMPOSITE_ARITHMETIC) {
         ink_cairo_surface_blend(input1, input2, out, ComposeArithmetic(k1, k2, k3, k4));
     } else {

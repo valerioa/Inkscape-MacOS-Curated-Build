@@ -354,18 +354,18 @@ bool SelectTool::item_handler(SPItem* item, GdkEvent* event) {
             break;
 
         case GDK_KEY_PRESS:
-            if (get_group0_keyval (&event->key) == GDK_KEY_space) {
+            if (get_latin_keyval (&event->key) == GDK_KEY_space) {
                 if (this->dragging && this->grabbed) {
                     /* stamping mode: show content mode moving */
                     _seltrans->stamp();
                     ret = TRUE;
                 }
-            } else if (get_group0_keyval (&event->key) == GDK_KEY_Tab) {
+            } else if (get_latin_keyval (&event->key) == GDK_KEY_Tab) {
                 if (this->dragging && this->grabbed) {
                     _seltrans->getNextClosestPoint(false);
                     ret = TRUE;
                 }
-            } else if (get_group0_keyval (&event->key) == GDK_KEY_ISO_Left_Tab) {
+            } else if (get_latin_keyval (&event->key) == GDK_KEY_ISO_Left_Tab) {
                 if (this->dragging && this->grabbed) {
                     _seltrans->getNextClosestPoint(true);
                     ret = TRUE;
@@ -864,7 +864,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
         case GDK_KEY_PRESS: // keybindings for select context
             {
             {
-            guint keyval = get_group0_keyval(&event->key);
+            guint keyval = get_latin_keyval(&event->key);
             
                 bool alt = ( MOD__ALT(event)
                                     || (keyval == GDK_KEY_Alt_L)
@@ -906,11 +906,11 @@ bool SelectTool::root_handler(GdkEvent* event) {
             gdouble const offset = prefs->getDoubleLimited("/options/defaultscale/value", 2, 0, 1000, "px");
             int const snaps = prefs->getInt("/options/rotationsnapsperpi/value", 12);
 
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
                 case GDK_KEY_Left: // move selection left
                 case GDK_KEY_KP_Left:
                     if (!MOD__CTRL(event)) { // not ctrl
-                        gint mul = 1 + gobble_key_events( get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events( get_latin_keyval(&event->key), 0); // with any mask
                         
                         if (MOD__ALT(event)) { // alt
                             if (MOD__SHIFT(event)) {
@@ -933,7 +933,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
                 case GDK_KEY_Up: // move selection up
                 case GDK_KEY_KP_Up:
                     if (!MOD__CTRL(event)) { // not ctrl
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         
                         if (MOD__ALT(event)) { // alt
                             if (MOD__SHIFT(event)) {
@@ -956,7 +956,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
                 case GDK_KEY_Right: // move selection right
                 case GDK_KEY_KP_Right:
                     if (!MOD__CTRL(event)) { // not ctrl
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         
                         if (MOD__ALT(event)) { // alt
                             if (MOD__SHIFT(event)) {
@@ -979,7 +979,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
                 case GDK_KEY_Down: // move selection down
                 case GDK_KEY_KP_Down:
                     if (!MOD__CTRL(event)) { // not ctrl
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         
                         if (MOD__ALT(event)) { // alt
                             if (MOD__SHIFT(event)) {
@@ -1034,7 +1034,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
                     
                 case GDK_KEY_bracketleft:
                     if (MOD__ALT(event)) {
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         sp_selection_rotate_screen(selection, mul*1);
                     } else if (MOD__CTRL(event)) {
                         sp_selection_rotate(selection, 90);
@@ -1047,7 +1047,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
                     
                 case GDK_KEY_bracketright:
                     if (MOD__ALT(event)) {
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         sp_selection_rotate_screen(selection, -1*mul);
                     } else if (MOD__CTRL(event)) {
                         sp_selection_rotate(selection, -90);
@@ -1061,12 +1061,12 @@ bool SelectTool::root_handler(GdkEvent* event) {
                 case GDK_KEY_less:
                 case GDK_KEY_comma:
                     if (MOD__ALT(event)) {
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         sp_selection_scale_screen(selection, -2*mul);
                     } else if (MOD__CTRL(event)) {
                         sp_selection_scale_times(selection, 0.5);
                     } else {
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         sp_selection_scale(selection, -offset*mul);
                     }
                     
@@ -1076,12 +1076,12 @@ bool SelectTool::root_handler(GdkEvent* event) {
                 case GDK_KEY_greater:
                 case GDK_KEY_period:
                     if (MOD__ALT(event)) {
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         sp_selection_scale_screen(selection, 2*mul);
                     } else if (MOD__CTRL(event)) {
                         sp_selection_scale_times(selection, 2);
                     } else {
-                        gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                        gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
                         sp_selection_scale(selection, offset*mul);
                     }
                     
@@ -1137,7 +1137,7 @@ bool SelectTool::root_handler(GdkEvent* event) {
             break;
             }
         case GDK_KEY_RELEASE: {
-            guint keyval = get_group0_keyval(&event->key);
+            guint keyval = get_latin_keyval(&event->key);
             if (key_is_a_modifier (keyval)) {
                 this->defaultMessageContext()->clear();
             }

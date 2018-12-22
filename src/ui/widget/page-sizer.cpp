@@ -242,7 +242,7 @@ PageSizer::PageSizer(Registry & _wr)
       _marginBottom( _("Botto_m:"), _("Bottom margin"), "fit-margin-bottom", _wr),
       _lockMarginUpdate(false),
       _scaleX(_("Scale _x:"), _("Scale X"), "scale-x", _wr),
-      _scaleY(_("Scale _y:"), _("Scale Y"), "scale-y", _wr),
+      _scaleY(_("Scale _y:"), _("While SVG allows non-uniform scaling it is recommended to use only uniform scaling in Inkscape. To set a non-uniform scaling, set the 'viewBox' directly."), "scale-y", _wr),
       _lockScaleUpdate(false),
       _viewboxX(_("X:"),      _("X"),      "viewbox-x", _wr),
       _viewboxY(_("Y:"),      _("Y"),      "viewbox-y", _wr),
@@ -294,7 +294,7 @@ PageSizer::PageSizer(Registry & _wr)
     _paperSizeListScroller.add(_paperSizeList);
     _paperSizeListScroller.set_shadow_type(Gtk::SHADOW_IN);
     _paperSizeListScroller.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_ALWAYS);
-    _paperSizeListScroller.set_size_request(-1, 90);
+    _paperSizeListScroller.set_size_request(-1, 130);
 
     fill_landscape_papers();
 
@@ -316,7 +316,7 @@ PageSizer::PageSizer(Registry & _wr)
     //    _paperSizeListSelection->select(iter);
 
 
-    pack_start (_paperSizeListScroller, true, true, 0);
+    pack_start (_paperSizeListScroller, false, false, 0);
 
     //## Set up orientation radio buttons
     pack_start (_orientationBox, false, false, 0);
@@ -461,7 +461,6 @@ PageSizer::PageSizer(Registry & _wr)
     _scaleTable.attach(_scaleY,        1, 0, 1, 1);
 
     _scaleTable.attach(_scaleLabel,    2, 0, 1, 1);
-    _scaleTable.attach(_scaleWarning,  0, 1, 2, 1);
     _viewboxExpander.set_hexpand();
     _viewboxExpander.set_vexpand();
     _scaleTable.attach(_viewboxExpander, 0, 2, 2, 1);
@@ -472,12 +471,8 @@ PageSizer::PageSizer(Registry & _wr)
     _scaleTable.attach(_scaleX,        0,1, 0,1);
     _scaleTable.attach(_scaleY,        1,2, 0,1);
     _scaleTable.attach(_scaleLabel,    2,3, 0,1);
-    _scaleTable.attach(_scaleWarning,  0,3, 1,2, Gtk::FILL);
     _scaleTable.attach(_viewboxExpander, 0,3, 2,3);
 #endif
-    
-    _scaleWarning.set_label(_("While SVG allows non-uniform scaling it is recommended to use only uniform scaling in Inkscape. To set a non-uniform scaling, set the 'viewBox' directly."));
-    _scaleWarning.set_line_wrap( true );
 
     _viewboxExpander.set_use_underline();
     _viewboxExpander.set_label(_("_Viewbox..."));

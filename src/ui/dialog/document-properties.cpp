@@ -224,9 +224,9 @@ DocumentProperties::~DocumentProperties()
  * (non-0, non-0) means two widgets in columns 2 and 3.
  */
 #if WITH_GTKMM_3_0
-inline void attach_all(Gtk::Grid &table, Gtk::Widget *const arr[], unsigned const n, int start = 0, int docum_prop_flag = 0)
+inline void attach_all(Gtk::Grid &table, Gtk::Widget *const arr[], unsigned const n, int start = 0, int docum_prop_flag = 0, bool indent = false)
 #else
-inline void attach_all(Gtk::Table &table, Gtk::Widget *const arr[], unsigned const n, int start = 0, int docum_prop_flag = 0)
+inline void attach_all(Gtk::Table &table, Gtk::Widget *const arr[], unsigned const n, int start = 0, int docum_prop_flag = 0, bool indent = false)
 #endif
 {
     for (unsigned i = 0, r = start; i < n; i += 2) {
@@ -251,7 +251,7 @@ inline void attach_all(Gtk::Table &table, Gtk::Widget *const arr[], unsigned con
                 }
                 if (docum_prop_flag) {
                     // this sets the padding for subordinate widgets on the "Page" page
-                    if( i==(n-8) || i==(n-10) ) {
+                    if( indent && (i==(n-6) || i==(n-4) || i==(n-2)) ) {
 #if WITH_GTKMM_3_0
                         arr[i+1]->set_hexpand();
                         arr[i+1]->set_margin_left(20);
@@ -340,37 +340,54 @@ void DocumentProperties::build_page()
 
     Gtk::Label* label_dsp = Gtk::manage (new Gtk::Label);
     label_dsp->set_markup (_("<b>Display</b>"));
-
     _page_sizer.init();
 
+    
     Gtk::Widget *const widget_array[] =
     {
-        label_gen,         0,
-        0,                 &_rum_deflt,
-        //label_col,         0,
-        //_rcp_bg._label,    &_rcp_bg,
-        0,                 0,
-        label_for,         0,
-        0,                 &_page_sizer,
-        0,                 0,
-        label_bkg,         0,
-        0,                 &_rcb_checkerboard,
-        _rcp_bg._label,    &_rcp_bg,
-        label_bdr,         0,
-        0,                 &_rcb_canb,
-        0,                 &_rcb_bord,
-        0,                 &_rcb_shad,
-        _rcp_bord._label,  &_rcp_bord,
-        label_dsp,         0,
-        0,                 &_rcb_antialias,
+        label_gen,            0,
+        0,                    &_rum_deflt,
+        //label_col,          0,
+        //_rcp_bg._label,     &_rcp_bg,
+        0,                    0,
+        label_for,            0,
+        0,                    &_page_sizer,
+        0,                    0,
+        &_rcb_doc_props_left, &_rcb_doc_props_right,
     };
 
+    attach_all(_page_page->table(), widget_array, G_N_ELEMENTS(widget_array),0,1);
+    _rcp_bg_col.pack_start(*_rcp_bg._label, false, false, 2);
+    _rcp_bg_col.pack_start(_rcp_bg, false, false, 2);
+    Gtk::Widget *const widget_array_left[] =
+    {
+        label_bkg,        0,
+        0,                &_rcb_checkerboard,
+        0,                &_rcp_bg_col,
+        label_dsp,        0,
+        0,                &_rcb_antialias,
+    };
+
+    
+    attach_all(_rcb_doc_props_left, widget_array_left, G_N_ELEMENTS(widget_array_left),0,1);
+    _rcp_bord_col.pack_start(*_rcp_bord._label, false, false, 2);
+    _rcp_bord_col.pack_start(_rcp_bord, false, false, 2);
+    Gtk::Widget *const widget_array_right[] =
+    {
+        label_bdr,        0,
+        0,                &_rcb_canb,
+        0,                &_rcb_bord,
+        0,                &_rcb_shad,
+        0,                &_rcp_bord_col,
+    };
+    
+    attach_all(_rcb_doc_props_right, widget_array_right, G_N_ELEMENTS(widget_array_right),0,1, true);
+    
     std::list<Gtk::Widget*> _slaveList;
     _slaveList.push_back(&_rcb_bord);
     _slaveList.push_back(&_rcb_shad);
+    _slaveList.push_back(&_rcp_bord_col);
     _rcb_canb.setSlaveWidgets(_slaveList);
-
-    attach_all(_page_page->table(), widget_array, G_N_ELEMENTS(widget_array),0,1);
 }
 
 void DocumentProperties::build_guides()

@@ -1764,10 +1764,16 @@ bool SPCanvas::paintRect(int xx0, int yy0, int xx1, int yy1)
 
     setup.mouse_loc = sp_canvas_window_to_world(this, Geom::Point(x,y));
 
+    static unsigned tile_multiplier = 0;
+    if (tile_multiplier == 0) {
+        Inkscape::Preferences *prefs = Inkscape::Preferences::get();
+        tile_multiplier = prefs->getIntLimited("/options/rendering/tile-multiplier", 1, 1, 64);
+    }
+
     if (_rendermode != Inkscape::RENDERMODE_OUTLINE) {
         // use 256K as a compromise to not slow down gradients
         // 256K is the cached buffer and we need 4 channels
-        setup.max_pixels = 65536; // 256K/4
+        setup.max_pixels = 65536 * tile_multiplier; // 256K/4
     } else {
         // paths only, so 1M works faster
         // 1M is the cached buffer and we need 4 channels

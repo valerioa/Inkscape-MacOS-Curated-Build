@@ -47,6 +47,10 @@ static void draw_page(
                       gint               /*page_nr*/,
                       gpointer           user_data)
 {
+    // TODO: If the user prints multiple copies we render the whole page for each copy
+    //       It would be more efficient to render the page once (e.g. in "begin_print")
+    //       and simply print this result as often as necessary
+
     Inkscape::Preferences *prefs = Inkscape::Preferences::get();
     struct workaround_gtkmm *junk = (struct workaround_gtkmm*)user_data;
     //printf("%s %d\n",__FUNCTION__, page_nr);
@@ -132,7 +136,7 @@ static void draw_page(
             ret = renderer.setupDocument (ctx, junk->_doc, TRUE, 0., NULL);
             if (ret) {
                 renderer.renderItem(ctx, junk->_base);
-                ctx->finish();
+                ctx->finish(false);  // do not finish the cairo_surface_t - it's owned by our GtkPrintContext!
             }
             else {
                 g_warning("%s", _("Could not set up Document"));

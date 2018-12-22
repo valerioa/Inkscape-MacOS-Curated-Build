@@ -1393,7 +1393,7 @@ bool SprayTool::root_handler(GdkEvent* event) {
         }
 
         case GDK_KEY_PRESS:
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
                 case GDK_KEY_j:
                 case GDK_KEY_J:
                     if (MOD__SHIFT_ONLY(event)) {
@@ -1505,7 +1505,7 @@ bool SprayTool::root_handler(GdkEvent* event) {
 
         case GDK_KEY_RELEASE: {
             Inkscape::Preferences *prefs = Inkscape::Preferences::get();
-            switch (get_group0_keyval(&event->key)) {
+            switch (get_latin_keyval(&event->key)) {
                 case GDK_KEY_Shift_L:
                 case GDK_KEY_Shift_R:
                     this->update_cursor(false);

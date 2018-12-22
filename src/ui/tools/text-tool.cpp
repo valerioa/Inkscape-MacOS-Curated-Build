@@ -663,7 +663,7 @@ bool TextTool::root_handler(GdkEvent* event) {
             }
             break;
         case GDK_KEY_PRESS: {
-            guint const group0_keyval = get_group0_keyval(&event->key);
+            guint const group0_keyval = get_latin_keyval(&event->key);
 
             if (group0_keyval == GDK_KEY_KP_Add ||
                 group0_keyval == GDK_KEY_KP_Subtract) {
@@ -971,7 +971,7 @@ bool TextTool::root_handler(GdkEvent* event) {
                                 if (this->text) {
                                     if (MOD__ALT(event)) {
                                         gint mul = 1 + gobble_key_events(
-                                            get_group0_keyval(&event->key), 0); // with any mask
+                                            get_latin_keyval(&event->key), 0); // with any mask
                                         if (MOD__SHIFT(event))
                                             sp_te_adjust_kerning_screen(this->text, this->text_sel_start, this->text_sel_end, desktop, Geom::Point(mul*-10, 0));
                                         else
@@ -995,7 +995,7 @@ bool TextTool::root_handler(GdkEvent* event) {
                                 if (this->text) {
                                     if (MOD__ALT(event)) {
                                         gint mul = 1 + gobble_key_events(
-                                            get_group0_keyval(&event->key), 0); // with any mask
+                                            get_latin_keyval(&event->key), 0); // with any mask
                                         if (MOD__SHIFT(event))
                                             sp_te_adjust_kerning_screen(this->text, this->text_sel_start, this->text_sel_end, desktop, Geom::Point(mul*10, 0));
                                         else
@@ -1019,7 +1019,7 @@ bool TextTool::root_handler(GdkEvent* event) {
                                 if (this->text) {
                                     if (MOD__ALT(event)) {
                                         gint mul = 1 + gobble_key_events(
-                                            get_group0_keyval(&event->key), 0); // with any mask
+                                            get_latin_keyval(&event->key), 0); // with any mask
                                         if (MOD__SHIFT(event))
                                             sp_te_adjust_kerning_screen(this->text, this->text_sel_start, this->text_sel_end, desktop, Geom::Point(0, mul*-10));
                                         else
@@ -1043,7 +1043,7 @@ bool TextTool::root_handler(GdkEvent* event) {
                                 if (this->text) {
                                     if (MOD__ALT(event)) {
                                         gint mul = 1 + gobble_key_events(
-                                            get_group0_keyval(&event->key), 0); // with any mask
+                                            get_latin_keyval(&event->key), 0); // with any mask
                                         if (MOD__SHIFT(event))
                                             sp_te_adjust_kerning_screen(this->text, this->text_sel_start, this->text_sel_end, desktop, Geom::Point(0, mul*10));
                                         else

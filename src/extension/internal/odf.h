@@ -276,8 +276,6 @@ public:
 
 private:
 
-    Inkscape::URI documentUri;
-
     void reset();
 
     //cc or dc metadata name/value pairs

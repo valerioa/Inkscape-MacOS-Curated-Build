@@ -38,6 +38,9 @@ void FilterMerge::render_cairo(FilterSlot &slot)
         ci_fp = (SPColorInterpolation)_style->color_interpolation_filters.computed;
     }
 
+    Geom::Rect vp = filter_primitive_area( slot.get_units() );
+    slot.set_primitive_area(_output, vp); // Needed for tiling
+
     // output is RGBA if at least one input is RGBA
     bool rgba32 = false;
     cairo_surface_t *out = NULL;

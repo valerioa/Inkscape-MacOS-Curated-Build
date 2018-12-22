@@ -69,7 +69,7 @@ static gboolean sp_sel_trans_handle_event(SPKnot *knot, GdkEvent *event, SPSelTr
         case GDK_MOTION_NOTIFY:
             break;
         case GDK_KEY_PRESS:
-            if (Inkscape::UI::Tools::get_group0_keyval (&event->key) == GDK_KEY_space) {
+            if (Inkscape::UI::Tools::get_latin_keyval (&event->key) == GDK_KEY_space) {
                 /* stamping mode: both mode(show content and outline) operation with knot */
                 if (!SP_KNOT_IS_GRABBED(knot)) {
                     return FALSE;

@@ -200,8 +200,16 @@ class MyEffect(inkex.Effect):
 
         self.scale = (ord(pDevMode[58]) + 256.0*ord(pDevMode[59]))/96    # use PrintQuality from DEVMODE
         self.scale /= self.unittouu('1px')
-        self.groupmat = [[[self.scale, 0.0, 0.0], [0.0, self.scale, 0.0]]]
+        h = self.unittouu(self.getDocumentHeight())
         doc = self.document.getroot()
+        # process viewBox height attribute to correct page scaling
+        viewBox = doc.get('viewBox')
+        if viewBox:
+            viewBox2 = viewBox.split(',')
+            if len(viewBox2) < 4:
+                viewBox2 = viewBox.split(' ')
+            self.scale *= h / self.unittouu(self.addDocumentUnit(viewBox2[3]))
+        self.groupmat = [[[self.scale, 0.0, 0.0], [0.0, self.scale, 0.0]]]
         self.process_group(doc)
         mygdi.EndDoc(self.hDC)
 

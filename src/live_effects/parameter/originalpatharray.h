@@ -70,6 +70,8 @@ public:
     virtual void param_editOncanvas(SPItem * /*item*/, SPDesktop * /*dt*/) {};
     /** Disable the canvas indicators of parent class by overriding this method */
     virtual void addCanvasIndicators(SPLPEItem const* /*lpeitem*/, std::vector<Geom::PathVector> & /*hp_vec*/) {};
+    void setFromOriginalD(bool from_original_d){ _from_original_d = from_original_d; };
+    void allowOnlyBsplineSpiro(bool allow_only_bspline_spiro){ _allow_only_bspline_spiro = allow_only_bspline_spiro; };
     
     std::vector<PathAndDirection*> _vector;
     
@@ -100,6 +102,8 @@ protected:
     void on_reverse_toggled(const Glib::ustring& path);
     
 private:
+    bool _from_original_d;
+    bool _allow_only_bspline_spiro;
     OriginalPathArrayParam(const OriginalPathArrayParam&);
     OriginalPathArrayParam& operator=(const OriginalPathArrayParam&);
 };

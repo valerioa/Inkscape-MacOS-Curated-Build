@@ -23,7 +23,7 @@ set(PROJECT_NAME inkscape)
 
 set(INKSCAPE_VERSION_MAJOR  0)
 set(INKSCAPE_VERSION_MINOR 92)
-set(INKSCAPE_VERSION_PATCH  2)
+set(INKSCAPE_VERSION_PATCH  3)
 set(INKSCAPE_VERSION_SUFFIX "")
 
 set(INKSCAPE_VERSION ${INKSCAPE_VERSION_MAJOR}.${INKSCAPE_VERSION_MINOR})
@@ -198,7 +198,7 @@ endif()
 # Installation
 # -----------------------------------------------------------------------------
 add_subdirectory(share)
-	
+
 if(HAVE_MSYS2)
   include(CMakeScripts/InstallMSYS2.cmake)
 else()
@@ -255,6 +255,7 @@ message("CMAKE_SYSTEM_PROCESSOR:  ${CMAKE_SYSTEM_PROCESSOR}")
 message("CMAKE_C_COMPILER:        ${CMAKE_C_COMPILER}")
 message("CMAKE_CXX_COMPILER:      ${CMAKE_CXX_COMPILER}")
 message("CMAKE_BUILD_TYPE:        ${CMAKE_BUILD_TYPE}")
+message("ENABLE_BINRELOC:         ${ENABLE_BINRELOC}")
 message("")
 
 if(WIN32)

@@ -17,8 +17,6 @@ tutorial_DATA = \
     pixelart-dialog.ru.png \
     pixelart-dialog.sk.png \
     pixelart-dialog.zh_TW.png \
-    potrace.be.png \
-    potrace.ca.png \
     potrace.de.png \
     potrace.el.png \
     potrace.en.png \
@@ -38,7 +36,6 @@ tutorial_DATA = \
     potrace.sk.png \
     potrace.sl.png \
     potrace.vi.png \
-    potrace.zh_CN.png \
     potrace.zh_TW.png \
     tutorial-advanced.svg \
     tutorial-advanced.be.svg \
@@ -50,6 +47,7 @@ tutorial_DATA = \
     tutorial-advanced.eu.svg \
     tutorial-advanced.fa.svg \
     tutorial-advanced.fr.svg \
+    tutorial-advanced.gl.svg \
     tutorial-advanced.hu.svg \
     tutorial-advanced.id.svg \
     tutorial-advanced.it.svg \
@@ -104,6 +102,7 @@ tutorial_DATA = \
     tutorial-calligraphy.eu.svg \
     tutorial-calligraphy.fa.svg \
     tutorial-calligraphy.fr.svg \
+    tutorial-calligraphy.gl.svg \
     tutorial-calligraphy.hu.svg \
     tutorial-calligraphy.id.svg \
     tutorial-calligraphy.ja.svg \
@@ -125,6 +124,7 @@ tutorial_DATA = \
     tutorial-elements.eu.svg \
     tutorial-elements.fa.svg \
     tutorial-elements.fr.svg \
+    tutorial-elements.gl.svg \
     tutorial-elements.hu.svg \
     tutorial-elements.id.svg \
     tutorial-elements.it.svg \
@@ -142,6 +142,7 @@ tutorial_DATA = \
     tutorial-interpolate.de.svg \
     tutorial-interpolate.el.svg \
     tutorial-interpolate.fr.svg \
+    tutorial-interpolate.gl.svg \
     tutorial-interpolate.hu.svg \
     tutorial-interpolate.ja.svg \
     tutorial-interpolate.nl.svg \
@@ -163,6 +164,7 @@ tutorial_DATA = \
     tutorial-shapes.eu.svg \
     tutorial-shapes.fa.svg \
     tutorial-shapes.fr.svg \
+    tutorial-shapes.gl.svg \
     tutorial-shapes.hu.svg \
     tutorial-shapes.id.svg \
     tutorial-shapes.it.svg \
@@ -186,7 +188,7 @@ tutorial_DATA = \
     tutorial-tips.eu.svg \
     tutorial-tips.fa.svg \
     tutorial-tips.fr.svg \
-    tutorial-shapes.gl.svg \
+    tutorial-tips.gl.svg \
     tutorial-tips.hu.svg \
     tutorial-tips.ja.svg \
     tutorial-tips.id.svg \

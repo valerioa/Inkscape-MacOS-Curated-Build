@@ -441,7 +441,7 @@ bool ConnectorTool::root_handler(GdkEvent* event) {
             break;
 
         case GDK_KEY_PRESS:
-            ret = this->_handleKeyPress(get_group0_keyval (&event->key));
+            ret = this->_handleKeyPress(get_latin_keyval (&event->key));
             break;
 
         default:

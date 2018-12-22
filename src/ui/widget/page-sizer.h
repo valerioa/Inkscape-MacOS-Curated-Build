@@ -264,7 +264,6 @@ protected:
 #endif
 
     Gtk::Label           _scaleLabel;
-    Gtk::Label           _scaleWarning;
     RegisteredScalar     _scaleX;
     RegisteredScalar     _scaleY;
     bool                 _lockScaleUpdate;

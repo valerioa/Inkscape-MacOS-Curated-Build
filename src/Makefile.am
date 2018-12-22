@@ -227,7 +227,7 @@ endif
 # someone updates the BZR working directory.
 inkscape-version.cpp: $(inkscape_version_deps)
 	VER_PREFIX="$(VERSION)";\
-	VERSION="$$VER_PREFIX 5c3e80d, 2017-08-06"; \
+	VERSION="$$VER_PREFIX 2405546, 2018-03-11"; \
 	echo "namespace Inkscape { " \
 	     "char const *version_string = \"$$VERSION\"; " \
 	     "}" > inkscape-version.new.cpp; \

@@ -1,6 +1,5 @@
 /*------------------------------------------------------------------ 
-Project:      Inkscape, Keyboard and mouse reference
-Last change:  2015-12-16
+Project:      Inkscape, Keyboard and mouse reference   (keys)
 --------------------------------------------------------------------
 [Table of contents] 
 1. Body
@@ -35,6 +34,10 @@ h1.kmr {
     letter-spacing: -0.02em;
 }
 
+.wrapper h1.kmr {
+    display: none;
+}
+
 .kmr-releaseinfo, .kmr-pubdate {
 	font-family: sans-serif;
 	font-size: 0.7em;
@@ -42,8 +45,12 @@ h1.kmr {
     padding-left: 60px;
 }
 
+.wrapper .kmr-releaseinfo, .wrapper .kmr-pubdate {
+    padding-left: 30px;
+}
+
 /*------------------------------------------------------------------ 
-[3. Table of content ]
+[3. Table of contents ]
 */
 
 .kmr-toc {
@@ -155,7 +162,7 @@ table.kmr {
 /*-- [4.3. Shortcuts list] --*/
 
 .kmr td {
-    vertical-align: top;
+    vertical-align: baseline;
 }
 
 .kmr-keys {
@@ -215,3 +222,4 @@ span.kmr-action {
 img.kmr {
     border: 0;
 }
+

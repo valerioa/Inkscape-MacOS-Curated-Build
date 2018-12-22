@@ -546,7 +546,7 @@ bool NodeTool::root_handler(GdkEvent* event) {
         // otherwise some features cease to work
 
     case GDK_KEY_PRESS:
-        switch (get_group0_keyval(&event->key))
+        switch (get_latin_keyval(&event->key))
         {
         case GDK_KEY_Escape: // deselect everything
             if (this->_selected_nodes->empty()) {

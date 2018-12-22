@@ -1160,7 +1160,6 @@ objects_query_fontnumbers (const std::vector<SPItem*> &objects, SPStyle *style_r
 
         // FIXME: we must detect MULTIPLE_DIFFERENT for these too
         style_res->text_anchor.computed = style->text_anchor.computed;
-        style_res->writing_mode.computed = style->writing_mode.computed;
     }
 
     if (texts == 0)
@@ -1397,13 +1396,15 @@ objects_query_writing_modes (const std::vector<SPItem*> &objects, SPStyle *style
         texts ++;
 
         if (set &&
-            ( ( style_res->writing_mode.computed     != style->writing_mode.computed ) ||
+            ( ( style_res->writing_mode.computed     != style->writing_mode.computed     ) ||
+              ( style_res->direction.computed        != style->direction.computed        ) ||
               ( style_res->text_orientation.computed != style->text_orientation.computed ) ) ) {
             different = true;  // different styles
         }
 
         set = true;
         style_res->writing_mode.computed = style->writing_mode.computed;
+        style_res->direction.computed = style->direction.computed;
         style_res->text_orientation.computed = style->text_orientation.computed;
     }
 

@@ -37,6 +37,7 @@ OriginalPathParam::OriginalPathParam( const Glib::ustring& label, const Glib::us
     : PathParam(label, tip, key, wr, effect, "")
 {
     oncanvas_editable = false;
+    _from_original_d = false;
 }
 
 OriginalPathParam::~OriginalPathParam()

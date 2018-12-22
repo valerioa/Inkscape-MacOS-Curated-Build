@@ -16,6 +16,7 @@
 #include <errno.h>
 #include <map>
 #include <algorithm>
+#include <iomanip>
 #include <set>
 
 #include "swatches.h"
@@ -370,7 +371,7 @@ static char* trim( char* str ) {
         str++;
     }
     str--;
-    while ( str > ret && (( *str == ' ' || *str == '\t' ) || *str == '\r' || *str == '\n') ) {
+    while ( str >= ret && (( *str == ' ' || *str == '\t' ) || *str == '\r' || *str == '\n') ) {
         *str-- = 0;
     }
     return ret;
@@ -442,9 +443,16 @@ void _loadPaletteFile( gchar const *filename, gchar const *path, gboolean user/*
                                     }
                                     if ( !hasErr && *ptr ) {
                                         char* n = trim(ptr);
-                                        if (n != NULL) {
+                                        if (n != NULL && *n) {
                                             name = g_dpgettext2(NULL, "Palette", n);
                                         }
+                                        if (name == "") {
+                                            name = Glib::ustring::compose("#%1%2%3",
+                                                       Glib::ustring::format(std::hex, std::setw(2), std::setfill(L'0'), r),
+                                                       Glib::ustring::format(std::hex, std::setw(2), std::setfill(L'0'), g),
+                                                       Glib::ustring::format(std::hex, std::setw(2), std::setfill(L'0'), b)
+                                                   ).uppercase();
+                                        } 
                                     }
                                     if ( !hasErr ) {
                                         // Add the entry now

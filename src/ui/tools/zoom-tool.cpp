@@ -167,7 +167,7 @@ bool ZoomTool::root_handler(GdkEvent* event) {
             break;
         }
         case GDK_KEY_PRESS:
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
                 case GDK_KEY_Escape:
                     if (!Inkscape::Rubberband::get(desktop)->is_started()) {
                         Inkscape::SelectionHelper::selectNone(desktop);
@@ -205,7 +205,7 @@ bool ZoomTool::root_handler(GdkEvent* event) {
 		}
 		break;
 	case GDK_KEY_RELEASE:
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
             	case GDK_KEY_Shift_L:
             	case GDK_KEY_Shift_R:
                     this->cursor_shape = cursor_zoom_xpm;

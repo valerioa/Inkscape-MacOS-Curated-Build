@@ -20,8 +20,8 @@
 #include "sp-shape.h"
 
 /* Common parent class */
-#define SP_GENERICELLIPSE(obj) (dynamic_cast<SPGenericEllipse*>(obj))
-#define SP_IS_GENERICELLIPSE(obj) (dynamic_cast<const SPGenericEllipse*>((obj)) != NULL)
+#define SP_GENERICELLIPSE(obj) (dynamic_cast<SPGenericEllipse*>((SPObject*)obj))
+#define SP_IS_GENERICELLIPSE(obj) (dynamic_cast<const SPGenericEllipse*>((SPObject*)obj) != NULL)
 
 enum GenericEllipseType {
     SP_GENERIC_ELLIPSE_UNDEFINED, // FIXME shouldn't exist
@@ -78,6 +78,12 @@ public:
     bool set_elliptical_path_attribute(Inkscape::XML::Node *repr);
     void position_set(double x, double y, double rx, double ry);
 
+    double getVisibleRx() const;
+    void setVisibleRx(double rx);
+
+    double getVisibleRy() const;
+    void setVisibleRy(double ry);
+
 protected:
     /**
      * @brief Determines whether the shape is a part of an ellipse.
@@ -85,6 +91,9 @@ protected:
     bool _isSlice() const;
 
     bool _closed;
+
+private:
+    static double vectorStretch(Geom::Point p0, Geom::Point p1, Geom::Affine xform);
 };
 
 #endif

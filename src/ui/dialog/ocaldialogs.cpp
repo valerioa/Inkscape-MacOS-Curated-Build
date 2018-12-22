@@ -1094,12 +1094,6 @@ void ImportDialog::on_entry_search_activated()
 
     // Open the RSS feed
     Glib::RefPtr<Gio::File> xml_file = Gio::File::create_for_uri(xml_uri);
-#ifdef WIN32
-    if (!xml_file->query_exists()) {
-        widget_status->set_error(_("Could not connect to the Open Clip Art Library"));
-        return;
-    }
-#endif
     xml_file->load_contents_async(
         sigc::bind<Glib::RefPtr<Gio::File> , Glib::ustring>(
             sigc::mem_fun(*this, &ImportDialog::on_xml_file_read),
@@ -1112,11 +1106,18 @@ void ImportDialog::on_xml_file_read(const Glib::RefPtr<Gio::AsyncResult>& result
 {
     widget_status->end_process();
     
+    bool success;
     char* data;
     gsize length;
     
-    bool sucess = xml_file->load_contents_finish(result, data, length);
-    if (!sucess) {
+    try {
+        success = xml_file->load_contents_finish(result, data, length);
+    } catch(Glib::Error &e) {
+        success = false;
+        g_warning("ImportDialog::on_xml_file_read():\n\tFailed to retrieve '%s'\n\t%s",
+                  xml_uri.c_str(), e.what().c_str());
+    }
+    if (!success) {
         widget_status->set_error(_("Could not connect to the Open Clip Art Library"));
         return;
     }

@@ -581,7 +581,10 @@ static Node *sp_repr_svg_read_node (Document *xml_doc, xmlNodePtr node, const gc
             return NULL; // empty text node
         }
 
-        bool preserve = (xmlNodeGetSpacePreserve (node) == 1);
+        // Since libxml2 2.9.0, only element nodes are checked, thus check parent.
+        // Note: this only handles XML's rules for white space. SVG's specific rules
+        // are handled in sp-string.cpp.
+        bool preserve = (xmlNodeGetSpacePreserve (node->parent) == 1);
 
         xmlChar *p;
         for (p = node->content; *p && g_ascii_isspace (*p) && !preserve; p++)

@@ -336,7 +336,7 @@ bool DropperTool::root_handler(GdkEvent* event) {
             break;
 
     case GDK_KEY_PRESS:
-        switch (get_group0_keyval(&event->key)) {
+        switch (get_latin_keyval(&event->key)) {
         case GDK_KEY_Up:
         case GDK_KEY_Down:
         case GDK_KEY_KP_Up:
@@ -363,7 +363,7 @@ bool DropperTool::root_handler(GdkEvent* event) {
         break;
 
     case GDK_KEY_RELEASE:
-        switch (get_group0_keyval(&event->key)) {
+        switch (get_latin_keyval(&event->key)) {
         case GDK_KEY_Shift_L:
         case GDK_KEY_Shift_R:
             if (!desktop->isWaitingCursor() && !prefs->getBool("/tools/dropper/onetimepick", false)) {

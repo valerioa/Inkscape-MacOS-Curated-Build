@@ -22,10 +22,13 @@ namespace LivePathEffect {
 
 LPEFillBetweenMany::LPEFillBetweenMany(LivePathEffectObject *lpeobject) :
     Effect(lpeobject),
-    linked_paths(_("Linked path:"), _("Paths from which to take the original path data"), "linkedpaths", &wr, this)
+    linked_paths(_("Linked path:"), _("Paths from which to take the original path data"), "linkedpaths", &wr, this),
+    allow_transforms(_("Allow transforms"), _("Allow transforms"), "allow_transforms", &wr, this, false)
 {
-    registerParameter( dynamic_cast<Parameter *>(&linked_paths) );
+    registerParameter(&linked_paths);
+    registerParameter(&allow_transforms);
     //perceived_path = true;
+    linked_paths.allowOnlyBsplineSpiro(true);
 }
 
 LPEFillBetweenMany::~LPEFillBetweenMany()
@@ -48,22 +51,46 @@ void LPEFillBetweenMany::doEffect (SPCurve * curve)
             }
             
             if (!res_pathv.empty()) {
-                linked_path = linked_path * SP_ITEM(obj)->getRelativeTransform(firstObj);
+                if(!allow_transforms) {
+                    Geom::Affine affine = Geom::identity();
+                    sp_svg_transform_read(SP_ITEM(obj)->getAttribute("transform"), &affine);
+                    linked_path *= affine;
+                }
                 res_pathv.front().appendNew<Geom::LineSegment>(linked_path.initialPoint());
                 res_pathv.front().append(linked_path);
             } else {
                 firstObj = SP_ITEM(obj);
+                if(!allow_transforms) {
+                    Geom::Affine affine = Geom::identity();
+                    sp_svg_transform_read(SP_ITEM(obj)->getAttribute("transform"), &affine);
+                    linked_path *= affine;
+                }
                 res_pathv.push_back(linked_path);
             }
         }
     }
+    
+    if(!allow_transforms && sp_lpe_item) {
+        SP_ITEM(sp_lpe_item)->transform = Geom::identity();
+    }
+    
     if (!res_pathv.empty()) {
         res_pathv.front().close();
     }
+    
     if (res_pathv.empty()) {
         res_pathv = curve->get_pathvector();
     }
+
     curve->set_pathvector(res_pathv);
+}
+
+void
+LPEFillBetweenMany::transform_multiply(Geom::Affine const& postmul, bool set)
+{
+    if(!allow_transforms && sp_lpe_item) {
+        SP_ITEM(sp_lpe_item)->transform *= postmul.inverse();
+    }
 }
 
 } // namespace LivePathEffect

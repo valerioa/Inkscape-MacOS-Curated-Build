@@ -56,10 +56,13 @@ DockBehavior::DockBehavior(Dialog &dialog) :
     _signal_hide_connection = signal_hide().connect(sigc::mem_fun(*this, &Inkscape::UI::Dialog::Behavior::DockBehavior::_onHide));
     signal_show().connect(sigc::mem_fun(*this, &Inkscape::UI::Dialog::Behavior::DockBehavior::_onShow));
     _dock_item.signal_state_changed().connect(sigc::mem_fun(*this, &Inkscape::UI::Dialog::Behavior::DockBehavior::_onStateChanged));
-
     if (_dock_item.getState() == Widget::DockItem::FLOATING_STATE) {
-        if (Gtk::Window *floating_win = _dock_item.getWindow())
+        if (Gtk::Window *floating_win = _dock_item.getWindow()) {
             sp_transientize(GTK_WIDGET(floating_win->gobj()));
+            if(!strcmp(Inkscape::Verb::get(_dialog._verb_num)->get_id() ,"DialogDocumentProperties")) {
+                floating_win->set_resizable(false);
+            }
+        }
     }
 
 }
@@ -199,8 +202,12 @@ DockBehavior::_onStateChanged(Widget::DockItem::State /*prev_state*/,
 // TODO probably need to avoid window calls unless the state is different. Check.
 
     if (new_state == Widget::DockItem::FLOATING_STATE) {
-        if (Gtk::Window *floating_win = _dock_item.getWindow())
+        if (Gtk::Window *floating_win = _dock_item.getWindow()) {
             sp_transientize(GTK_WIDGET(floating_win->gobj()));
+            if(!strcmp(Inkscape::Verb::get(_dialog._verb_num)->get_id() ,"DialogDocumentProperties")) {
+                floating_win->set_resizable(false);
+            }
+        }
     }
 }
 

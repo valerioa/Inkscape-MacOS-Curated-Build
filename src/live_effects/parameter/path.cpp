@@ -66,28 +66,31 @@ PathParam::PathParam( const Glib::ustring& label, const Glib::ustring& tip,
     defvalue = g_strdup(default_value);
     param_readSVGValue(defvalue);
     oncanvas_editable = true;
-
+    _from_original_d = false;
     ref_changed_connection = ref.changedSignal().connect(sigc::mem_fun(*this, &PathParam::ref_changed));
 }
 
 PathParam::~PathParam()
 {
     remove_link();
-    using namespace Inkscape::UI;
-    SPDesktop *desktop = SP_ACTIVE_DESKTOP;
-    if (desktop) {
-        if (tools_isactive(desktop, TOOLS_NODES)) {
-            SPItem * item = SP_ACTIVE_DESKTOP->getSelection()->singleItem();
-            if (item != NULL) {
-                Inkscape::UI::Tools::NodeTool *nt = static_cast<Inkscape::UI::Tools::NodeTool*>(desktop->event_context);
-                std::set<ShapeRecord> shapes;
-                ShapeRecord r;
-                r.item = item;
-                shapes.insert(r);
-                nt->_multipath->setItems(shapes);
-            }
-        }
-    }
+//TODO: Removed to fix a bug https://bugs.launchpad.net/inkscape/+bug/1716926
+//      Maybe wee need to resurrect, not know when this code is added, but seems also not working now in a few test I do.
+//      in the future and do a deeper fix in multi-path-manipulator
+//    using namespace Inkscape::UI;
+//    SPDesktop *desktop = SP_ACTIVE_DESKTOP;
+//    if (desktop) {
+//        if (tools_isactive(desktop, TOOLS_NODES)) {
+//            SPItem * item = SP_ACTIVE_DESKTOP->getSelection()->singleItem();
+//            if (item != NULL) {
+//                Inkscape::UI::Tools::NodeTool *nt = static_cast<Inkscape::UI::Tools::NodeTool*>(desktop->event_context);
+//                std::set<ShapeRecord> shapes;
+//                ShapeRecord r;
+//                r.item = item;
+//                shapes.insert(r);
+//                nt->_multipath->setItems(shapes);
+//            }
+//        }
+//    }
     g_free(defvalue);
 }
 
@@ -418,7 +421,11 @@ PathParam::linked_modified_callback(SPObject *linked_obj, guint /*flags*/)
 {
     SPCurve *curve = NULL;
     if (SP_IS_SHAPE(linked_obj)) {
-        curve = SP_SHAPE(linked_obj)->getCurve();
+        if (_from_original_d) {
+            curve = SP_SHAPE(linked_obj)->getCurveBeforeLPE();
+        } else {
+            curve = SP_SHAPE(linked_obj)->getCurve();
+        }
     }
     if (SP_IS_TEXT(linked_obj)) {
         curve = SP_TEXT(linked_obj)->getNormalizedBpath();

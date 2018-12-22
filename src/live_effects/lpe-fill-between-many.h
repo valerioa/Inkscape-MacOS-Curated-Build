@@ -21,9 +21,11 @@ public:
     virtual ~LPEFillBetweenMany();
     
     virtual void doEffect (SPCurve * curve);
+    virtual void transform_multiply(Geom::Affine const& postmul, bool set);
 
 private:
     OriginalPathArrayParam linked_paths;
+    BoolParam allow_transforms;
 
 private:
     LPEFillBetweenMany(const LPEFillBetweenMany&);

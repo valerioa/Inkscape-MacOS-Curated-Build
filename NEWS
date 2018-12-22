@@ -1,142 +1,199 @@
-                            Inkscape 0.92.2
+                            Inkscape 0.92.3
 
-                     -~=  Released 2017-08-07  =~-
-
-
-Inkscape 0.92.2 is a stability and bugfix release. For a complete list
-of bugs fixed in 0.92.2, see the Launchpad milestone page.
+                     -~=  Released 2018-03-11  =~-
 
 +----------------------------------------------------------------------+
-|                             Improvements                             |
+|                          Release Highlights                          |
 +----------------------------------------------------------------------+
 
-  • Add a control point to the centers of rectangles, circles/ellipses
-    and stars to make it easier to move them and to align them in a
-    precise way.
-  • DPI Change: Command line option
-    --dpi-update-method=[none|scale-viewbox|scale-document] to
-    batch-process legacy files
-    (Bug #1659489)
-  • Enable setting of default 'font-style'.
-  • Improve selection chemistry z-stack ordering
-    (Bug #1395452)
-  • Rework the object panel, including making shortcut handling respect
-    user-defined shortcuts.
-  • Add ability to generate one path from multiple paths with LPEs in
-    them
-    (Bug #1664632)
-  • Support <flowDiv/> in sp_file_convert_text_baseline_spacing() for flowed
-    text.
+Inkscape 0.92.3 is mainly a stability and bugfix release, but it also
+brings some small new features, like being able to set an ellipses'
+radii numerically in the tool controls, or switching the writing
+direction from left-to-right to right-to-left. Windows users will be
+happy to learn that the long startup times many of them were seeing
+could greatly be reduced. A new rendering option with an adjusted
+default value can vastly improve performance when working with filters.
+
+Many of the bug fixes address important functionality, like printing
+issues, crashes with the node tool or problems with keyboard shortcuts.
+
 
 +----------------------------------------------------------------------+
-|                           Regression fixes                           |
+|                            Improvements                              |
 +----------------------------------------------------------------------+
 
-  • GUI: Fix file preview on Windows when using the native file open dialog
-    (Bug #802904)
-  • Printing: Fix crash when printing on Windows
-    (Bug #1665768)
-  • Text: Fix tiny font size for sub/superscripts
-    (Bug #1658029)
-  • Fix occasional crash closing or saving on Windows 7
-    (Bug #1670688)
+Command line usage
+==================
+
+Three new command line options controlling page size are supported when
+exporting in SVG format:
+
+  • --export-area-drawing (feature requests in bug #1597921 and bug #1722844)
+  • --export-area-page while using --export-id
+  • --export-margin
+
+
+Text tool
+=========
+
+Support for switching between RTL and LTR writing directions has been
+added (on narrow screens, find it by unfolding the overhang menu for the
+text tool's tool controls by clicking on the triangle at the far right).
+
+
+Circle/ellipse/arc tool
+=======================
+
+New fields for setting vertical/horizontal radius (Rx/Ry) were added to
+the tool controls bar. (Bug #1181127)
+
+
+PDF+LaTeX export
+================
+
+Support for multi-line text with basic support for line-spacing
+attribute was added. (Bug #771959)
+
+Please note:
+
+  • Currently only the line-spacing of the top level text element is
+    considered, i.e. all lines in one text element share the same line
+    spacing.
+  • LaTeX is much more clever with respect to line spacing, so layout
+    might not always be exactly the same as in Inkscape.
+  • Make sure to use a continuously scalable font in LaTeX, otherwise
+    results might be unexpected.
+
+
+Preferences
+===========
+
+A new renderer option called "Rendering tile multiplier" was
+added. Making this value larger can speed up drawing, if you have large
+areas with complex filters in your drawing or work a lot with high zoom
+levels on filtered objects. Making the value smaller can make zooming
+and panning in relevant areas faster on low-end hardware (if there are
+no large filtered areas on the visible part of the canvas). The default
+value makes your screen consist of about four tiles that are rendered
+independently, if you're not using a hidpi screen (which requires more
+tiles). For a more detailed explanation, see:
+
+    https://gitlab.com/inkscape/inkscape/merge_requests/211#note_62157385.
+
+
+Startup Performance
+===================
+
+The first start of Inkscape on Windows is much faster now.
+
+This is the result of improvements in fontconfig 2.13.0, a third party
+library which handles font related tasks for Inkscape. One of the tasks
+is creating an index of all fonts available on the system which is much
+faster now. If the new indexing causes any issues (i.e. fonts or glyphs
+not available that could be used before) make sure to let us know or
+report the issue directly to the fontconfig project.
+
+
+Extensions
+==========
+
+Extensions on Windows can now make use of Tkinter, without requiring
+users to install it themselves. Tkinter provides functionality for
+creating interactive graphical user interfaces. This is used, for
+example, by the TexText extension that renders mathematical LaTeX
+formulas to SVG (feature request at bug # 1735451).
+
+
++----------------------------------------------------------------------+
+|                           Regression Fixes                           |
++----------------------------------------------------------------------+
+
+  • Potentially missing command line output in Inkscape 0.92.2 on Windows 7.
+    (Bug #1714278)
+  • Extensions in the 'Raster' submenu relying on ImageMagick were
+    broken and caused crashes in Inkscape 0.92.2 on Windows.
+    (Bug #1720330)
+  • gcodetools were creating wrong orientation points since the dpi
+    change had been made for Inkscape 0.92.
+    (Bug #1680760)
+  • Regression on 0.92.2 makes it impossible to fill a powerstroke shape
+    (Bug #1715433)
+  • The preferences dialog was tiny by default.
+    (Bug #1360213)
+  • Node handles no longer get too large when selected, and they also
+    revert back to standard size when deselected.
+    (Bug #1568644)
+  • Export to .odg (Open Document Drawing) works again on Windows.
+    (Bug #1654034)
+  • Inkscape no longer freezes when trying to import clipart from
+    OpenClipart when the openclipart.org server takes too long to
+    respond to requests.
+    (Bug #1745521)
+  • Text that is written in vertical direction now has its marks
+    (e.g. accents) on the correct side again.
+    (gitlab commit 2abe0bb6)
+  • The 'Clone original' path effect works again to fill a path with a
+    PowerStroke applied to it (useful for drawing cartoons)
+    (Bug #1715433)
+
 
 +----------------------------------------------------------------------+
 |                          Important bugfixes                          |
 +----------------------------------------------------------------------+
 
-  • GUI: Window position/size was often wrong on startup and when opening new
-    documents
-    (Bugs #1190828, #1654464, #195683, #568867)
-  • Symbols: Fix loading of Visio Stencils from .vss files with special
-    characters in file name
-    (Bug #1662465)
-  • SVG import/export: Special characters in the document's "title" field could
-    result in invalid SVG output and prevent re-opening the file on Windows
-    (Bugs #576126, #1627551)
-  • EMF/WMF import/export: Fix many issues that occurred when the system's
-    locale was set to a language using comma (,) as decimal separator. Notably
-    text was often positioned wrongly after import (Bugs #1089857, #1335660, #
-    1599763, #1675755) and the export option "Convert gradients to colored
-    polygons series" made Inkscape crash (Bug #1549015)
-  • LaTeX+PDF export: Fix export for text inside a masked or clipped group.
-    (Bug #1417470)
-  • Extensions: The attribute xml:space="preserve" for INX Parameters of type
-    description was ignored but they were untranslatable without it (Bug #
-    1668115). The attribute is now respected and translations work properly in
-    all cases, however please note that this might change formatting in cases
-    that were broken before, i.e. whenever omitting the attribute. To maintain
-    visual appearance please add the attribute.
-  • Import: Fix many issues with importing large files. Many files that could
-    not be opened before (especially those containing large raster graphics)
-    should import fine now.
-    (Bugs #1572280, #1412912, #1373322, #1243011, #1627004, #1687090)
-  • Fonts: Do not load fonts with illegal characters in font family name which
-    caused a crash.
-    (Bugs #1508928, #1495386)
-  • Inkview: Fix loading files with non-ASCII characters in filename
-    (Bug #488997)
-  • Shortcuts
-    - Fix "Shift" modifier being added incorrectly for many user defined
-      shortcuts (making them unusable)
-    - Allow to set shortcuts with characters that need to be escaped (e.g. "&
-      ", "<", ">")
-    - Fix crash when exporting user defined shortcuts on Windows
-      (Bug #1639701)
-    - Improved performance of shortcut list in preferences
+  • Fix crash when attempting to drag path at cap or line join.
+    (Bug #1691406)
+  • Inkscape process did not exit cleanly on Windows.
+    (Bugs #1412365 and #1715339; also causing #1714278)
+  • File extension was sometimes omitted when adding saved files to Windows'
+    list of "recently used documents" resulting in unusable links.
+    (git commit 4d599528)
+  • Do not crash on systems with illegal fontconfig configurations.
+    (Bug #1716516)
+  • Resolve issues when attempting to save files to non-existing
+    directories.  Could happen for shortcuts.xml and when setting the
+    autosave location manually.
+    (Bug #1719629)
+  • Allow cancellation of bitmap export.
+    (Bug #1195929)
+  • Fix issues with PDF+LaTeX export: wrong stacking of text/graphics, missing
+    pages in PDF output.
+    (Bugs #771957, #1417470)
+  • Fix shortcuts not working as expected when a non-latin keyboard layout is
+    the primary keyboard layout on a system.
+    (Bugs #1226962, #1730246, #1734308)
+  • Printing multiple copies of the document resulted in one copy and many
+    blank pages.
+    (Bug #490866, #1733424)
+  • Fix export area when exporting single objects to SVG using the --export-id
+    command line switch.
+    (Bug #1306662, #1707368)
+  • Fix DXF output and Windows vector print scaling for documents with a custom
+    view box.
+    (Bug #1672066)
+  • Invalid output generated from extensions no longer makes Inkscape
+    crash.
+    (gitlab commit 608fa56e)
+  • The Ruler Live Path Effect now shows correct measurements in the default
+    template (and other non-px-based templates), too
+    (Bug #1460858)
+  • The Document Properties dialog now has a more compact layout, so all items
+    should be accessible on smaller screens
+    (Bug #1510831)
 
-  • Fill and Stroke: Fix HSL color selector sometimes showing corrupted colors
-    with a non-functioning 5th slider
-    (Bug #1635982)
-  • Fix occasional crash closing or saving on Windows 7
-    (Bug #1670688)
-  • Fix tearing and glitching while moving objects. Don't stop() the rubberband
-    until it has actually been started.
-    (Bug #1510704)
-  • Fix various memory leaks
-    (Bug #1662686, #1662683)
-  • Fix PNG export on Windows
-    (Bug #1685091)
-  • Fix crash with fonts containing illegal characters in family name.
-  • Fix description parameters for extensions
-  • Fix temporarily disappearing transformation handles
-    (Bug #1663952)
-  • Fix bug on rotate copies with one line vertical input
-  • Fix nodes reverting back during editing
-    (Bug #1270989)
-  • Fix crash when moving objects by null-checking return from
-    sp_svg_transform_write
-  • Don't block data entry into the text-tool font-size entry widget after an
-    empty entry
-  • Reduce overall height of the options dialog
-    (Bug #1666939, #1659446)
-  • Fix import of WMF
-    (Bug #1665421)
-  • Fix extraneous numbers inserted with color rename
-    (Bug #1658320)
-  • Fix --export-latex crash with a svg file
-    (Bug #1464987)
-  • Fix EMF export glitch with GDI clipping, by starting it with a COPY instead
-    of an OR
-    (Bug #1405292)
-  • Fix linking of duplicated text on paths
-    (Bug #312116)
-  • Fix stroke width of edges for extrude extension
-    (Bug #1680833)
-  • Fix incorrect scaling in extensions when document units are not px
-    (Bug #1660474, #1660967)
-  • Fix hang in linked flowed text when setting outer line-height to
-    zero
-    (Bug #1655308)
-  • Fix displacement of text when moving a selection of frame and
-    text-flowed-into-frame
-    (Bug #1426613)
-  • Fix crash when trying to move svg symbol
-    (Bug #1662439)
-  • Fix crash on editing path created by the rotate copies LPE
-    (Bug #1665463)
-  • Fix crash loading files with certain LPEs such as mirror symmetry
-    (Bug #1665595)
+
++----------------------------------------------------------------------+
+|                            More bug fixes                            |
++----------------------------------------------------------------------+
+
+There were even more issues fixed than those listed above, but these
+probably only affect a small portion of users, or are relevant for
+development and packaging only.
+
+For a complete list, visit our launchpad bug tracker and see the commit
+history on gitlab (all changes from August, 6th 2017 until release
+date).
+
 
 +----------------------------------------------------------------------+
 |                             Translations                             |
@@ -146,38 +203,91 @@ The following UI translations received updates:
 
   • French
   • German
+  • Icelandic
   • Italian
-  • Latvian
-  • Romanian
+  • Korean
+  • Spanish
   • Ukrainian
 
-Want to help with translations? Learn how to help!
+The following installer translations received updates:
+
+  • Korean
+
+
+Contributing to interface translations
+======================================
+
+Want to help with translations? Learn how to help at:
+
+    https://inkscape.org/contribute/translations/
+
 
 +----------------------------------------------------------------------+
 |                            Documentation                             |
 +----------------------------------------------------------------------+
 
-  • Fix link for FAQ entry on DPI change
+
+Documentation Relaunch
+======================
+
+The Inkscape documentation repository, containing the man page, the
+keyboard shortcut list as well as the tutorials and their respective
+translation files, has been almost completely refactored (Java has been
+dropped in favor of Python), and was updated to work with git and
+gitlab.
+
+
+Documentation Updates
+=====================
+
+The man page and the keyboard shortcut list have been updated.
+
+
+Where to find recent documentation
+==================================
+
+Continuously updated man page (for command line usage), keyboard and
+mouse shortcut list, tutorials and translation statistics for the
+various parts of the Inkscape project are available on the inkscape.org
+website:
+
+  • Man page
+  • Keyboard shortcuts
+  • Tutorials
+  • Translation statistics for Inkscape 0.92 series / development branch
+
+Tutorials, as always, are also included with your Inkscape installation.
+
+
+Contributing to documentation and documentation translation
+===========================================================
+
+Contributions to the documentation translations, as well as improvements
+to its contents, are welcome at the inkscape-docs repository.
+
 
 +----------------------------------------------------------------------+
 |                             Known issues                             |
 +----------------------------------------------------------------------+
 
   • DPI Change: known issues with 'Scale elements' option
-    (Bugs #1653230, #1653236, #1654342, #1654796, #1654880, #1654903,
-    #1655005, #1655053, #1660228)
+    (Bugs: 1653230,1653236,1654342,1654796,1654880,1654903,1655005,1655053,1660228) 
   • DPI Change: Default grids in documents created with Inkscape 0.91 don't
-    scale correctly
+    scale correctly.
     (Bug #1653893)
-  • Line height: Changing "baseline spacing" stops working
+  • Line height: Changing "baseline spacing" stops working.
     (Bug #1707808)
-  • Renderer: Artifacts in Gaussian blur effects with default quality settings
+  • Renderer: Artifacts in Gaussian blur effects with default quality settings.
     (Bug #1656383)
-  • Node editor: Deselecting selected nodes of complex paths takes a long time
+  • Node editor: Deselecting selected nodes of complex paths takes a long time.
     (Bug #1652100)
+  • Performance: Using the objects dialog at least once in your Inkscape
+    session slows down actions such as duplicate and delete for files
+    with many objects.
+    (Bug #1431274)
 
 
+------------------------------------------------------------------------
 For information on prior releases, please see:
 
     http://wiki.inkscape.org/wiki/index.php/Inkscape
-

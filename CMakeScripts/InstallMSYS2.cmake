@@ -38,9 +38,9 @@ if(WIN32)
     ${MINGW_BIN}/libfftw3-[0-9]*.dll
     ${MINGW_BIN}/libfontconfig-[0-9]*.dll
     ${MINGW_BIN}/libfreetype-[0-9]*.dll
+    ${MINGW_BIN}/libfribidi-[0-9]*.dll
     ${MINGW_BIN}/libgailutil-[0-9][0-9].dll
     ${MINGW_BIN}/libgc-[0-9]*.dll
-    ${MINGW_BIN}/libgdbm-[0-9]*.dll
     ${MINGW_BIN}/libgdk-win32-2.0-[0-9]*.dll
     ${MINGW_BIN}/libgdk_pixbuf-2.0-[0-9]*.dll
     ${MINGW_BIN}/libgdkmm-2.4-[0-9]*.dll
@@ -50,8 +50,6 @@ if(WIN32)
     ${MINGW_BIN}/libglib-2.0-[0-9]*.dll
     ${MINGW_BIN}/libglibmm-2.4-[0-9]*.dll
     ${MINGW_BIN}/libgmodule-2.0-[0-9]*.dll
-    ${MINGW_BIN}/libgmp-[0-9]*.dll
-    ${MINGW_BIN}/libgnutls-[0-9]*.dll
     ${MINGW_BIN}/libgobject-2.0-[0-9]*.dll
     ${MINGW_BIN}/libgomp-[0-9]*.dll
     ${MINGW_BIN}/libgraphite[0-9]*.dll
@@ -61,24 +59,21 @@ if(WIN32)
     ${MINGW_BIN}/libgtkmm-2.4-[0-9]*.dll
     ${MINGW_BIN}/libgtkspell-[0-9]*.dll
     ${MINGW_BIN}/libharfbuzz-[0-9]*.dll
-    ${MINGW_BIN}/libhogweed-[0-9]*.dll
     ${MINGW_BIN}/libiconv-[0-9]*.dll
     ${MINGW_BIN}/libicudt[0-9]*.dll
     ${MINGW_BIN}/libicuin[0-9]*.dll
     ${MINGW_BIN}/libicuuc[0-9]*.dll
-    ${MINGW_BIN}/libidn-[0-9]*.dll
+    ${MINGW_BIN}/libidn2-[0-9]*.dll
     ${MINGW_BIN}/libintl-[0-9]*.dll
+    ${MINGW_BIN}/libjasper-[0-9]*.dll
     ${MINGW_BIN}/libjpeg-[0-9]*.dll
     ${MINGW_BIN}/liblcms2-[0-9]*.dll
     ${MINGW_BIN}/liblqr-1-[0-9]*.dll
-    ${MINGW_BIN}/libltdl-[0-9]*.dll
     ${MINGW_BIN}/liblzma-[0-9]*.dll
-    ${MINGW_BIN}/libnettle-[0-9]*.dll
     ${MINGW_BIN}/libnghttp2-[0-9]*.dll
     ${MINGW_BIN}/libnspr[0-9]*.dll
     ${MINGW_BIN}/libopenblas.dll
     ${MINGW_BIN}/libopenjp2-[0-9]*.dll
-    ${MINGW_BIN}/libp11-kit-[0-9]*.dll
     ${MINGW_BIN}/libpango-1.0-[0-9]*.dll
     ${MINGW_BIN}/libpangocairo-1.0-[0-9]*.dll
     ${MINGW_BIN}/libpangoft2-1.0-[0-9]*.dll
@@ -94,21 +89,21 @@ if(WIN32)
     ${MINGW_BIN}/libpopt-[0-9]*.dll
     ${MINGW_BIN}/libpotrace-[0-9]*.dll
     ${MINGW_BIN}/libquadmath-[0-9]*.dll
+    ${MINGW_BIN}/libraqm-[0-9]*.dll
     ${MINGW_BIN}/libreadline[0-9]*.dll
     ${MINGW_BIN}/librevenge-0.[0-9]*.dll
     ${MINGW_BIN}/librevenge-stream-0.[0-9]*.dll
     ${MINGW_BIN}/librsvg-2-[0-9]*.dll
-    ${MINGW_BIN}/librtmp-[0-9]*.dll
     ${MINGW_BIN}/libsigc-2.0-[0-9]*.dll
     ${MINGW_BIN}/libsqlite3-[0-9]*.dll
     ${MINGW_BIN}/libssh2-[0-9]*.dll
     ${MINGW_BIN}/libstdc++-[0-9]*.dll
-    ${MINGW_BIN}/libtasn1-[0-9]*.dll
     ${MINGW_BIN}/libtermcap-[0-9]*.dll
     ${MINGW_BIN}/libtiff-[0-9]*.dll
     ${MINGW_BIN}/libunistring-[0-9]*.dll
     ${MINGW_BIN}/libvisio-0.[0-9]*.dll
     ${MINGW_BIN}/libwebp-[0-9]*.dll
+    ${MINGW_BIN}/libwebpdemux-[0-9]*.dll
     ${MINGW_BIN}/libwebpmux-[0-9]*.dll
     ${MINGW_BIN}/libwinpthread-[0-9]*.dll
     ${MINGW_BIN}/libwpd-0.[0-9]*.dll
@@ -204,6 +199,13 @@ if(WIN32)
   install(FILES
     ${MINGW_LIB}/enchant/libenchant_aspell.dll
     DESTINATION lib/enchant)
+
+  # tcl/tk related files (required for tkinter)
+  install(DIRECTORY
+    ${MINGW_PATH}/lib/tcl8
+    ${MINGW_PATH}/lib/tcl8.6
+    ${MINGW_PATH}/lib/tk8.6
+    DESTINATION lib)
 
   # Necessary to run extensions on windows if it is not in the path
   if (HAVE_MINGW64)

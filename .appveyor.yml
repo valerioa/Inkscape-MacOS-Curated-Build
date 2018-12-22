@@ -8,7 +8,7 @@ environment:
     - MSYSTEM: MINGW32
 
 build_script:
-  - C:\msys64\usr\bin\pacman -Syuu --needed --noconfirm --noprogressbar
+  - C:\msys64\usr\bin\pacman -Syuu --needed --noconfirm --noprogressbar --ask=20
   - C:\msys64\usr\bin\bash --login -c "$(cygpath ${APPVEYOR_BUILD_FOLDER})/buildtools/appveyor.sh"
 
 artifacts:

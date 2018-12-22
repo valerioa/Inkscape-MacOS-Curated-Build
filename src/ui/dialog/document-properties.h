@@ -99,7 +99,6 @@ protected:
 
     Inkscape::XML::SignalObserver _emb_profiles_observer, _scripts_observer;
     Gtk::Notebook  _notebook;
-
     UI::Widget::NotebookPage   *_page_page;
     UI::Widget::NotebookPage   *_page_guides;
     UI::Widget::NotebookPage   *_page_snap;
@@ -116,6 +115,19 @@ protected:
     Gtk::VBox      _grids_vbox;
 
     UI::Widget::Registry _wr;
+
+    #if WITH_GTKMM_3_0
+    Gtk::Grid            _rcb_doc_props_left;
+    Gtk::Grid            _rcb_doc_props_right;
+    Gtk::Box             _rcp_bg_col;
+    Gtk::Box             _rcp_bord_col;
+    #else
+    Gtk::Table           _rcb_doc_props_left;
+    Gtk::Table           _rcb_doc_props_right;
+    Gtk::HBox            _rcp_bg_col;
+    Gtk::HBox            _rcp_bord_col;
+    #endif
+
     //---------------------------------------------------------------
     UI::Widget::RegisteredCheckButton _rcb_antialias;
     UI::Widget::RegisteredCheckButton _rcb_checkerboard;

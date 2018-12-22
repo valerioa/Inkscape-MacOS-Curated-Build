@@ -32,14 +32,15 @@ public:
     virtual void param_editOncanvas(SPItem * /*item*/, SPDesktop * /*dt*/) {};
     /** Disable the canvas indicators of parent class by overriding this method */
     virtual void addCanvasIndicators(SPLPEItem const* /*lpeitem*/, std::vector<Geom::PathVector> & /*hp_vec*/) {};
+    void setFromOriginalD(bool from_original_d){ _from_original_d = from_original_d; };
 
 protected:
     virtual void linked_modified_callback(SPObject *linked_obj, guint flags);
     virtual void linked_transformed_callback(Geom::Affine const *rel_transf, SPItem *moved_item);
-
     void on_select_original_button_click();
 
 private:
+    bool _from_original_d;
     OriginalPathParam(const OriginalPathParam&);
     OriginalPathParam& operator=(const OriginalPathParam&);
 };

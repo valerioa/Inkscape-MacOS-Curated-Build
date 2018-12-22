@@ -1744,6 +1744,93 @@ http://www.inkscape.org/</dc:description>
 <path style="fill:#5a5a5a;fill-rule:evenodd" d="M 851.4754,45 849,42 851,42 851,27 852,27 852,42 854,42 851.4754,45 Z" id="path6550" sodipodi:nodetypes="cccccccc" inkscape:connector-curvature="0" />
 <use xlink:href="#path6550" height="1250" width="1250" transform="translate(-5.9754)" id="use5600" y="0" x="0" />
 </g>
+<g
+    transform="translate(-165.5246,375)"
+    inkscape:label="#writing_mode_rl"
+    id="format-text-direction-r2l">
+  <!-- Note "format-text-direction-rtl" is the GTK icon name but we want to use our own. -->
+  <g
+      transform="translate(-0.4754,0)"
+      id="g10375">
+    <path
+        inkscape:connector-curvature="0"
+        style="color:#000000;fill:#000000;fill-opacity:0.06666673;fill-rule:evenodd"
+        d="m 841,26 h 22 l 1,1 v 20 l -2,2 h -20 l -1,-1 z"
+        id="path10356"
+        sodipodi:nodetypes="cccccccc" />
+    <path
+        inkscape:connector-curvature="0"
+        id="path10358"
+        d="m 840,26 h 1 v 20 h -1 z"
+        style="color:#000000;fill:#000000;fill-rule:evenodd" />
+    <rect
+        style="color:#000000;fill:#000000;fill-rule:evenodd"
+        id="rect10361"
+        width="1"
+        height="20"
+        x="861"
+        y="26" />
+    <rect
+        style="color:#000000;fill:#000000;fill-rule:evenodd"
+        id="rect10363"
+        width="1"
+        height="20"
+        x="-26"
+        y="841"
+        transform="rotate(-90)" />
+    <rect
+        style="color:#000000;fill:#000000;fill-rule:evenodd"
+        id="rect10365"
+        width="1"
+        height="20"
+        x="-47"
+        y="841"
+        transform="rotate(-90)" />
+    <rect
+        style="color:#000000;fill:url(#linearGradient10389);fill-rule:evenodd"
+        id="rect10367"
+        width="20"
+        height="20"
+        x="841"
+        y="26" />
+    <path
+        inkscape:connector-curvature="0"
+        id="path10369"
+        d="m 842,46 h -1 V 26 h 20 v 1 h -19 z"
+        style="fill:#ffffff;fill-rule:evenodd" />
+    <path
+        inkscape:connector-curvature="0"
+        sodipodi:nodetypes="cccc"
+        id="path10371"
+        d="m 858.5246,34.75 v -4 c 0,-3 -5,-3 -5,0 v 4"
+        style="fill:none;stroke:#383838;stroke-linecap:round" />
+    <path
+        inkscape:connector-curvature="0"
+        id="path10373"
+        d="m 858.5246,32 h -5.1429"
+        style="fill:none;stroke:#383838" />
+  </g>
+  <path
+      inkscape:connector-curvature="0"
+      sodipodi:nodetypes="cccccccc"
+      id="path10377"
+      d="m 841.5246,30.4982 3.0246,-2.4991 v 2 h 7 v 1 h -7 v 2 z"
+      style="fill:#5a5a5a;fill-rule:evenodd" />
+  <path
+      inkscape:connector-curvature="0"
+      sodipodi:nodetypes="cccccccc"
+      id="path10379"
+      d="m 841.5246,36.4982 3.0246,-2.4991 v 2 h 15 v 1 h -15 v 2 z"
+      style="fill:#5a5a5a;fill-rule:evenodd" />
+  <use
+      x="0"
+      y="0"
+      id="use10381"
+      transform="matrix(-1,0,0,1,1701.0738,6)"
+      width="1250"
+      height="1250"
+      xlink:href="#path6497" />
+</g>
 <g transform="translate(-196,375)" inkscape:label="#writing_mode_tb_lr" id="format-text-direction-vertical-lr">
 <path inkscape:connector-curvature="0" style="color:#000000;fill:#000000;fill-opacity:0.06666673;fill-rule:evenodd" d="m 841,26 22,0 1,1 0,20 -2,2 -20,0 -1,-1 0,-22 z" id="path10109" sodipodi:nodetypes="cccccccc" />
 <path inkscape:connector-curvature="0" id="path10111" d="m 840,26 1,0 0,20 -1,0 0,-20 z" style="color:#000000;fill:#000000;fill-rule:evenodd" />

@@ -557,7 +557,7 @@ gint sp_dt_guide_event(SPCanvasItem *item, GdkEvent *event, gpointer data)
             desktop->guidesMessageContext()->clear();
             break;
         case GDK_KEY_PRESS:
-            switch (Inkscape::UI::Tools::get_group0_keyval (&event->key)) {
+            switch (Inkscape::UI::Tools::get_latin_keyval (&event->key)) {
                 case GDK_KEY_Delete:
                 case GDK_KEY_KP_Delete:
                 case GDK_KEY_BackSpace:
@@ -590,7 +590,7 @@ gint sp_dt_guide_event(SPCanvasItem *item, GdkEvent *event, gpointer data)
             }
             break;
         case GDK_KEY_RELEASE:
-            switch (Inkscape::UI::Tools::get_group0_keyval (&event->key)) {
+            switch (Inkscape::UI::Tools::get_latin_keyval (&event->key)) {
                 case GDK_KEY_Shift_L:
                 case GDK_KEY_Shift_R:
                 {

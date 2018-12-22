@@ -749,9 +749,14 @@ void Script::effect(Inkscape::Extension::Effect *module,
 
     SPDocument * mydoc = NULL;
     if (data_read > 10) {
-        mydoc = Inkscape::Extension::open(
-              Inkscape::Extension::db.get(SP_MODULE_KEY_INPUT_SVG),
-              tempfilename_out.c_str());
+        try {
+            mydoc = Inkscape::Extension::open(
+                  Inkscape::Extension::db.get(SP_MODULE_KEY_INPUT_SVG),
+                  tempfilename_out.c_str());
+        } catch (const Inkscape::Extension::Input::open_failed &e) {
+            /// \todo Popup dialog here
+            g_warning("Extension returned output that could not be parsed: %s", e.what());
+        }
     } // data_read
 
     pump_events();

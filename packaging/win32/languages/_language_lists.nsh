@@ -27,6 +27,7 @@
     !insertmacro ${_MACRONAME} Indonesian   1057
     !insertmacro ${_MACRONAME} Italian      1040
     !insertmacro ${_MACRONAME} Japanese     1041
+    !insertmacro ${_MACRONAME} Korean       1042
     !insertmacro ${_MACRONAME} Polish       1045
     !insertmacro ${_MACRONAME} Portuguese   2070
     !insertmacro ${_MACRONAME} PortugueseBR 1046

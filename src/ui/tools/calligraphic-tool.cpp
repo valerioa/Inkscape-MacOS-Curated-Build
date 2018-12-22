@@ -785,7 +785,7 @@ bool CalligraphicTool::root_handler(GdkEvent* event) {
     }
 
     case GDK_KEY_PRESS:
-        switch (get_group0_keyval (&event->key)) {
+        switch (get_latin_keyval (&event->key)) {
         case GDK_KEY_Up:
         case GDK_KEY_KP_Up:
             if (!MOD__CTRL_ONLY(event)) {
@@ -866,7 +866,7 @@ bool CalligraphicTool::root_handler(GdkEvent* event) {
         break;
 
     case GDK_KEY_RELEASE:
-        switch (get_group0_keyval(&event->key)) {
+        switch (get_latin_keyval(&event->key)) {
             case GDK_KEY_Control_L:
             case GDK_KEY_Control_R:
                 this->message_context->clear();

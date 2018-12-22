@@ -72,7 +72,7 @@ class CairoRenderContext {
 public:
     CairoRenderContext *cloneMe(void) const;
     CairoRenderContext *cloneMe(double width, double height) const;
-    bool finish(void);
+    bool finish(bool finish_surface = true);
 
     CairoRenderer *getRenderer(void) const;
     cairo_t *getCairoContext(void) const;
@@ -207,7 +207,6 @@ protected:
     CairoClipMode _clip_mode;
 
     CairoOmitTextPageState _omittext_state;
-    int _omittext_missing_pages;
 
     cairo_pattern_t *_createPatternForPaintServer(SPPaintServer const *const paintserver,
                                                   Geom::OptRect const &pbox, float alpha);

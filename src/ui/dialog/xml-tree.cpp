@@ -206,7 +206,7 @@ XmlTree::XmlTree (void) :
     Gtk::ScrolledWindow *attr_scroller = new Gtk::ScrolledWindow();
     attr_scroller->set_policy( Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC );
     attr_scroller->set_shadow_type(Gtk::SHADOW_IN);
-    attr_scroller->set_size_request(0, 60);
+    attr_scroller->set_size_request(-1, 80);
 
     attr_subpaned_container.pack1( *attr_scroller );
     attr_scroller->add(*Gtk::manage(Glib::wrap(GTK_WIDGET(attributes))));
@@ -223,16 +223,16 @@ XmlTree::XmlTree (void) :
     Gtk::ScrolledWindow *scroller = new Gtk::ScrolledWindow();
     scroller->set_policy( Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC );
     scroller->set_shadow_type(Gtk::SHADOW_IN);
+    scroller->set_size_request(-1, 40);
 
     attr_vbox.pack_start(*scroller, TRUE, TRUE, 0);
 
-    attr_value.set_size_request(0, 60);
     attr_value.set_wrap_mode(Gtk::WRAP_CHAR);
     attr_value.set_tooltip_text( _("Attribute value") );// TRANSLATORS: "Attribute" is a noun here
     attr_value.set_editable(TRUE);
     scroller->add(attr_value);
 
-    attr_subpaned_container.pack2( attr_vbox, FALSE, TRUE );
+    attr_subpaned_container.pack2( attr_vbox, FALSE, FALSE );
 
     /* text */
     text_container.set_policy( Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC );
@@ -339,7 +339,7 @@ void XmlTree::attr_reset_context(gint attr)
 
 bool XmlTree::sp_xml_tree_key_press(GdkEventKey *event)
 {
-    unsigned int shortcut = Inkscape::UI::Tools::get_group0_keyval (event) |
+    unsigned int shortcut = Inkscape::UI::Tools::get_latin_keyval (event) |
         ( event->state & GDK_SHIFT_MASK ?
           SP_SHORTCUT_SHIFT_MASK : 0 ) |
         ( event->state & GDK_CONTROL_MASK ?
@@ -854,7 +854,7 @@ void XmlTree::on_document_uri_set(gchar const * /*uri*/, SPDocument * /*document
 
 gboolean XmlTree::quit_on_esc (GtkWidget *w, GdkEventKey *event, GObject */*tbl*/)
 {
-    switch (Inkscape::UI::Tools::get_group0_keyval (event)) {
+    switch (Inkscape::UI::Tools::get_latin_keyval (event)) {
         case GDK_KEY_Escape: // defocus
             gtk_widget_destroy(w);
             return TRUE;

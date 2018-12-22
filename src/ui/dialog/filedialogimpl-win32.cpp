@@ -1785,6 +1785,7 @@ void FileSaveDialogImplWin32::GetSaveFileName_thread()
     ofn.lpstrFilter = _filter;
     ofn.nFilterIndex = _filter_index;
     ofn.lpfnHook = GetSaveFileName_hookproc;
+    ofn.lpstrDefExt = L"svg\0";
     ofn.lCustData = (LPARAM)this;
     _result = GetSaveFileNameW(&ofn) != 0;
 

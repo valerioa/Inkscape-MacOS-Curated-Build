@@ -458,9 +458,10 @@ Application::Application(const char* argv, bool use_gui) :
         Inkscape::UI::Dialog::DebugDialog::getInstance()->captureLogMessages();
     }
 
-    /* Check for global remapping of Alt key */
     if (use_gui)
     {
+        Inkscape::UI::Tools::init_latin_keys_group();
+        /* Check for global remapping of Alt key */
         mapalt(guint(prefs->getInt("/options/mapalt/value", 0)));
         trackalt(guint(prefs->getInt("/options/trackalt/value", 0)));
     }

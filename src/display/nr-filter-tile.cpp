@@ -114,8 +114,11 @@ void FilterTile::render_cairo(FilterSlot &slot)
 
 void FilterTile::area_enlarge(Geom::IntRect &area, Geom::Affine const &trans)
 {
-    // Set to infinite rectangle so we get tile source. It will be clipped later.
-    area = Geom::IntRect::infinite();
+    // Set to very large rectangle so we get tile source. It will be clipped later.
+
+    // Note, setting to infinite using Geom::IntRect::infinite() causes overflow/underflow problems.
+    Geom::IntCoord max = std::numeric_limits<Geom::IntCoord>::max()/4;
+    area = Geom::IntRect(-max,-max,max,max);
 }
 
 double FilterTile::complexity(Geom::Affine const &)

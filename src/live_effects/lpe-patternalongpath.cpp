@@ -292,24 +292,27 @@ KnotHolderEntityWidthPatternAlongPath::knot_set(Geom::Point const &p, Geom::Poin
     Geom::Point const s = snap_knot_position(p, state);
     SPShape const *sp_shape = dynamic_cast<SPShape const *>(SP_LPE_ITEM(item));
     if (sp_shape) {
-        Geom::Path const *path_in = sp_shape->getCurveBeforeLPE()->first_path();
-        Geom::Point ptA = path_in->pointAt(Geom::PathTime(0, 0.0));
-        Geom::Point B = path_in->pointAt(Geom::PathTime(1, 0.0));
-        Geom::Curve const *first_curve = &path_in->curveAt(Geom::PathTime(0, 0.0));
-        Geom::CubicBezier const *cubic = dynamic_cast<Geom::CubicBezier const *>(&*first_curve);
-        Geom::Ray ray(ptA, B);
-        if (cubic) {
-            ray.setPoints(ptA, (*cubic)[1]);
+        SPCurve *curve_before = sp_shape->getCurveBeforeLPE();
+        if (curve_before) {
+            Geom::Path const *path_in = curve_before->first_path();
+            Geom::Point ptA = path_in->pointAt(Geom::PathTime(0, 0.0));
+            Geom::Point B = path_in->pointAt(Geom::PathTime(1, 0.0));
+            Geom::Curve const *first_curve = &path_in->curveAt(Geom::PathTime(0, 0.0));
+            Geom::CubicBezier const *cubic = dynamic_cast<Geom::CubicBezier const *>(&*first_curve);
+            Geom::Ray ray(ptA, B);
+            if (cubic) {
+                ray.setPoints(ptA, (*cubic)[1]);
+            }
+            ray.setAngle(ray.angle() + Geom::rad_from_deg(90));
+            Geom::Point knot_pos = this->knot->pos * item->i2dt_affine().inverse();
+            Geom::Coord nearest_to_ray = ray.nearestTime(knot_pos);
+            if(nearest_to_ray == 0){
+                lpe->prop_scale.param_set_value(-Geom::distance(s , ptA)/(lpe->original_height/2.0));
+            } else {
+                lpe->prop_scale.param_set_value(Geom::distance(s , ptA)/(lpe->original_height/2.0));
+            }
+            curve_before->unref();
         }
-        ray.setAngle(ray.angle() + Geom::rad_from_deg(90));
-        Geom::Point knot_pos = this->knot->pos * item->i2dt_affine().inverse();
-        Geom::Coord nearest_to_ray = ray.nearestTime(knot_pos);
-        if(nearest_to_ray == 0){
-            lpe->prop_scale.param_set_value(-Geom::distance(s , ptA)/(lpe->original_height/2.0));
-        } else {
-            lpe->prop_scale.param_set_value(Geom::distance(s , ptA)/(lpe->original_height/2.0));
-        }
-        
     }
     sp_lpe_item_update_patheffect (SP_LPE_ITEM(item), false, true);
 }
@@ -321,25 +324,29 @@ KnotHolderEntityWidthPatternAlongPath::knot_get() const
 
     SPShape const *sp_shape = dynamic_cast<SPShape const *>(SP_LPE_ITEM(item));
     if (sp_shape) {
-        Geom::Path const *path_in = sp_shape->getCurveBeforeLPE()->first_path();
-        Geom::Point ptA = path_in->pointAt(Geom::PathTime(0, 0.0));
-        Geom::Point B = path_in->pointAt(Geom::PathTime(1, 0.0));
-        Geom::Curve const *first_curve = &path_in->curveAt(Geom::PathTime(0, 0.0));
-        Geom::CubicBezier const *cubic = dynamic_cast<Geom::CubicBezier const *>(&*first_curve);
-        Geom::Ray ray(ptA, B);
-        if (cubic) {
-            ray.setPoints(ptA, (*cubic)[1]);
-        }
-        ray.setAngle(ray.angle() + Geom::rad_from_deg(90));
-        Geom::Point result_point = Geom::Point::polar(ray.angle(), (lpe->original_height/2.0) * lpe->prop_scale) + ptA;
+        SPCurve *curve_before = sp_shape->getCurveBeforeLPE();
+        if (curve_before) {
+            Geom::Path const *path_in = curve_before->first_path();
+            Geom::Point ptA = path_in->pointAt(Geom::PathTime(0, 0.0));
+            Geom::Point B = path_in->pointAt(Geom::PathTime(1, 0.0));
+            Geom::Curve const *first_curve = &path_in->curveAt(Geom::PathTime(0, 0.0));
+            Geom::CubicBezier const *cubic = dynamic_cast<Geom::CubicBezier const *>(&*first_curve);
+            Geom::Ray ray(ptA, B);
+            if (cubic) {
+                ray.setPoints(ptA, (*cubic)[1]);
+            }
+            ray.setAngle(ray.angle() + Geom::rad_from_deg(90));
+            Geom::Point result_point = Geom::Point::polar(ray.angle(), (lpe->original_height/2.0) * lpe->prop_scale) + ptA;
 
-        pap_helper_path.clear();
-        Geom::Path hp(result_point);
-        hp.appendNew<Geom::LineSegment>(ptA);
-        pap_helper_path.push_back(hp);
-        hp.clear();
-        
-        return result_point;
+            pap_helper_path.clear();
+            Geom::Path hp(result_point);
+            hp.appendNew<Geom::LineSegment>(ptA);
+            pap_helper_path.push_back(hp);
+            hp.clear();
+            
+            curve_before->unref();        
+            return result_point;
+        }
     }
     return Geom::Point();
 }

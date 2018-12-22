@@ -312,6 +312,7 @@ void sp_file_convert_dpi(SPDocument *doc)
         bool backup = prefs->getBool("/options/dpifixbackup", true);
         if (INKSCAPE.use_gui() && sp_file_convert_dpi_method_commandline == -1) {
             Gtk::Dialog scale_dialog(_("Convert legacy Inkscape file"));
+            scale_dialog.set_transient_for( *(INKSCAPE.active_desktop()->getToplevel()) );
             scale_dialog.set_border_width(10);
             scale_dialog.set_resizable(false);
             Gtk::Label explanation;

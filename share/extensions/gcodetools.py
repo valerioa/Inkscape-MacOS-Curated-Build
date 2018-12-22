@@ -35,6 +35,7 @@ History of CLT changes to engraving and other functions it uses:
 12 Jun ver 208 Now scales correctly if orientation points moved or stretched.
 12 Jun ver 209. Now detect if engraving toolshape not a function of radius
                 Graphics now indicate Gcode toolpath, limited by min(tool diameter/2,max-dist)
+24 Jan 2017 Removed hard-coded scale values from orientation point calculation
 TODO Change line division to be recursive, depending on what line is touched. See line_divide
 
 
@@ -77,7 +78,6 @@ import copy
 import sys
 import time
 import cmath
-import numpy
 import codecs
 import random
 # local library
@@ -91,6 +91,12 @@ import bezmisc
 ### Check if inkex has errormsg (0.46 version does not have one.) Could be removed later.
 if "errormsg" not in dir(inkex):
 	inkex.errormsg = lambda msg: sys.stderr.write((unicode(msg) + "\n").encode("UTF-8"))
+
+try:
+    import numpy
+except:
+    inkex.errormsg(_("Failed to import the numpy modules. These modules are required by this extension. Please install them and try again.  On a Debian-like system this can be done with the command, sudo apt-get install python-numpy."))
+    exit()
 
 
 def bezierslopeatt(((bx0,by0),(bx1,by1),(bx2,by2),(bx3,by3)),t):
@@ -290,7 +296,7 @@ def point_inside_csp(p,csp, on_the_path = True) :
 		 				if y1==y : 
 		 					# the point is on the path 
 		 					return on_the_path
-	 					# if t == 0 we sould have considered this case previously. 
+	 					# if t == 0 we should have considered this case previously. 
 	 					if t == 1 :
 							# we have to check the next segmant if it is on the same side of the ray
 							st_d = csp_normalized_slope(sp1,sp2,1)[0]
@@ -1319,7 +1325,7 @@ def csp_segment_convex_hull(sp1,sp2):
 	if not (m1 and m2) and m3 : return [c,a,d]
 	if not (m1 and m3) and m2 : return [b,c,d]
 	
-	raise ValueError, "csp_segment_convex_hull happend something that shouldnot happen!"	
+	raise ValueError, "csp_segment_convex_hull happened which is something that shouldn't happen!"	
 
 	
 ################################################################################
@@ -3038,7 +3044,7 @@ class Arangement_Genetic:
 
 	
 	def similarity(self,sp1,top) :
-		# Define similarity as a simple distance between two points in len(gene)*len(spiece) -th dimentions
+		# Define similarity as a simple distance between two points in len(gene)*len(spiece) -th dimensions
 		# for sp2 in top_spieces sum(|sp1-sp2|)/top_count
 		sim = 0
 		for sp2 in top : 
@@ -3433,7 +3439,7 @@ class Gcodetools(inkex.Effect):
 					for subpath in csp :
 						for sp1, sp2 in zip(subpath,subpath[1:]) :
 							polygon.add([csp_segment_convex_hull(sp1,sp2)])
-					#print_("Redused edges count from", sum([len(poly) for poly in polygon.polygon ]) )
+					#print_("Reduced edges count from", sum([len(poly) for poly in polygon.polygon ]) )
 					polygon.hull()
 					original_paths += [path]
 					polygons += [polygon]
@@ -3574,7 +3580,7 @@ class Gcodetools(inkex.Effect):
 		self.OptionParser.add_option("",   "--biarc-max-split-depth",		action="store", type="int", 		dest="biarc_max_split_depth", default="4",			help="Defines maximum depth of splitting while approximating using biarcs.")				
 		self.OptionParser.add_option("",   "--path-to-gcode-order",			action="store", type="string", 		dest="path_to_gcode_order", default="path by path",	help="Defines cutting order path by path or layer by layer.")				
 		self.OptionParser.add_option("",   "--path-to-gcode-depth-function",action="store", type="string", 		dest="path_to_gcode_depth_function", default="zd",	help="Path to gcode depth function.")				
-		self.OptionParser.add_option("",   "--path-to-gcode-sort-paths",	action="store", type="inkbool",		dest="path_to_gcode_sort_paths", default=True,		help="Sort paths to reduse rapid distance.")		
+		self.OptionParser.add_option("",   "--path-to-gcode-sort-paths",	action="store", type="inkbool",		dest="path_to_gcode_sort_paths", default=True,		help="Sort paths to reduce rapid distance.")		
 		self.OptionParser.add_option("",   "--comment-gcode",				action="store", type="string", 		dest="comment_gcode", default="",					help="Comment Gcode")				
 		self.OptionParser.add_option("",   "--comment-gcode-from-properties",action="store", type="inkbool", 	dest="comment_gcode_from_properties", default=False,help="Get additional comments from Object Properties")				
 
@@ -3603,7 +3609,7 @@ class Gcodetools(inkex.Effect):
 		self.OptionParser.add_option("",   "--min-arc-radius",				action="store", type="float", 		dest="min_arc_radius", default=".1",				help="All arc having radius less than minimum will be considered as straight line")		
 
 		self.OptionParser.add_option("",   "--engraving-sharp-angle-tollerance",action="store", type="float",	dest="engraving_sharp_angle_tollerance", default="150",		help="All angles thar are less than engraving-sharp-angle-tollerance will be thought sharp")		
-		self.OptionParser.add_option("",   "--engraving-max-dist",			action="store", type="float", 		dest="engraving_max_dist", default="10",					help="Distanse from original path where engraving is not needed (usualy it's cutting tool diameter)")		
+		self.OptionParser.add_option("",   "--engraving-max-dist",			action="store", type="float", 		dest="engraving_max_dist", default="10",					help="Distance from original path where engraving is not needed (usually it's cutting tool diameter)")		
 		self.OptionParser.add_option("",   "--engraving-newton-iterations", action="store", type="int", 		dest="engraving_newton_iterations", default="4",			help="Number of sample points used to calculate distance")		
 		self.OptionParser.add_option("",   "--engraving-draw-calculation-paths",action="store", type="inkbool",	dest="engraving_draw_calculation_paths", default=False,		help="Draw additional graphics to debug engraving path")		
 		self.OptionParser.add_option("",   "--engraving-cutter-shape-function",action="store", type="string", 	dest="engraving_cutter_shape_function", default="w",		help="Cutter shape function z(w). Ex. cone: w. ")
@@ -4108,7 +4114,7 @@ class Gcodetools(inkex.Effect):
 ###		Errors handling function, notes are just printed into Logfile, 
 ###		warnings are printed into log file and warning message is displayed but
 ###		extension continues working, errors causes log and execution is halted
-###		Notes, warnings adn errors could be assigned to space or comma or dot 
+###		Notes, warnings and errors could be assigned to space or comma or dot 
 ###		sepparated strings (case is ignoreg).
 ################################################################################
 	def error(self, s, type_= "Warning"):
@@ -4775,7 +4781,7 @@ class Gcodetools(inkex.Effect):
 						
 						# Reverse path if needed.
 						if min_y!=float("-inf") :
-							# Move outline subpath to the begining of csp
+							# Move outline subpath to the beginning of csp
 	 					 	subp = csp[min_i]
 	 					 	del csp[min_i]
 	 					 	j = min_j
@@ -5856,26 +5862,20 @@ class Gcodetools(inkex.Effect):
 				print_("Overruding height from 100 percents to %s" % doc_height)
 			if self.options.unit == "G21 (All units in mm)" : 
 				points = [[0.,0.,self.options.Zsurface],[100.,0.,self.options.Zdepth],[0.,100.,0.]]
-				orientation_scale = 3.5433070660
-				print_("orientation_scale < 0 ===> switching to mm units=%0.10f"%orientation_scale )
 			elif self.options.unit == "G20 (All units in inches)" :
 				points = [[0.,0.,self.options.Zsurface],[5.,0.,self.options.Zdepth],[0.,5.,0.]]
-				orientation_scale = 90
-				print_("orientation_scale < 0 ===> switching to inches units=%0.10f"%orientation_scale )
 			if self.options.orientation_points_count == "2" :
 				points = points[:2]
-			print_(("using orientation scale",orientation_scale,"i=",points))
 			for i in points :
-				si = [i[0]*orientation_scale, i[1]*orientation_scale]
 				g = inkex.etree.SubElement(orientation_group, inkex.addNS('g','svg'), {'gcodetools': "Gcodetools orientation point (%s points)" % self.options.orientation_points_count})
 				inkex.etree.SubElement(	g, inkex.addNS('path','svg'), 
 					{
 						'style':	"stroke:none;fill:#000000;", 	
-						'd':'m %s,%s 2.9375,-6.343750000001 0.8125,1.90625 6.843748640396,-6.84374864039 0,0 0.6875,0.6875 -6.84375,6.84375 1.90625,0.812500000001 z z' % (si[0], -si[1]+doc_height),
+						'd':'m %s,%s 2.9375,-6.343750000001 0.8125,1.90625 6.843748640396,-6.84374864039 0,0 0.6875,0.6875 -6.84375,6.84375 1.90625,0.812500000001 z z' % (i[0], -i[1]+doc_height),
 						'gcodetools': "Gcodetools orientation point arrow"
 					})
 
-				draw_text("(%s; %s; %s)" % (i[0],i[1],i[2]), (si[0]+10), (-si[1]-10+doc_height), group = g, gcodetools_tag = "Gcodetools orientation point text")
+				draw_text("(%s; %s; %s)" % (i[0],i[1],i[2]), (i[0]+10), (-i[1]-10+doc_height), group = g, gcodetools_tag = "Gcodetools orientation point text")
 
 		
 ################################################################################

@@ -302,6 +302,7 @@ protected:
     UI::Widget::PrefCombo       _switcher_style;
     UI::Widget::PrefCheckButton _rendering_image_outline;
     UI::Widget::PrefSpinButton  _rendering_cache_size;
+    UI::Widget::PrefSpinButton  _rendering_tile_multiplier;
     UI::Widget::PrefSpinButton  _filter_multi_threaded;
 
     UI::Widget::PrefCheckButton _trans_scale_stroke;
@@ -486,14 +487,16 @@ protected:
     Glib::RefPtr<Gtk::TreeModelFilter> _kb_filter;
     gboolean _kb_shortcuts_loaded;
 
-    int _max_dialog_width;
-    int _max_dialog_height;
+    int _minimum_width;
+    int _minimum_height;
+    int _natural_width;
+    int _natural_height;
+    bool GetSizeRequest(const Gtk::TreeModel::iterator& iter);
     int _sb_width;
     UI::Widget::DialogPage* _current_page;
 
     Gtk::TreeModel::iterator AddPage(UI::Widget::DialogPage& p, Glib::ustring title, int id);
     Gtk::TreeModel::iterator AddPage(UI::Widget::DialogPage& p, Glib::ustring title, Gtk::TreeModel::iterator parent, int id);
-    bool SetMaxDialogSize(const Gtk::TreeModel::iterator& iter);
     bool PresentPage(const Gtk::TreeModel::iterator& iter);
 
     static void AddSelcueCheckbox(UI::Widget::DialogPage& p, Glib::ustring const &prefs_path, bool def_value);

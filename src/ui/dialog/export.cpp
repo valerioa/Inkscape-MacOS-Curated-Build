@@ -878,10 +878,11 @@ void Export::onProgressCancel ()
 unsigned int Export::onProgressCallback(float value, void *dlg)
 {
     Gtk::Dialog *dlg2 = reinterpret_cast<Gtk::Dialog*>(dlg);
-    if (dlg2->get_data("cancel")) {
-        return FALSE;
-    }
 
+    Export *self = reinterpret_cast<Export *>(dlg2->get_data("exportPanel"));
+    if (self->interrupted)
+        return FALSE;
+    
     gint current = GPOINTER_TO_INT(dlg2->get_data("current"));
     gint total = GPOINTER_TO_INT(dlg2->get_data("total"));
     if (total > 0) {
@@ -894,7 +895,6 @@ unsigned int Export::onProgressCallback(float value, void *dlg)
     Gtk::ProgressBar *prg = reinterpret_cast<Gtk::ProgressBar *>(dlg2->get_data("progress"));
     prg->set_fraction(value);
 
-    Export *self = reinterpret_cast<Export *>(dlg2->get_data("exportPanel"));
     if (self) {
         self->_prog.set_fraction(value);
     }
@@ -928,6 +928,7 @@ void Export::setExporting(bool exporting, Glib::ustring const &text)
 
 Gtk::Dialog * Export::create_progress_dialog (Glib::ustring progress_text) {
     Gtk::Dialog *dlg = new Gtk::Dialog(_("Export in progress"), TRUE);
+    dlg->set_transient_for( *(INKSCAPE.active_desktop()->getToplevel()) );
 
     Gtk::ProgressBar *prg = new Gtk::ProgressBar ();
     prg->set_text(progress_text);

@@ -154,7 +154,7 @@ KnotPropertiesDialog::_close()
 bool KnotPropertiesDialog::_handleKeyEvent(GdkEventKey * /*event*/)
 {
 
-    /*switch (get_group0_keyval(event)) {
+    /*switch (get_latin_keyval(event)) {
         case GDK_KEY_Return:
         case GDK_KEY_KP_Enter: {
             _apply();

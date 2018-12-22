@@ -9,6 +9,13 @@ error()   { echo -e "\e[1;31m\nError: ${1}\n\e[0m";  exit 1; }
 
 ### setup
 
+# reduce time required to install packages by disabling pacman's disk space checking
+sed -i 's/^CheckSpace/#CheckSpace/g' /etc/pacman.conf
+
+# update MSYS2-packages and MINGW-packages (but only for current architecture)
+pacman -Quq | grep -v mingw-w64- | xargs pacman -S --needed --noconfirm --noprogressbar
+pacman -Quq | grep ${MINGW_PACKAGE_PREFIX} | xargs pacman -S --needed --noconfirm --noprogressbar
+
 # do everything in /build
 cd "$(cygpath ${APPVEYOR_BUILD_FOLDER})"
 mkdir build
@@ -30,17 +37,6 @@ pacman -S $MINGW_PACKAGE_PREFIX-{ccache,gtest,ntldd-git} --needed --noconfirm --
 export CCACHE_DIR=$(cygpath -a ccache/0.92.x)
 ccache --max-size=200M
 ccache --set-config=sloppiness=include_file_ctime,include_file_mtime
-
-# patched cairo to avoid crash when printing
-#   - https://bugs.launchpad.net/inkscape/+bug/1665768
-#   - https://bugs.freedesktop.org/show_bug.cgi?id=101833
-wget -nv https://gitlab.com/Ede123/bintray/raw/master/$MINGW_PACKAGE_PREFIX-cairo-1.15.6-1-any.pkg.tar.xz \
-    && pacman -U $MINGW_PACKAGE_PREFIX-cairo-1.15.6-1-any.pkg.tar.xz --noconfirm
-
-# patched icu to for compatibility with Windows XP
-#   - https://github.com/Alexpux/MINGW-packages/pull/2709
-wget -nv https://gitlab.com/Ede123/bintray/raw/master/$MINGW_PACKAGE_PREFIX-icu-58.2-2-any.pkg.tar.xz \
-    && pacman -U $MINGW_PACKAGE_PREFIX-icu-58.2-2-any.pkg.tar.xz --noconfirm
 
 
 ### build / test
@@ -78,8 +74,8 @@ if [ -n "$err" ]; then warning "installed executable produces output on stderr:"
 INKSCAPE_DATADIR=../share bin/inkscape.exe -V >/dev/null || error "uninstalled executable won't run"
 err=$(INKSCAPE_DATADIR=../share bin/inkscape.exe -V 2>&1 >/dev/null)
 if [ -n "$err" ]; then warning "uninstalled executable produces output on stderr:"; echo "$err"; fi
-# run tests (don't fail yet as most tests SEGFAULT on exit)
-#ninja check || warning "tests failed" # disabled because of sporadic deadlocks :-(
+# run tests
+ninja check || error "tests failed"
 
 message "##### BUILD SUCCESSFULL #####\n\n"
 

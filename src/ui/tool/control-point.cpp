@@ -382,7 +382,7 @@ bool ControlPoint::_eventHandler(Inkscape::UI::Tools::ToolBase *event_context, G
     // update tips on modifier state change
     // TODO add ESC keybinding as drag cancel
     case GDK_KEY_PRESS:
-        switch (Inkscape::UI::Tools::get_group0_keyval(&event->key))
+        switch (Inkscape::UI::Tools::get_latin_keyval(&event->key))
         {
         case GDK_KEY_Escape: {
             // ignore Escape if this is not a drag

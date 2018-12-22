@@ -840,14 +840,20 @@ PdfInput::open(::Inkscape::Extension::Input * /*mod*/, const gchar * uri) {
         }
 
         // Parse the document structure
+#if defined(POPPLER_NEW_OBJECT_API)
+        Object obj = page->getContents();
+#else
         Object obj;
         page->getContents(&obj);
+#endif
         if (!obj.isNull()) {
             pdf_parser->parse(&obj);
         }
 
         // Cleanup
+#if !defined(POPPLER_NEW_OBJECT_API)
         obj.free();
+#endif
         delete pdf_parser;
         delete builder;
         g_free(docname);

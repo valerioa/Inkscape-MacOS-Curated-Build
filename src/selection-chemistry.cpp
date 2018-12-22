@@ -2920,7 +2920,7 @@ sp_select_clone_original(SPDesktop *desktop)
 /**
 * This creates a new path, applies the Original Path LPE, and has it refer to the selection.
 */
-void sp_selection_clone_original_path_lpe(SPDesktop *desktop)
+void sp_selection_clone_original_path_lpe(SPDesktop *desktop, bool allow_transforms)
 {
     if (desktop == NULL) {
         return;
@@ -2950,6 +2950,8 @@ void sp_selection_clone_original_path_lpe(SPDesktop *desktop)
         {
             lpe_repr->setAttribute("effect", "fill_between_many");
             lpe_repr->setAttribute("linkedpaths", os.str());
+            gchar const *allow_transforms_str = allow_transforms? "true" : "false";
+            lpe_repr->setAttribute("allow_transforms", allow_transforms_str);
             desktop->doc()->getDefs()->getRepr()->addChild(lpe_repr, NULL); // adds to <defs> and assigns the 'id' attribute
         }
         std::string lpe_id_href = std::string("#") + lpe_repr->attribute("id");

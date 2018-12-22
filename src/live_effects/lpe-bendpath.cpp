@@ -109,7 +109,7 @@ LPEBendPath::doEffect_pwd2 (Geom::Piecewise<Geom::D2<Geom::SBasis> > const & pwd
         uskeleton = arc_length_parametrization(Piecewise<D2<SBasis> >(bend_path.get_pwd2()),2,.1);
         uskeleton = remove_short_cuts(uskeleton,.01);
         n = rot90(derivative(uskeleton));
-        n = force_continuity(remove_short_cuts(n,.1));
+        n = force_continuity(remove_short_cuts(n,.01));
 
         bend_path.changed = false;
     }
@@ -125,8 +125,9 @@ LPEBendPath::doEffect_pwd2 (Geom::Piecewise<Geom::D2<Geom::SBasis> > const & pwd
     Interval bboxHorizontal = vertical_pattern.get_value() ? boundingbox_Y : boundingbox_X;
     Interval bboxVertical = vertical_pattern.get_value() ? boundingbox_X : boundingbox_Y;
 
+    //+0.1 in x fix bug #1658855
     //We use the group bounding box size or the path bbox size to translate well x and y
-    x-= bboxHorizontal.min();
+    x-= bboxHorizontal.min() + 0.1;
     y-= bboxVertical.middle();
 
     double scaling = uskeleton.cuts.back()/bboxHorizontal.extent();

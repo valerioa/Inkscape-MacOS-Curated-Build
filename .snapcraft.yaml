@@ -1,7 +1,8 @@
 name: inkscape
-version: 0.92.1
+version-script: packaging/snappy/version.sh
+version: devel # Replaced at build time ^^^
 summary: Vector Graphics Editor
-description: |
+description: >
  An Open Source vector graphics editor, with capabilities similar to
  Illustrator, CorelDraw, or Xara X, using the W3C standard Scalable Vector
  Graphics (SVG) file format.
@@ -14,12 +15,14 @@ description: |
  We also aim to maintain a thriving user and developer community by using
  open, community-oriented development.
 confinement: strict
+grade: stable
 
 parts:
   inkscape:
     plugin: cmake
     source: .
-    configflags: ['-DENABLE_BINRELOC=ON']
+    configflags:
+      - '-DENABLE_BINRELOC=ON'
     build-packages:
       - cmake
       - intltool
@@ -51,8 +54,6 @@ parts:
       - libxml2-dev
       - libxslt1-dev
       - pkg-config
-      - python-dev
-      - python-lxml
       - zlib1g-dev
     stage-packages:
       - libaspell15
@@ -76,27 +77,33 @@ parts:
       - imagemagick
       - libimage-magick-perl
       - libwmf-bin
-      - python-lxml
-      - python-numpy
       - transfig
-      - pstoedit
       - libsvg-perl
       - libxml-xql-perl
-      - python-uniconvertor
       - ruby
     stage:
       - -usr/sbin/update-icon-caches
-    snap:
+    prime:
       - -lib/inkscape/*.a
-    after: [desktop/gtk2]
+    after: [desktop-gtk2]
   snapcraft-wrapper:
     plugin: dump
     source: packaging/snappy/
+  python-deps:
+    plugin: python
+    python-version: python2
+    python-packages:
+      - lxml
+      - numpy
+    stage-packages:
+      - pstoedit
+      - python-uniconvertor
 
 apps:
   inkscape:
     command: desktop-launch ${SNAP}/snapcraft.sh inkscape
-    plugs: [home, unity7, gsettings]
+    plugs: [home, unity7, gsettings, desktop, desktop-legacy]
+    desktop: share/applications/inkscape.desktop
   viewer:
     command: desktop-launch ${SNAP}/snapcraft.sh inkview
-    plugs: [home, unity7, gsettings]
+    plugs: [home, unity7, gsettings, desktop, desktop-legacy]

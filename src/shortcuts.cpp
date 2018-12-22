@@ -111,7 +111,7 @@ static void try_shortcuts_file(char const *filename) {
 /*
  *  Inkscape expects to add the Shift modifier to any accel_keys create with Shift
  *  For exmaple on en_US keyboard <Shift>+6 = "&" - in this case return <Shift>+&
- *  See get_group0_keyval() for explanation on why
+ *  See get_latin_keyval() for explanation on why
  */
 unsigned int sp_gdkmodifier_to_shortcut(guint accel_key, Gdk::ModifierType gdkmodifier, guint hardware_keycode) {
 
@@ -121,7 +121,7 @@ unsigned int sp_gdkmodifier_to_shortcut(guint accel_key, Gdk::ModifierType gdkmo
     event.state = gdkmodifier;
     event.keyval = accel_key;
     event.hardware_keycode = hardware_keycode;
-    guint keyval = Inkscape::UI::Tools::get_group0_keyval (&event);
+    guint keyval = Inkscape::UI::Tools::get_latin_keyval (&event);
 
     shortcut = accel_key |
                ( (gdkmodifier & GDK_SHIFT_MASK) ?
@@ -435,7 +435,7 @@ void sp_shortcut_file_export_do(char const *exportname) {
  * Shortcut file consists of pairs of bind elements :
  * Element (a) is used for shortcut display in menus (display="True") and contains the gdk_keyval_name of the shortcut key
  * Element (b) is used in shortcut lookup and contains an uppercase version of the gdk_keyval_name,
- *   or a gdk_keyval_name name and the "Shift" modifier for Shift altered hardware code keys (see get_group0_keyval() for explanation)
+ *   or a gdk_keyval_name name and the "Shift" modifier for Shift altered hardware code keys (see get_latin_keyval() for explanation)
  */
 void sp_shortcut_delete_from_file(char const * /*action*/, unsigned int const shortcut) {
 

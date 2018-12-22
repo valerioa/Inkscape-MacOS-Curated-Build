@@ -39,7 +39,7 @@ namespace Bitmap {
 class ImageMagickDocCache: public Inkscape::Extension::Implementation::ImplementationDocumentCache {
     friend class ImageMagick;
 private:
-    void readImage(char const *xlink, Magick::Image *image);
+    void readImage(char const *xlink, char const *id, Magick::Image *image);
 protected:
     Inkscape::XML::Node** _nodes;    
     
@@ -85,11 +85,12 @@ ImageMagickDocCache::ImageMagickDocCache(Inkscape::UI::View::View * view) :
         {
             _nodes[_imageCount] = node;    
             char const *xlink = node->attribute("xlink:href");
+            char const *id = node->attribute("id");
             _originals[_imageCount] = xlink;
             _caches[_imageCount] = (char*)"";
             _cacheLengths[_imageCount] = 0;
             _images[_imageCount] = new Magick::Image();
-            readImage(xlink, _images[_imageCount]);            
+            readImage(xlink, id, _images[_imageCount]);
             _imageItems[_imageCount] = item;
             _imageCount++;
         }
@@ -113,26 +114,33 @@ ImageMagickDocCache::~ImageMagickDocCache ( ) {
 }
 
 void
-ImageMagickDocCache::readImage(const char *xlink, Magick::Image *image)
+ImageMagickDocCache::readImage(const char *xlink, const char *id, Magick::Image *image)
 {
     // Find if the xlink:href is base64 data, i.e. if the image is embedded 
-    char *search = (char *) g_strndup(xlink, 30);
+    gchar *search = g_strndup(xlink, 30);
     if (strstr(search, "base64") != (char*)NULL) {
         // 7 = strlen("base64") + strlen(",")
         const char* pureBase64 = strstr(xlink, "base64") + 7;        
         Magick::Blob blob;
         blob.base64(pureBase64);
-        image->read(blob);
-    }
-    else {
-        const gchar *path = xlink;
-    if (strncmp (xlink,"file:", 5) == 0) {
-      path = g_filename_from_uri(xlink, NULL, NULL);
+        try {
+            image->read(blob);
+        } catch (Magick::Exception &error_) {
+            g_warning("ImageMagick could not read '%s'\nDetails: %s", id, error_.what());
         }
-
+    } else {
+        gchar *path;
+        if (strncmp (xlink,"file:", 5) == 0) {
+            path = g_filename_from_uri(xlink, NULL, NULL);
+        } else {
+            path = g_strdup(xlink);
+        }
         try {
             image->read(path);
-        } catch (...) {}
+        } catch (Magick::Exception &error_) {
+            g_warning("ImageMagick could not read '%s' from '%s'\nDetails: %s", id, path, error_.what());
+        }
+        g_free(path);
     }
     g_free(search);
 }

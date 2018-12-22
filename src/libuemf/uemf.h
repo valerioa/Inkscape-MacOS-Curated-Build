@@ -95,11 +95,11 @@ these WMF enumerations is by referencing the following table:
 
 /*
 File:      uemf.h
-Version:   0.0.33
-Date:      27-JAN-2016
+Version:   0.0.34
+Date:      03-JAN-2017
 Author:    David Mathog, Biology Division, Caltech
 email:     mathog@caltech.edu
-Copyright: 2016 David Mathog and California Institute of Technology (Caltech)
+Copyright: 2017 David Mathog and California Institute of Technology (Caltech)
 */
 
 #ifndef _UEMF_
@@ -168,7 +168,6 @@ extern "C" {
 #define U_ROUND(A)  ( (A) > 0 ? floor((A)+0.5) : ( (A) < 0 ? -floor(-(A)+0.5) : (A) ) )
 
 #define MAKE_MIN_PTR(A,B) ( A < B ? A : B)
-
 /* IS_MEM_UNSAFE takes 3 parameters:
       A  start address of a block of allocated memory
       B  offset into this block starting at A
@@ -185,7 +184,7 @@ extern "C" {
    If B is a uint16_t gcc complains about the first test.  
    This Macro must not be used where B needs more than 32 bits!
 */
-#define IS_MEM_UNSAFE(A,B,C) ( (sizeof(B) < sizeof(int) || (int)(B) < 0) ? 1 : ((int8_t *)(A) > (int8_t *)(C) ? 1 : ((int8_t *)(C) - (int8_t *)(A) >= (int)(B) ? 0 : 1 )))
+#define IS_MEM_UNSAFE(A,B,C) ( (sizeof(B) < sizeof(int) || (int)(B) < 0) ? 1 : ((int8_t *)(A) > (int8_t *)(C) ? 1 : ((int8_t *)(C) - (int8_t *)(A) >= (int)(B) ? 0 : 1 ))) //!< Return 1 when a region of memory starting at A of B bytes extends beyond pointer C
 
 /** @} */
 

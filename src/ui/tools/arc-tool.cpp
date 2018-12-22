@@ -228,7 +228,7 @@ bool ArcTool::root_handler(GdkEvent* event) {
             break;
 
         case GDK_KEY_PRESS:
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
                 case GDK_KEY_Alt_L:
                 case GDK_KEY_Alt_R:
                 case GDK_KEY_Control_L:

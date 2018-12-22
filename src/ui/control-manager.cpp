@@ -331,10 +331,12 @@ void ControlManagerImpl::setSelected(SPCanvasItem *item, bool selected)
 
         if (selected && _resizeOnSelect.count(item->ctrlType)) {
             item->ctrlResize = 2;
+        } else {
+            item->ctrlResize = 0;
         }
 
         // TODO refresh colors
-        double targetSize = _sizeTable[item->ctrlType][_size - 1] + _resize;
+        double targetSize = _sizeTable[item->ctrlType][_size - 1] + item->ctrlResize;
         g_object_set(item, "size", targetSize, NULL);
     }
 }

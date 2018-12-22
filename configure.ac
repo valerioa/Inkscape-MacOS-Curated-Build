@@ -457,6 +457,11 @@ if test "x$popplernewernewcolorspaceapi" = "xyes"; then
 	AC_DEFINE(POPPLER_EVEN_NEWER_NEW_COLOR_SPACE_API, 1, [Use even newer new color space API from Poppler >= 0.29.0])
 fi
 
+PKG_CHECK_MODULES(POPPLER_NEW_OBJECT_API, poppler >= 0.58.0, popplernewobjectapi=yes, popplernewobjectapi=no)
+if test "x$popplernewobjectapi" = "xyes"; then
+	AC_DEFINE(POPPLER_NEW_OBJECT_API, 1, [Use new object API from Poppler >= 0.58.0])
+fi
+
 CPPFLAGS=$ink_svd_CPPFLAGS
 LIBS=$ink_svd_LIBS
 

@@ -1689,6 +1689,7 @@ Geom::Coord PathManipulator::_updateDragPoint(Geom::Point const &evp)
     double stroke_tolerance = _getStrokeTolerance();
     if (first && first.next() &&
         fracpart != 0.0 &&
+        fracpart != 1.0 &&
         dist < stroke_tolerance)
     {
         _dragpoint->setVisible(true);

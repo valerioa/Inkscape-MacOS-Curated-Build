@@ -1079,8 +1079,7 @@ void OdfOutput::preprocess(ZipFile &zf, Inkscape::XML::Node *node)
                 Glib::ustring comment = "old name was: ";
                 comment.append(oldName);
                 Inkscape::URI oldUri(oldName.c_str());
-                //# if relative to the documentURI, get proper path
-                std::string pathName = documentUri.getFullPath(oldUri.getFullPath(""));
+                std::string pathName = oldUri.toNativeFilename();
                 ZipEntry *ze = zf.addFile(pathName, comment);
                 if (ze)
                     {
@@ -2095,8 +2094,6 @@ void OdfOutput::reset()
 void OdfOutput::save(Inkscape::Extension::Output */*mod*/, SPDocument *doc, gchar const *filename)
 {
     reset();
-
-    documentUri = Inkscape::URI(filename);
 
     ZipFile zf;
     preprocess(zf, doc->rroot);

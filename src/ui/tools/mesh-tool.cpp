@@ -887,7 +887,7 @@ bool MeshTool::root_handler(GdkEvent* event) {
 #endif
 
         // FIXME: tip
-        switch (get_group0_keyval (&event->key)) {
+        switch (get_latin_keyval (&event->key)) {
         case GDK_KEY_Alt_L:
         case GDK_KEY_Alt_R:
         case GDK_KEY_Control_L:
@@ -926,7 +926,7 @@ bool MeshTool::root_handler(GdkEvent* event) {
         case GDK_KEY_KP_Left:
         case GDK_KEY_KP_4:
             if (!MOD__CTRL(event)) { // not ctrl
-                gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
 
                 if (MOD__ALT(event)) { // alt
                     if (MOD__SHIFT(event)) {
@@ -950,7 +950,7 @@ bool MeshTool::root_handler(GdkEvent* event) {
         case GDK_KEY_KP_Up:
         case GDK_KEY_KP_8:
             if (!MOD__CTRL(event)) { // not ctrl
-                gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
 
                 if (MOD__ALT(event)) { // alt
                     if (MOD__SHIFT(event)) {
@@ -974,7 +974,7 @@ bool MeshTool::root_handler(GdkEvent* event) {
         case GDK_KEY_KP_Right:
         case GDK_KEY_KP_6:
             if (!MOD__CTRL(event)) { // not ctrl
-                gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
 
                 if (MOD__ALT(event)) { // alt
                     if (MOD__SHIFT(event)) {
@@ -998,7 +998,7 @@ bool MeshTool::root_handler(GdkEvent* event) {
         case GDK_KEY_KP_Down:
         case GDK_KEY_KP_2:
             if (!MOD__CTRL(event)) { // not ctrl
-                gint mul = 1 + gobble_key_events(get_group0_keyval(&event->key), 0); // with any mask
+                gint mul = 1 + gobble_key_events(get_latin_keyval(&event->key), 0); // with any mask
 
                 if (MOD__ALT(event)) { // alt
                     if (MOD__SHIFT(event)) {
@@ -1096,7 +1096,7 @@ bool MeshTool::root_handler(GdkEvent* event) {
 #ifdef DEBUG_MESH
         std::cout << "sp_mesh_context_root_handler: GDK_KEY_RELEASE" << std::endl;
 #endif
-        switch (get_group0_keyval (&event->key)) {
+        switch (get_latin_keyval (&event->key)) {
         case GDK_KEY_Alt_L:
         case GDK_KEY_Alt_R:
         case GDK_KEY_Control_L:

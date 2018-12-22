@@ -1300,7 +1300,7 @@ bool TweakTool::root_handler(GdkEvent* event) {
         }
         case GDK_KEY_PRESS:
         {
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
                 case GDK_KEY_m:
                 case GDK_KEY_M:
                 case GDK_KEY_0:
@@ -1495,7 +1495,7 @@ bool TweakTool::root_handler(GdkEvent* event) {
         }
         case GDK_KEY_RELEASE: {
             Inkscape::Preferences *prefs = Inkscape::Preferences::get();
-            switch (get_group0_keyval(&event->key)) {
+            switch (get_latin_keyval(&event->key)) {
                 case GDK_KEY_Shift_L:
                 case GDK_KEY_Shift_R:
                     this->update_cursor(false);

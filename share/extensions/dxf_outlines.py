@@ -341,9 +341,16 @@ class MyEffect(inkex.Effect):
         if not scale:
             scale = 25.4/96     # if no scale is specified, assume inch as baseunit
         scale /= self.unittouu('1px')
-        h = self.unittouu(self.document.getroot().xpath('@height', namespaces=inkex.NSS)[0])
-        self.groupmat = [[[scale, 0.0, 0.0], [0.0, -scale, h*scale]]]
+        h = self.unittouu(self.getDocumentHeight())
         doc = self.document.getroot()
+        # process viewBox height attribute to correct page scaling
+        viewBox = doc.get('viewBox')
+        if viewBox:
+            viewBox2 = viewBox.split(',')
+            if len(viewBox2) < 4:
+                viewBox2 = viewBox.split(' ')
+            scale *= h / self.unittouu(self.addDocumentUnit(viewBox2[3]))
+        self.groupmat = [[[scale, 0.0, 0.0], [0.0, -scale, h*scale]]]
         self.process_group(doc)
         if self.options.ROBO == 'true':
             self.ROBO_output()

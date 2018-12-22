@@ -149,6 +149,9 @@
 /* Use color space API from Poppler >= 0.29.0 */
 #cmakedefine POPPLER_EVEN_NEWER_NEW_COLOR_SPACE_API 1
 
+/* Use object API from Poppler >= 0.58.0 */
+#cmakedefine POPPLER_NEW_OBJECT_API 1
+
 /* Define to 1 if you have the `pow' function. */
 #cmakedefine HAVE_POW 1
 

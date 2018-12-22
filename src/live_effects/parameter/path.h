@@ -49,6 +49,7 @@ public:
     virtual void addCanvasIndicators(SPLPEItem const* lpeitem, std::vector<Geom::PathVector> &hp_vec);
 
     virtual void param_transform_multiply(Geom::Affine const& /*postmul*/, bool /*set*/);
+    void setFromOriginalD(bool from_original_d){ _from_original_d = from_original_d; };
 
     sigc::signal <void> signal_path_pasted;
     sigc::signal <void> signal_path_changed;
@@ -80,7 +81,7 @@ protected:
     void linked_transformed(Geom::Affine const *rel_transf, SPItem *moved_item);
     virtual void linked_modified_callback(SPObject *linked_obj, guint flags);
     virtual void linked_transformed_callback(Geom::Affine const * /*rel_transf*/, SPItem * /*moved_item*/) {};
-
+ 
     void on_edit_button_click();
     void on_copy_button_click();
     void on_link_button_click();
@@ -90,6 +91,7 @@ protected:
     gchar * defvalue;
 
 private:
+    bool _from_original_d;
     PathParam(const PathParam&);
     PathParam& operator=(const PathParam&);
 };

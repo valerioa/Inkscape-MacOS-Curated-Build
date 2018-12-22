@@ -715,7 +715,7 @@ bool ObjectsPanel::_handleKeyEvent(GdkEventKey *event)
         return false;
 
     unsigned int shortcut;
-    shortcut = Inkscape::UI::Tools::get_group0_keyval(event) |
+    shortcut = Inkscape::UI::Tools::get_latin_keyval(event) |
         ( event->state & GDK_SHIFT_MASK ?
           SP_SHORTCUT_SHIFT_MASK : 0 ) |
         ( event->state & GDK_CONTROL_MASK ?
@@ -748,7 +748,7 @@ bool ObjectsPanel::_handleKeyEvent(GdkEventKey *event)
     // handle events for the treeview
     bool empty = _desktop->selection->isEmpty();
 
-    switch (Inkscape::UI::Tools::get_group0_keyval(event)) {
+    switch (Inkscape::UI::Tools::get_latin_keyval(event)) {
         case GDK_KEY_Return:
         case GDK_KEY_KP_Enter:
         {

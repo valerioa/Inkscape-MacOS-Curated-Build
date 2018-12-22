@@ -1062,7 +1062,7 @@ bool PenTool::_handleKeyPress(GdkEvent *event) {
 
     // Check for undo if we have started drawing a path.
     if (this->npoints > 0) {
-        unsigned int shortcut = Inkscape::UI::Tools::get_group0_keyval (&event->key) |
+        unsigned int shortcut = Inkscape::UI::Tools::get_latin_keyval (&event->key) |
                    ( event->key.state & GDK_SHIFT_MASK ?
                      SP_SHORTCUT_SHIFT_MASK : 0 ) |
                    ( event->key.state & GDK_CONTROL_MASK ?
@@ -1077,7 +1077,7 @@ bool PenTool::_handleKeyPress(GdkEvent *event) {
         }
     }
 
-    switch (get_group0_keyval (&event->key)) {
+    switch (get_latin_keyval (&event->key)) {
         case GDK_KEY_Left: // move last point left
         case GDK_KEY_KP_Left:
             if (!MOD__CTRL(event)) { // not ctrl

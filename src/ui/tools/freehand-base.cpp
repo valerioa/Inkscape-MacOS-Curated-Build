@@ -185,7 +185,7 @@ bool FreehandBase::root_handler(GdkEvent* event) {
 
     switch (event->type) {
         case GDK_KEY_PRESS:
-            switch (get_group0_keyval (&event->key)) {
+            switch (get_latin_keyval (&event->key)) {
                 case GDK_KEY_Up:
                 case GDK_KEY_Down:
                 case GDK_KEY_KP_Up:
