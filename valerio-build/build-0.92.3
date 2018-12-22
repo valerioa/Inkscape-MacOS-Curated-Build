@@ -1,0 +1,124 @@
+
+# Cleanup
+mkdir /Applications/Inkscape.app
+
+#Install Macports
+wget -O- https://distfiles.macports.org/MacPorts/MacPorts-2.4.2.tar.bz2 | tar -xvzf -
+cd MacPorts-2.4.2
+./configure --prefix=/Applications/Inkscape.app/Contents/Resources
+make
+make install
+cd ../
+export PATH=/Applications/Inkscape.app/Contents/Resources/bin:$PATH
+
+# update port
+port selfupdate
+port upgrade outdated
+
+# install ports
+port -N install cairo +quartz -x11
+port -N install pango +quartz -x11
+port -N install gtk2 +quartz -x11
+port -N install gtkmm +quartz -x11
+port -N install cairomm +quartz -x11
+port -f activate python27
+port select --set python python27
+port -N install freeglut +quartz -x11
+port -N install jasper
+port -N install aspell-dict-en
+port -N install glib2 glibmm +quartz -x11
+port -N install py-pygtk +quartz -x11
+port select --set cython cython27
+port -N install py-scipy py-numpy
+port -N install py-pil
+port -N install py-reportlab
+port select --set pip pip27
+port -N install cairomm +quartz -x11
+port -N install glibmm +quartz -x11
+port install -N poppler psutils
+port install -N p5-xml-parser
+port install -N gtk2-murrine
+port install -N py27-lxml
+
+# Install patched gtk2
+wget -O- https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.31.tar.xz | tar -xvzf -
+cd gtk+-2.24.31
+patch -p1 < ../../valerio-patches/gtk+-2.24.31.inkscape-pasteboard.patch
+CUPS_CONFIG=/usr/bin/cups-config \
+LDFLAGS="-framework Cocoa -framework Carbon" \
+./configure \
+--enable-static \
+--disable-glibtest \
+--enable-introspection \
+--with-gdktarget=quartz \
+--prefix=/Applications/Inkscape.app/Contents/Resources \
+gio_can_sniff=yes
+make
+make install
+cd ../
+
+# gtk-mac-integration
+git clone https://github.com/jralls/gtk-mac-integration.git
+cd gtk-mac-integration
+./autogen.sh
+./configure \
+--prefix=/Applications/Inkscape.app/Contents/Resources/ --with-gtk2 --without-gtk3
+make
+make install
+cd ..
+
+# Build Inkscape
+mkdir inkscape-build
+cd ../
+./autogen.sh
+./configure \
+--prefix=/Applications/Inkscape.app/Contents/Resources \
+--without-gnome-vfs \
+--enable-lcms \
+--enable-poppler-cairo \
+--disable-silent-rules \
+--disable-strict-build \
+--enable-carbon \
+--disable-dbusapi
+
+make
+make install
+cp Info.plist /Applications/Inkscape.app/Contents
+cd valerio-build
+mkdir -p /Applications/Inkscape.app/Contents/MacOS
+cp Inkscape /Applications/Inkscape.app/Contents/MacOS
+rsync -Sav icons/Tango /Applications/Inkscape.app/Contents/Resources/share/icons/
+cp etc/gtk-2.0/gtkrc /Applications/Inkscape.app/Contents/Resources/etc/gtk-2.0/
+rsync -Sav themes/Mac /Applications/Inkscape.app/Contents/Resources/share/themes/
+cp icons/Inkscape*icns /Applications/Inkscape.app/Contents/Resources/
+
+
+# Packaging
+./gen_keepers ; say Done! # this takes a bit of time
+mv /Applications/Inkscape.app /Applications/Inkscape_Backup.app
+mkdir /Applications/Inkscape.app
+rsync -Sav --files-from=./keepers /Applications/Inkscape_Backup.app/ /Applications/Inkscape.app/ ; say Done!
+mkdir -p /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig
+
+# optional: remove backup
+# rm -fR /Applications/Inkscape_Backup.app
+
+# the following commands must be run as user who owns a windowing session.
+VERSION="0.92.2 v5
+mkdir "Inkscape ${VERSION}"
+rsync -Sav /Applications/Inkscape.app "Inkscape ${VERSION}"/
+test -f "Inkscape ${VERSION}.dmg" && rm "Inkscape ${VERSION}.dmg"
+./create-dmg \
+--window-size 600 400 \
+--background backgrounds/inkscape-background.png \
+--icon-size 96 \
+--volname "Inkscape ${VERSION}" \
+--app-drop-link 140 225 \
+--icon "Inkscape" 465 225 \
+"Inkscape ${VERSION}.dmg" \
+"Inkscape ${VERSION}"
+rm -fR "Inkscape ${VERSION}"
+
+
+
+
