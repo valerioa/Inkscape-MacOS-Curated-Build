@@ -1,0 +1,11 @@
+build
+share/inkscape
+share/*/*.h
+
+*.pyc
+*.old
+*.swp
+*~
+
+inkscape_*.snap
+inkscape_*_source.tar.bz2
