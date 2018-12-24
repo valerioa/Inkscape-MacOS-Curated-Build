@@ -625,7 +625,7 @@ gchar *SvgBuilder::_createPattern(GfxPattern *pattern, GfxState *state, bool is_
     if ( pattern != NULL ) {
         if ( pattern->getType() == 2 ) {  // Shading pattern
             GfxShadingPattern *shading_pattern = static_cast<GfxShadingPattern *>(pattern);
-            double *ptm;
+            const double *ptm;
             double m[6] = {1, 0, 0, 1, 0, 0};
             double det;
 
@@ -672,7 +672,7 @@ gchar *SvgBuilder::_createTilingPattern(GfxTilingPattern *tiling_pattern,
 
     Inkscape::XML::Node *pattern_node = _xml_doc->createElement("svg:pattern");
     // Set pattern transform matrix
-    double *p2u = tiling_pattern->getMatrix();
+    const double *p2u = tiling_pattern->getMatrix();
     double m[6] = {1, 0, 0, 1, 0, 0};
     double det;
     det = _ttm[0] * _ttm[3] - _ttm[1] * _ttm[2];    // see LP Bug 1168908
@@ -698,7 +698,7 @@ gchar *SvgBuilder::_createTilingPattern(GfxTilingPattern *tiling_pattern,
     pattern_node->setAttribute("patternUnits", "userSpaceOnUse");
     // Set pattern tiling
     // FIXME: don't ignore XStep and YStep
-    double *bbox = tiling_pattern->getBBox();
+    const double *bbox = tiling_pattern->getBBox();
     sp_repr_set_svg_double(pattern_node, "x", 0.0);
     sp_repr_set_svg_double(pattern_node, "y", 0.0);
     sp_repr_set_svg_double(pattern_node, "width", bbox[2] - bbox[0]);
@@ -751,7 +751,7 @@ gchar *SvgBuilder::_createTilingPattern(GfxTilingPattern *tiling_pattern,
  */
 gchar *SvgBuilder::_createGradient(GfxShading *shading, double *matrix, bool for_shading) {
     Inkscape::XML::Node *gradient;
-    Function *func;
+    const Function *func;
     int num_funcs;
     bool extend0, extend1;
 
@@ -865,7 +865,7 @@ static bool svgGetShadingColorRGB(GfxShading *shading, double offset, GfxRGB *re
 
 #define INT_EPSILON 8
 bool SvgBuilder::_addGradientStops(Inkscape::XML::Node *gradient, GfxShading *shading,
-                                   Function *func) {
+                                   const Function *func) {
     int type = func->getType();
     if ( type == 0 || type == 2 ) {  // Sampled or exponential function
         GfxRGB stop1, stop2;
@@ -877,9 +877,9 @@ bool SvgBuilder::_addGradientStops(Inkscape::XML::Node *gradient, GfxShading *sh
             _addStopToGradient(gradient, 1.0, &stop2, 1.0);
         }
     } else if ( type == 3 ) { // Stitching
-        StitchingFunction *stitchingFunc = static_cast<StitchingFunction*>(func);
-        double *bounds = stitchingFunc->getBounds();
-        double *encode = stitchingFunc->getEncode();
+        const StitchingFunction *stitchingFunc = static_cast<const StitchingFunction*>(func);
+        const double *bounds = stitchingFunc->getBounds();
+        const double *encode = stitchingFunc->getEncode();
         int num_funcs = stitchingFunc->getNumFuncs();
 
         // Add stops from all the stitched functions
@@ -890,7 +890,7 @@ bool SvgBuilder::_addGradientStops(Inkscape::XML::Node *gradient, GfxShading *sh
             svgGetShadingColorRGB(shading, bounds[i + 1], &color);
             // Add stops
             if (stitchingFunc->getFunc(i)->getType() == 2) {    // process exponential fxn
-                double expE = (static_cast<ExponentialFunction*>(stitchingFunc->getFunc(i)))->getE();
+                double expE = (static_cast<const ExponentialFunction*>(stitchingFunc->getFunc(i)))->getE();
                 if (expE > 1.0) {
                     expE = (bounds[i + 1] - bounds[i])/expE;    // approximate exponential as a single straight line at x=1
                     if (encode[2*i] == 0) {    // normal sequence
@@ -1020,7 +1020,7 @@ void SvgBuilder::updateFont(GfxState *state) {
     GfxFont *font = state->getFont();
     // Store original name
     if (font->getName()) {
-        _font_specification = font->getName()->getCString();
+        _font_specification = (char *)font->getName()->c_str();
     } else {
         _font_specification = (char*) "Arial";
     }
@@ -1047,7 +1047,7 @@ void SvgBuilder::updateFont(GfxState *state) {
 
     // Font family
     if (font->getFamily()) { // if font family is explicitly given use it.
-        sp_repr_css_set_property(_font_style, "font-family", font->getFamily()->getCString());
+        sp_repr_css_set_property(_font_style, "font-family", font->getFamily()->c_str());
     } else { 
         int attr_value = 1;
         sp_repr_get_int(_preferences, "localFonts", &attr_value);
@@ -1148,7 +1148,7 @@ void SvgBuilder::updateFont(GfxState *state) {
     Inkscape::CSSOStringStream os_font_size;
     double css_font_size = _font_scaling * state->getFontSize();
     if ( font->getType() == fontType3 ) {
-        double *font_matrix = font->getFontMatrix();
+        const double *font_matrix = font->getFontMatrix();
         if ( font_matrix[0] != 0.0 ) {
             css_font_size *= font_matrix[3] / font_matrix[0];
         }
@@ -1193,7 +1193,7 @@ void SvgBuilder::updateTextPosition(double tx, double ty) {
 void SvgBuilder::updateTextMatrix(GfxState *state) {
     _flushText();
     // Update text matrix
-    double *text_matrix = state->getTextMat();
+    const double *text_matrix = state->getTextMat();
     double w_scale = sqrt( text_matrix[0] * text_matrix[0] + text_matrix[2] * text_matrix[2] );
     double h_scale = sqrt( text_matrix[1] * text_matrix[1] + text_matrix[3] * text_matrix[3] );
     double max_scale;
@@ -1361,7 +1361,7 @@ void SvgBuilder::_flushText() {
     _glyphs.clear();
 }
 
-void SvgBuilder::beginString(GfxState *state, GooString * /*s*/) {
+void SvgBuilder::beginString(GfxState *state, const GooString * /*s*/) {
     if (_need_font_update) {
         updateFont(state);
     }

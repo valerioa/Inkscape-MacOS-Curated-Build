@@ -136,7 +136,7 @@ public:
     void clearSoftMask(GfxState *state);
 
     // Text handling
-    void beginString(GfxState *state, GooString *s);
+    void beginString(GfxState *state, const GooString *s);
     void endString(GfxState *state);
     void addChar(GfxState *state, double x, double y,
                  double dx, double dy,
@@ -175,7 +175,7 @@ private:
     void _addStopToGradient(Inkscape::XML::Node *gradient, double offset,
                             GfxRGB *color, double opacity);
     bool _addGradientStops(Inkscape::XML::Node *gradient, GfxShading *shading,
-                           Function *func);
+                           const Function *func);
     gchar *_createTilingPattern(GfxTilingPattern *tiling_pattern, GfxState *state,
                                 bool is_stroke=false);
     // Image/mask creation

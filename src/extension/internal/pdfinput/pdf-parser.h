@@ -127,11 +127,11 @@ public:
 
   // Constructor for regular output.
   PdfParser(XRef *xrefA, SvgBuilder *builderA, int pageNum, int rotate,
-            Dict *resDict, PDFRectangle *box, PDFRectangle *cropBox);
+            Dict *resDict, const PDFRectangle *box, const PDFRectangle *cropBox);
 
   // Constructor for a sub-page object.
   PdfParser(XRef *xrefA, Inkscape::Extension::Internal::SvgBuilder *builderA,
-            Dict *resDict, PDFRectangle *box);
+            Dict *resDict, const PDFRectangle *box);
 
   virtual ~PdfParser();
 
@@ -185,7 +185,7 @@ private:
 
   void go(GBool topLevel);
   void execOp(Object *cmd, Object args[], int numArgs);
-  PdfOperator *findOp(char *name);
+  PdfOperator *findOp(const char *name);
   GBool checkArg(Object *arg, TchkType type);
   int getPos();
 
@@ -256,7 +256,7 @@ private:
 			   double x2, double y2, GfxColor *color2,
 			   int nComps, int depth);
   void doPatchMeshShFill(GfxPatchMeshShading *shading);
-  void fillPatch(GfxPatch *patch, int nComps, int depth);
+  void fillPatch(const GfxPatch *patch, int nComps, int depth);
   void doEndPath();
 
   // path clipping operators
@@ -287,7 +287,7 @@ private:
   void opMoveShowText(Object args[], int numArgs);
   void opMoveSetShowText(Object args[], int numArgs);
   void opShowSpaceText(Object args[], int numArgs);
-  void doShowText(GooString *s);
+  void doShowText(const GooString *s);
 
   // XObject operators
   void opXObject(Object args[], int numArgs);

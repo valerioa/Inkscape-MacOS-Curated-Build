@@ -319,7 +319,7 @@ PdfImportDialog::PdfImportDialog(PDFDoc *doc, const gchar */*uri*/)
     _render_thumb = true;
 
     // Create PopplerDocument
-    Glib::ustring filename = _pdf_doc->getFileName()->getCString();
+    Glib::ustring filename = _pdf_doc->getFileName()->c_str();
     if (!Glib::path_is_absolute(filename)) {
         filename = Glib::build_filename(Glib::get_current_dir(),filename);
     }
@@ -793,7 +793,7 @@ PdfInput::open(::Inkscape::Extension::Input * /*mod*/, const gchar * uri) {
             dlg->getImportSettings(prefs);
 
         // Apply crop settings
-        PDFRectangle *clipToBox = NULL;
+        const PDFRectangle *clipToBox = NULL;
         double crop_setting;
         sp_repr_get_double(prefs, "cropTo", &crop_setting);
 

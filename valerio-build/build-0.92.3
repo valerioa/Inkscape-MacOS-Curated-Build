@@ -5,7 +5,7 @@ mkdir /Applications/Inkscape.app
 #Install Macports
 curl -s https://distfiles.macports.org/MacPorts/MacPorts-2.5.4.tar.bz2 | tar -xvf -
 cd MacPorts-2.5.4
-CFLAGS="-O3 -mmacosx-version-min=10.12" CXXFLAGS="-O3 -mmacosx-version-min=10.12" ./configure --prefix=/Applications/Inkscape.app/Contents/Resources
+CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure --prefix=/Applications/Inkscape.app/Contents/Resources
 make
 make install
 cd ../
@@ -18,42 +18,34 @@ port upgrade outdated
 
 # install ports
 port -N install glib2 +quartz -x11
-port -N install python27 +quartz -x11
-port -f activate python27
-port select --set python python27
-port select --set python2 python27
+port -N install tk +quartz -x11
 port -N install python27 +quartz -x11
 port -f activate python27
 port select --set python python27
 port select --set python2 python27
 port -N install py27-cython
 port select --set cython cython27
-port -N install cairo +quartz -x11
-port -N install pango +quartz -x11
-port -N install gtk2 +quartz -x11
-port -N install gtkmm +quartz -x11
-port -N install cairomm +quartz -x11
-## port -N install freeglut +quartz -x11
+port -N install python36
+port -f activate python36
+port -N install cairo pango gtkmm cairomm pangomm \
+     gtkdoc glibmm +quartz gtk2-murrine -x11
 port -N install jasper
 port -N install aspell-dict-en
-port -N install glib2 glibmm +quartz -x11
-port -N install py-pygtk +quartz -x11
-port -N install py-scipy py-numpy
-port -N install py-pil
-port -N install py-reportlab
+port -N install pip27
 port select --set pip pip27
-port -N install cairomm +quartz -x11
-port -N install glibmm +quartz -x11
-port -N install -N gtk2-murrine +quartz -x11
+port -N install py-pygtk py-scipy py-numpy \
+     py-pil py-reportlab py27-lxml +quartz -x11
 port -N install -N poppler psutils
 port -N install -N p5-xml-parser
-port -N install -N py27-lxml
 port -N install gsl popt
+port -N install boehm-gc
+
 
 # Install patched gtk2
 wget -O- https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.32.tar.xz | tar -xvzf -
 cd gtk+-2.24.32
 patch -p1 < ../../valerio-patches/gtk+-2.24.32.inkscape-pasteboard.patch
+CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" \
 CUPS_CONFIG=/usr/bin/cups-config \
 LDFLAGS="-framework Cocoa -framework Carbon" \
 ./configure \
@@ -71,7 +63,7 @@ cd ../
 git clone https://github.com/jralls/gtk-mac-integration.git
 cd gtk-mac-integration
 ./autogen.sh
-./configure \
+CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure \
 --prefix=/Applications/Inkscape.app/Contents/Resources/ --with-gtk2 --without-gtk3
 make
 make install
@@ -81,7 +73,7 @@ cd ..
 mkdir inkscape-build
 cd ../
 ./autogen.sh
-./configure \
+CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure \
 --prefix=/Applications/Inkscape.app/Contents/Resources \
 --without-gnome-vfs \
 --enable-lcms \
@@ -90,9 +82,9 @@ cd ../
 --disable-strict-build \
 --enable-carbon \
 --disable-dbusapi
-
 make
 make install
+
 cp Info.plist /Applications/Inkscape.app/Contents
 cd valerio-build
 mkdir -p /Applications/Inkscape.app/Contents/MacOS
@@ -114,9 +106,10 @@ mkdir -p /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig
 # rm -fR /Applications/Inkscape_Backup.app
 
 # the following commands must be run as user who owns a windowing session.
-VERSION="0.92.2 v5
+VERSION="0.92.3 v1"
 mkdir "Inkscape ${VERSION}"
 rsync -Sav /Applications/Inkscape.app "Inkscape ${VERSION}"/
+chown -fR 501:20 "Inkscape ${VERSION}"/
 test -f "Inkscape ${VERSION}.dmg" && rm "Inkscape ${VERSION}.dmg"
 ./create-dmg \
 --window-size 600 400 \

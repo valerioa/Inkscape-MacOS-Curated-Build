@@ -38,7 +38,6 @@ extern "C" {
 
 #include "goo/gmem.h"
 #include "goo/GooTimer.h"
-#include "goo/GooHash.h"
 #include "GlobalParams.h"
 #include "CharTypes.h"
 #include "Object.h"
@@ -295,8 +294,8 @@ PdfParser::PdfParser(XRef *xrefA,
                      int /*pageNum*/,
 		     int rotate,
 		     Dict *resDict,
-                     PDFRectangle *box,
-		     PDFRectangle *cropBox) :
+                     const PDFRectangle *box,
+		     const PDFRectangle *cropBox) :
     xref(xrefA),
     builder(builderA),
     subPage(gFalse),
@@ -318,7 +317,7 @@ PdfParser::PdfParser(XRef *xrefA,
   builder->setDocumentSize(Inkscape::Util::Quantity::convert(state->getPageWidth(), "pt", "px"),
                            Inkscape::Util::Quantity::convert(state->getPageHeight(), "pt", "px"));
 
-  double *ctm = state->getCTM();
+  const double *ctm = state->getCTM();
   double scaledCTM[6];
   for (int i = 0; i < 6; ++i) {
     baseMatrix[i] = ctm[i];
@@ -353,7 +352,7 @@ PdfParser::PdfParser(XRef *xrefA,
 PdfParser::PdfParser(XRef *xrefA,
 		     Inkscape::Extension::Internal::SvgBuilder *builderA,
                      Dict *resDict,
-		     PDFRectangle *box) :
+		     const PDFRectangle *box) :
     xref(xrefA),
     builder(builderA),
     subPage(gTrue),
@@ -572,7 +571,7 @@ const char *PdfParser::getPreviousOperator(unsigned int look_back) {
 
 void PdfParser::execOp(Object *cmd, Object args[], int numArgs) {
   PdfOperator *op;
-  char *name;
+  const char *name;
   Object *argPtr;
   int i;
 
@@ -620,7 +619,7 @@ void PdfParser::execOp(Object *cmd, Object args[], int numArgs) {
   (this->*op->func)(argPtr, numArgs);
 }
 
-PdfOperator* PdfParser::findOp(char *name) {
+PdfOperator* PdfParser::findOp(const char *name) {
   int a = -1;
   int b = numOps;
   int cmp = -1;
@@ -1752,7 +1751,7 @@ void PdfParser::doShadingPatternFillFallback(GfxShadingPattern *sPat,
                                              GBool stroke, GBool eoFill) {
   GfxShading *shading;
   GfxPath *savedPath;
-  double *ctm, *btm, *ptm;
+  const double *ctm, *btm, *ptm;
   double m[6], ictm[6], m1[6];
   double xMin, yMin, xMax, yMax;
   double det;
@@ -1994,7 +1993,7 @@ void PdfParser::doFunctionShFill1(GfxFunctionShading *shading,
   GfxColor color0M, color1M, colorM0, colorM1, colorMM;
   GfxColor colors2[4];
   double functionColorDelta = colorDeltas[pdfFunctionShading-1];
-  double *matrix;
+  const double *matrix;
   double xM, yM;
   int nComps, i, j;
 
@@ -2174,7 +2173,7 @@ void PdfParser::doPatchMeshShFill(GfxPatchMeshShading *shading) {
   }
 }
 
-void PdfParser::fillPatch(GfxPatch *patch, int nComps, int depth) {
+void PdfParser::fillPatch(const GfxPatch *patch, int nComps, int depth) {
   GfxPatch patch00 = blankPatch();
   GfxPatch patch01 = blankPatch();
   GfxPatch patch10 = blankPatch();
@@ -2381,8 +2380,8 @@ void PdfParser::opSetFont(Object args[], int /*numArgs*/)
   }
   if (printCommands) {
     printf("  font: tag=%s name='%s' %g\n",
-	   font->getTag()->getCString(),
-	   font->getName() ? font->getName()->getCString() : "???",
+	   font->getTag()->c_str(),
+	   font->getName() ? font->getName()->c_str() : "???",
 	   args[1].getNum());
     fflush(stdout);
   }
@@ -2582,7 +2581,7 @@ void PdfParser::opShowSpaceText(Object args[], int /*numArgs*/)
   }
 }
 
-void PdfParser::doShowText(GooString *s) {
+void PdfParser::doShowText(const GooString *s) {
   GfxFont *font;
   int wMode;
   double riseX, riseY;
@@ -2591,7 +2590,7 @@ void PdfParser::doShowText(GooString *s) {
   double x, y, dx, dy, tdx, tdy;
   double originX, originY, tOriginX, tOriginY;
   double oldCTM[6], newCTM[6];
-  double *mat;
+  const double *mat;
   Object charProc;
   Dict *resDict;
   Parser *oldParser;
@@ -2631,7 +2630,7 @@ void PdfParser::doShowText(GooString *s) {
     double lineX = state->getLineX();
     double lineY = state->getLineY();
     oldParser = parser;
-    p = s->getCString();
+    p = (char *) s->c_str();
     len = s->getLength();
     while (len > 0) {
       n = font->getNextChar(p, len, &code,
@@ -2686,7 +2685,7 @@ void PdfParser::doShowText(GooString *s) {
 
   } else {
     state->textTransformDelta(0, state->getRise(), &riseX, &riseY);
-    p = s->getCString();
+    p = (char*) s->c_str();
     len = s->getLength();
     while (len > 0) {
       n = font->getNextChar(p, len, &code,
@@ -2732,7 +2731,7 @@ void PdfParser::opXObject(Object args[], int /*numArgs*/)
 {
   Object obj1, obj2, obj3, refObj;
 
-  char *name = args[0].getName();
+  const char *name = args[0].getName();
 #if defined(POPPLER_NEW_OBJECT_API)
   if ((obj1 = res->lookupXObject(name)).isNull()) {
 #else
@@ -3657,7 +3656,7 @@ void PdfParser::opBeginImage(Object /*args*/[], int /*numArgs*/)
 Stream *PdfParser::buildImageStream() {
   Object dict;
   Object obj;
-  char *key;
+  const char *key;
   Stream *str;
 
   // build dictionary
@@ -3683,7 +3682,7 @@ Stream *PdfParser::buildImageStream() {
       parser->getObj(&obj);
 #endif
       if (obj.isEOF() || obj.isError()) {
-	gfree(key);
+	gfree((void *)key);
 	break;
       }
 #if defined(POPPLER_NEW_OBJECT_API)
