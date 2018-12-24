@@ -7,7 +7,8 @@ curl -s https://distfiles.macports.org/MacPorts/MacPorts-2.5.4.tar.bz2 | tar -xv
 cd MacPorts-2.5.4
 CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure --prefix=/Applications/Inkscape.app/Contents/Resources
 make
-make install
+sudo make install
+sudo chown -fR `whoami`:`groups | cut -d" " -f1` /Applications/Inkscape.app
 cd ../
 export PATH=/Applications/Inkscape.app/Contents/Resources/bin:$PATH
 
@@ -15,6 +16,8 @@ export PATH=/Applications/Inkscape.app/Contents/Resources/bin:$PATH
 # update port
 port selfupdate
 port upgrade outdated
+
+# Manually edit 
 
 # install ports
 port -N install glib2 +quartz -x11
@@ -31,14 +34,14 @@ port -N install cairo pango gtkmm cairomm pangomm \
      gtkdoc glibmm +quartz gtk2-murrine -x11
 port -N install jasper
 port -N install aspell-dict-en
-port -N install pip27
+port -N install py27-pip
 port select --set pip pip27
 port -N install py-pygtk py-scipy py-numpy \
      py-pil py-reportlab py27-lxml +quartz -x11
 port -N install -N poppler psutils
 port -N install -N p5-xml-parser
 port -N install gsl popt
-port -N install boehm-gc
+port -N install boehmgc
 
 
 # Install patched gtk2

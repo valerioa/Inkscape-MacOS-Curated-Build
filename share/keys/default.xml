@@ -337,8 +337,8 @@ override) the bindings in the main default.xml.
 
   <bind action="EditRelinkClone" />
 
-  <bind key="d" modifiers="Shift" action="EditCloneSelectOriginal" display="true" />
-  <bind key="D" modifiers="Shift" action="EditCloneSelectOriginal" />
+  <bind key="d" modifiers="Cmd,Shift" action="EditCloneSelectOriginal" display="true" />
+  <bind key="D" modifiers="Cmd,Shift" action="EditCloneSelectOriginal" />
 
   <bind action="EditCloneOriginalPathLPE" />
 
@@ -420,8 +420,8 @@ override) the bindings in the main default.xml.
   <bind key="i" modifiers="Alt,Shift" action="ObjectsFromPattern" display="true" />
   <bind key="I" modifiers="Alt,Shift" action="ObjectsFromPattern" />
   
-  <bind key="g" modifiers="Shift" action="ObjectsToGuides" display="true" />
-  <bind key="G" modifiers="Shift" action="ObjectsToGuides" />
+  <bind key="g" modifiers="Cmd,Shift" action="ObjectsToGuides" display="true" />
+  <bind key="G" modifiers="Cmd,Shift" action="ObjectsToGuides" />
 
   <bind action="ObjectSetMask" />
   <bind action="ObjectUnSetMask" />
