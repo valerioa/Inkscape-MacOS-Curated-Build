@@ -5,10 +5,13 @@ mkdir /Applications/Inkscape.app
 #Install Macports
 curl -s https://distfiles.macports.org/MacPorts/MacPorts-2.5.4.tar.bz2 | tar -xvf -
 cd MacPorts-2.5.4
-CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure --prefix=/Applications/Inkscape.app/Contents/Resources
+CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure --prefix=/Applications/Inkscape.app/Contents/Resources \
+				    --with-install-user=`whoami` \
+				    --with-install-group=`groups | cut -d" " -f1` \
+				    --with-macports-user=`whoami`
+
 make
-sudo make install
-sudo chown -fR `whoami`:`groups | cut -d" " -f1` /Applications/Inkscape.app
+make install
 cd ../
 export PATH=/Applications/Inkscape.app/Contents/Resources/bin:$PATH
 
@@ -31,17 +34,31 @@ port select --set cython cython27
 port -N install python36
 port -f activate python36
 port -N install cairo pango gtkmm cairomm pangomm \
-     gtkdoc glibmm +quartz gtk2-murrine -x11
+     gtkdoc glibmm gtk2-murrine +quartz -x11
 port -N install jasper
-port -N install aspell-dict-en
+port -N install  aspell-dict-af aspell-dict-ar aspell-dict-az \
+     aspell-dict-be aspell-dict-bg aspell-dict-bn aspell-dict-ca \
+     aspell-dict-cs aspell-dict-da aspell-dict-de aspell-dict-de-alt \
+     aspell-dict-el aspell-dict-en aspell-dict-eo aspell-dict-es \
+     aspell-dict-et aspell-dict-fa aspell-dict-fi aspell-dict-fr \
+     aspell-dict-he aspell-dict-hi aspell-dict-hr aspell-dict-hu \
+     aspell-dict-id aspell-dict-is aspell-dict-it aspell-dict-lt \
+     aspell-dict-lv aspell-dict-mg aspell-dict-mk aspell-dict-mr \
+     aspell-dict-ms aspell-dict-nb aspell-dict-nl aspell-dict-pl \
+     aspell-dict-pt_BR aspell-dict-pt_PT aspell-dict-ro aspell-dict-ru \
+     aspell-dict-rw aspell-dict-sk aspell-dict-sr aspell-dict-sv \
+     aspell-dict-sw aspell-dict-ta aspell-dict-tl aspell-dict-tr \
+     aspell-dict-uk aspell-dict-uz aspell-dict-vi
 port -N install py27-pip
 port select --set pip pip27
+port -N	    install   py-gobject +quartz -x11
 port -N install py-pygtk py-scipy py-numpy \
      py-pil py-reportlab py27-lxml +quartz -x11
 port -N install -N poppler psutils
 port -N install -N p5-xml-parser
 port -N install gsl popt
 port -N install boehmgc
+
 
 
 # Install patched gtk2
