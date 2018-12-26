@@ -6,7 +6,7 @@ do_extract()
                 echo `dirname $1`/`readlink $1`
                 do_extract `dirname $1`/`readlink $1`
         fi
-        for line in `otool -L $1 | tail -n +3 | cut -d '(' -f1 | grep '/Applications/Inkscape.app' | sed -e 's/\t*//' -e 's/ *$//'`; do
+        for line in `otool -L $1 | tail -n +3 | cut -d '(' -f1 | grep '/Applications/Inkscape.app' | gsed -e 's/\t*//' -e 's/ *$//'`; do
                 echo $line
                 do_extract $line
         done
@@ -91,8 +91,8 @@ done
 cat dylibs >> temp_keepers
 
 sort -u < temp_keepers | \
-sed -s 's/\/Applications\/Inkscape.app//g' | \
-sed -s 's/^\/*//g' | \
+gsed -s 's/\/Applications\/Inkscape.app//g' | \
+gsed -s 's/^\/*//g' | \
 grep -v 'Contents/Resources/var/macports' | \
 grep -v 'Contents/Resources/include' | \
 grep -v 'Contents/Resources/share/man' | \
