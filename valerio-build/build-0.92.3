@@ -3,7 +3,7 @@
 mkdir /Applications/Inkscape.app
 
 #Install Macports
-curl -s https://distfiles.macports.org/MacPorts/MacPorts-2.5.4.tar.bz2 | tar -xvf -
+curl -L -s https://distfiles.macports.org/MacPorts/MacPorts-2.5.4.tar.bz2 | tar -xvf -
 cd MacPorts-2.5.4
 CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure --prefix=/Applications/Inkscape.app/Contents/Resources \
 				    --with-install-user=`whoami` \
@@ -34,15 +34,15 @@ port select --set cython cython27
 port -N install python36
 port -f activate python36
 port -N install cairo 
-port -N glibmm +quartz -x11
-port -N pango +quartz -x11
-port -N atkmm +quartz -x11
-port -N gtkmm +quartz -x11
-port -N cairomm +quartz -x11
-port -N pangomm +quartz -x11
-port -N gtkdoc +quartz -x11
-port -N glibmm +quartz -x11
-port -N gtk2-murrine +quartz -x11
+port -N install glibmm +quartz -x11
+port -N install pango +quartz -x11
+port -N install atkmm +quartz -x11
+port -N install gtkmm +quartz -x11
+port -N install cairomm +quartz -x11
+port -N install pangomm +quartz -x11
+port -N install gtk-doc +quartz -x11
+port -N install glibmm +quartz -x11
+port -N install gtk2-murrine +quartz -x11
 port -N install jasper
 port -N install  aspell-dict-af aspell-dict-ar aspell-dict-az \
      aspell-dict-be aspell-dict-bg aspell-dict-bn aspell-dict-ca \
@@ -59,27 +59,32 @@ port -N install  aspell-dict-af aspell-dict-ar aspell-dict-az \
      aspell-dict-uk aspell-dict-uz aspell-dict-vi
 port -N install py27-pip
 port select --set pip pip27
-port -N	    install   py-gobject +quartz -x11
-port -N install py-pygtk
-port -N py-scipy +quartz -x11
-port -N py-numpy +quartz -x11
-port -N py-pil +quartz -x11
-port -N py-reportlab +quartz -x11
-port -N py27-lxml +quartz -x11
-port -N install -N poppler psutils
-port -N install -N p5-xml-parser
+port -N install py-gobject +quartz -x11
+port -N install py-pygtk +quartz -x11
+port -N install py-scipy +quartz -x11
+port -N install py-numpy +quartz -x11
+port -N install py-pil +quartz -x11
+port -N install py-reportlab +quartz -x11
+port -N install py27-lxml +quartz -x11
+port -N install poppler psutils
+port -N install p5-xml-parser
 port -N install gsl popt
 port -N install boehmgc
+port -N install potrace
+port -N install libcdr libwpg libvisio
+port -N install ImageMagick +quartz -x11
 
-
+ln -sf /Applications/Inkscape.app//Contents/Resources/Library/Frameworks/Python.framework/Versions/2.7/lib/pkgconfig/* /Applications/Inkscape.app/Contents/Resources/lib/pkgconfig/
+ln -sf /Applications/Inkscape.app//Contents/Resources/bin/pygobject-codegen-2.0-2.7 /Applications/Inkscape.app//Contents/Resources/bin/pygobject-codegen-2.0
 
 # Install patched gtk2
-wget -O- https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.32.tar.xz | tar -xvzf -
+curl -L -s https://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.32.tar.xz | tar -xvzf -
 cd gtk+-2.24.32
 patch -p1 < ../../valerio-patches/gtk+-2.24.32.inkscape-pasteboard.patch
-CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" \
+CFLAGS="-mmacosx-version-min=10.12 -I/Applications/Inkscape.app/Contents/Resources/include/" \
+CXXFLAGS="-mmacosx-version-min=10.12 -I/Applications/Inkscape.app/Contents/Resources/include/" \
+LDFLAGS="-L/Applications/Inkscape.app/Contents/Resources/lib/ -framework Cocoa -framework Carbon" \
 CUPS_CONFIG=/usr/bin/cups-config \
-LDFLAGS="-framework Cocoa -framework Carbon" \
 ./configure \
 --enable-static \
 --disable-glibtest \
@@ -87,7 +92,7 @@ LDFLAGS="-framework Cocoa -framework Carbon" \
 --with-gdktarget=quartz \
 --prefix=/Applications/Inkscape.app/Contents/Resources \
 gio_can_sniff=yes
-make
+make -j8
 make install
 cd ../
 
@@ -95,17 +100,21 @@ cd ../
 git clone https://github.com/jralls/gtk-mac-integration.git
 cd gtk-mac-integration
 ./autogen.sh
-CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure \
+CFLAGS="-mmacosx-version-min=10.12 -I/Applications/Inkscape.app/Contents/Resources/include/" \
+CXXFLAGS="-mmacosx-version-min=10.12 -I/Applications/Inkscape.app/Contents/Resources/include/" \
+LDFLAGS="-L/Applications/Inkscape.app/Contents/Resources/lib/" \
 --prefix=/Applications/Inkscape.app/Contents/Resources/ --with-gtk2 --without-gtk3
-make
+make -j8
 make install
 cd ..
 
 # Build Inkscape
-mkdir inkscape-build
 cd ../
 ./autogen.sh
-CFLAGS="-mmacosx-version-min=10.12" CXXFLAGS="-mmacosx-version-min=10.12" ./configure \
+CFLAGS="-mmacosx-version-min=10.12 -I/Applications/Inkscape.app/Contents/Resources/include/" \
+CXXFLAGS="-mmacosx-version-min=10.12 -I/Applications/Inkscape.app/Contents/Resources/include/" \
+LDFLAGS="-L/Applications/Inkscape.app/Contents/Resources/lib/" \
+./configure \
 --prefix=/Applications/Inkscape.app/Contents/Resources \
 --without-gnome-vfs \
 --enable-lcms \
@@ -125,7 +134,8 @@ rsync -Sav icons/Tango /Applications/Inkscape.app/Contents/Resources/share/icons
 cp etc/gtk-2.0/gtkrc /Applications/Inkscape.app/Contents/Resources/etc/gtk-2.0/
 rsync -Sav themes/Mac /Applications/Inkscape.app/Contents/Resources/share/themes/
 cp icons/Inkscape*icns /Applications/Inkscape.app/Contents/Resources/
-
+mkdir /Applications/Inkscape.app/Contents/Resources/etc/fonts/conf.d
+cp etc/fonts/conf.d/userfonts.conf /Applications/Inkscape.app/Contents/Resources/etc/fonts/conf.d/ 
 
 # Packaging
 ./gen_keepers ; say Done! # this takes a bit of time
@@ -138,7 +148,7 @@ mkdir -p /Applications/Inkscape.app/Contents/Resources/var/cache/fontconfig
 # rm -fR /Applications/Inkscape_Backup.app
 
 # the following commands must be run as user who owns a windowing session.
-VERSION="0.92.3 v1"
+VERSION="0.92.3 v2"
 mkdir "Inkscape ${VERSION}"
 rsync -Sav /Applications/Inkscape.app "Inkscape ${VERSION}"/
 chown -fR 501:20 "Inkscape ${VERSION}"/
