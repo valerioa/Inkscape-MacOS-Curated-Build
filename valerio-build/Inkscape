@@ -2,15 +2,12 @@
 # By Valerio G. Aimale
 
 # Where we get the paths from
-name=$(basename "$0")
-#echo $name
-
 dirn=$(dirname "$0")
 #echo $dirn
 
 bundle=$(cd "$dirn/../../" && pwd)
 bundle_contents="$bundle"/Contents
-bundle_res="$bundle_contents"/Resources/
+bundle_res="$bundle_contents"/Resources
 bundle_lib="$bundle_res"/lib
 bundle_bin="$bundle_res"/bin
 bundle_sbin="$bundle_res"/sbin
@@ -21,5 +18,5 @@ PATH=${bundle_bin}:${bundle_sbin}:${PATH}
 
 ${bundle_bin}/fc-cache
 
-exec "$bundle_res/bin/$name" $@ &>/dev/null
+exec "$bundle_res/bin/inkscape" $@ &>/dev/null
 
