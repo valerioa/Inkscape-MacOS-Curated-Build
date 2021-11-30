@@ -1,3 +1,7 @@
+# Important
+
+Since the release of Inkscape 1.0, and following versions, this project has no reason to exist anymore. Inkscape 1.0 (Inkscape 1.1.1 at the time of this writing - https://inkscape.org/gallery/item/29282/Inkscape-1.1.1.dmg )
+
 # Inkscape MacOS Curated Build
 
 This is a curated build of Inkscape (currently 0.92.2) for MacOS.
