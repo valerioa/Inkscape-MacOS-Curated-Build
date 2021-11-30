@@ -1,6 +1,6 @@
 # Important
 
-Since the release of Inkscape 1.0, and following versions, this project has no reason to exist anymore. Inkscape 1.0 (Inkscape 1.1.1 at the time of this writing - https://inkscape.org/gallery/item/29282/Inkscape-1.1.1.dmg )
+Since the release of Inkscape 1.0, and following versions, this project has no reason to exist anymore. Inkscape 1.0 (Inkscape 1.1.1 at the time of this writing - https://inkscape.org/gallery/item/29282/Inkscape-1.1.1.dmg ) is fully integrated with the Mac OSX UI. The 1.x.x Inkscape has Mac-style menus and window decorations. Granted, it is not perfect: the clipboard integration still has some problems (November 2021). However, Inkscape 1.x.x takes advantage of all the bugfixes and improvement that have been developed. I advise all to install the most recent version of Inkscape 1.x.x.
 
 # Inkscape MacOS Curated Build
 
